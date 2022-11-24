@@ -12,6 +12,18 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const getProjects = () => {
+    const query = {
+      text: 'SELECT * FROM projects',
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
+
   const getUserByEmail = email => {
 
     const query = {
@@ -25,10 +37,10 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
-  const addUser = (firstName, lastName, email, password) => {
+  const addUser = (name, avatar, email, password) => {
     const query = {
-      text: `INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4) RETURNING *`,
-      values: [firstName, lastName, email, password]
+      text: `INSERT INTO users (name, avatar, email, password) VALUES ($1, $2, $3, $4) RETURNING *`,
+      values: [name, avatar, email, password]
     };
 
     return db.query(query)
@@ -52,6 +64,7 @@ module.exports = (db) => {
 
   return {
     getUsers,
+    getProjects,
     getUserByEmail,
     addUser,
     getUsersPosts
