@@ -14,11 +14,12 @@ CREATE TABLE projects(
     name VARCHAR(255) NOT NULL,
     description TEXT,
     start_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    expected_end_date DATE NOT NULL, -- Ask Mentor
+    expected_end_date TIMESTAMP, -- Ask Mentor
     completion_time TIMESTAMP
 );
 
 DROP TABLE IF EXISTS tasks CASCADE;
+
 DROP TYPE IF EXISTS TASKSTATUS CASCADE;
 CREATE TYPE TASKSTATUS AS ENUM ('TO-DO','IN-PROGRESS','COMPLETED');
 CREATE TABLE tasks(
@@ -26,9 +27,9 @@ CREATE TABLE tasks(
     name VARCHAR(255) NOT NULL,
     description TEXT,
     status TASKSTATUS DEFAULT 'TO-DO',
-    deadline DATETIME NOT NULL,
+    deadline TIMESTAMP,
     completion_time TIMESTAMP,
-    user_id INTEGER REFERENCES users(id),
+    assigned_user_id INTEGER REFERENCES users(id),
     project_id INTEGER REFERENCES projects(id)
 );
 
@@ -37,6 +38,6 @@ DROP TABLE IF EXISTS project_users CASCADE;
 
 CREATE TABLE project_users(
     id SERIAL PRIMARY KEY NOT NULL,
-    user_id INTEGER REFERENCES users(id),
+    subscribed_user_id INTEGER REFERENCES users(id),
     project_id INTEGER REFERENCES projects(id)
-)
+);
