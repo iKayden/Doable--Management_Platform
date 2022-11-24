@@ -48,6 +48,14 @@ const useApplicationData = () => {
       })
       .catch((err) => console.log(err));
   }, []);
+  // REVIEW WITH MENTOR
+  const createProject = () => {
+    return axios.post('/api/projects')
+      .then(() => {
+        // ??? dispatch?
+
+      });
+  };
   const deleteProject = (id) => {
     return axios.delete(`/api/projects/${id}`)
       .then(() => {
@@ -61,7 +69,8 @@ const useApplicationData = () => {
   return {
     state,
     dispatch,
-    deleteProject
+    deleteProject,
+    createProject
   };
   // Trying to make data for projects
 
