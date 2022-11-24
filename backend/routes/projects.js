@@ -1,10 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const { } = require('../helpers/dataHelpers');
-
+const { getProjects } = require('../helpers/dbHelpers');
 module.exports = ({
-  get
+  getProjects
 }) => {
-
+  router.get('/projects', (req, res) => {
+    getProjects()
+      .then((projects) => {
+        res.json(projects);
+      })
+      .catch((err) => res.json({
+        error: err.message
+      }));
+  });
   return router;
 };

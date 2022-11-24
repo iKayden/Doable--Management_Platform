@@ -1,5 +1,5 @@
 import './App.css';
-import useApplicationData from './hooks/useApplicationData';
+import useApplicationData from '../hooks/useApplicationData';
 
 const App = () => {
   const {
@@ -21,7 +21,6 @@ const App = () => {
   ));
   return (<div className="App" >
     <h1> Users </h1>
-
     <ul> {userList} </ul>
   </div >
   );
