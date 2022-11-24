@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { getProjects } = require('../helpers/dbHelpers');
+const { getProjects, deleteProject } = require('../helpers/dbHelpers');
 module.exports = ({
-  getProjects
+  getProjects,
+  deleteProject
 }) => {
-  router.get('/projects', (req, res) => {
+  router.get('/', (req, res) => {
     getProjects()
       .then((projects) => {
         res.json(projects);
@@ -12,6 +13,18 @@ module.exports = ({
       .catch((err) => res.json({
         error: err.message
       }));
+  });
+  router.delete('/:id', (req, res) => {
+    deleteProject(req.params.id)
+      .then(() => {
+        res.send({ success: true });
+      })
+      .catch((err) => {
+        console.log("err from delete", err.message);
+        res.json({
+          error: err.message
+        });
+      });
   });
   return router;
 };

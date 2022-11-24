@@ -30,7 +30,7 @@ CREATE TABLE tasks(
     deadline TIMESTAMP,
     completion_time TIMESTAMP,
     assigned_user_id INTEGER REFERENCES users(id),
-    project_id INTEGER REFERENCES projects(id)
+    project_id INTEGER REFERENCES projects(id) ON DELETE CASCADE
 );
 
 
@@ -39,5 +39,5 @@ DROP TABLE IF EXISTS project_users CASCADE;
 CREATE TABLE project_users(
     id SERIAL PRIMARY KEY NOT NULL,
     subscribed_user_id INTEGER REFERENCES users(id),
-    project_id INTEGER REFERENCES projects(id)
+    project_id INTEGER REFERENCES projects(id) ON DELETE CASCADE
 );

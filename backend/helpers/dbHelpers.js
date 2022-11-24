@@ -23,6 +23,15 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const deleteProject = (id) => {
+    const query = {
+      text: 'DELETE FROM projects WHERE id = $1',
+      values: [id]
+    };
+    return db
+      .query(query);
+  };
+
 
   const getUserByEmail = email => {
 
@@ -52,6 +61,7 @@ module.exports = (db) => {
   return {
     getUsers,
     getProjects,
+    deleteProject,
     getUserByEmail,
     addUser,
   };
