@@ -50,7 +50,6 @@ const useApplicationData = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  // REVIEW WITH MENTOR
   const createProject = (project) => {
     console.log("PROJECT FROM FRONT END", project);
     return axios.post('/api/projects', project)
