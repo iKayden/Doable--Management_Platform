@@ -6,7 +6,18 @@ const App = () => {
     state,
     dispatch
   } = useApplicationData();
-  const userList = state.users.map((user) => (<li key={user.id} > {user.first_name} {user.last_name} {user.email} </li>
+  const userList = state.users.map((user) => (
+    <li key={user.id} >
+      <p>
+        {user.name}
+      </p>
+      <img class="user--avatar" src={user.avatar} alt="avatar" />
+      <p>
+        {user.email}
+      </p>
+      <hr />
+
+    </li>
   ));
   return (<div className="App" >
     <h1> Users </h1>
