@@ -1,5 +1,7 @@
-import './App.css';
-import useApplicationData from '../hooks/useApplicationData';
+import "./App.css";
+import useApplicationData from "../hooks/useApplicationData";
+import { useState } from "react";
+import Login from "./login";
 
 const App = () => {
   const {
@@ -7,6 +9,7 @@ const App = () => {
     dispatch,
     deleteProject
   } = useApplicationData();
+
   const userList = state.users.map((user) => (
     <li key={user.id} >
       <p>
@@ -37,6 +40,13 @@ const App = () => {
       <hr />
     </li>
   ));
+
+  const [cookie, setCookie] = useState();
+
+  if (!cookie) {
+    return <Login setCookie={setCookie} />;
+  }
+
   return (<div className="App" >
     <h1> Users </h1>
     <ul> {userList} </ul>
