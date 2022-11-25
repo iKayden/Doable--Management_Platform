@@ -17,11 +17,12 @@ module.exports = (db) => {
     return db.query(query).then((result) => result.rows);
   };
 
-  const createProject = (name, description, start_date, expected_end_date) => {
+  const createProject = (name, description, expected_end_date) => {
+    // We can build query string depending on the availability of start_date
     const query = {
-      text: `INSERT INTO projects (name, description, start_date, expected_end_date)
-    VALUES ($1, $2, $3, $4) RETURNING *`,
-      values: [name, description, start_date, expected_end_date],
+      text: `INSERT INTO projects (name, description, expected_end_date)
+    VALUES ($1, $2, $3) RETURNING *`,
+      values: [name, description, expected_end_date],
     };
 
     return db.query(query).then((result) => result.rows[0]);
@@ -56,7 +57,7 @@ module.exports = (db) => {
   const getTasksByProjectId = (id) => {
     const query = {
       text: `
-      SELECT projects.name AS project_name, tasks.id, tasks.name, tasks.description, tasks.status, tasks.deadline, tasks.completion_time, tasks.assigned_user_id FROM projects JOIN tasks ON project_id=projects.id 
+      SELECT projects.name AS project_name, tasks.id, tasks.name, tasks.description, tasks.status, tasks.deadline, tasks.completion_time, tasks.assigned_user_id FROM projects JOIN tasks ON project_id=projects.id
       WHERE projects.id = $1
       `,
       values: [id],

@@ -26,7 +26,7 @@ export default function ProjectList() {
         });
       })
       .catch((err) => console.log(err));
-  }, [dispatch]);
+  }, []);
 
   const projectList = projects.map((project) => {
     return (

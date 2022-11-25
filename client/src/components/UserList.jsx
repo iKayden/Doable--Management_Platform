@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import axios from 'axios';
-
+// need to use react Router (it's separate from server-side routing)
+// wanna use link from React instead of <a></a>
 import './UserList.css';
 import {
   useApplicationState,
@@ -11,7 +12,7 @@ import { SET_USERS } from '../reducer/data_reducer';
 export default function UserList() {
   const { users } = useApplicationState();
   const dispatch = useApplicationDispatch();
-
+  // preferably still keep it in one file with other calls
   useEffect(() => {
     axios({
       method: 'GET',

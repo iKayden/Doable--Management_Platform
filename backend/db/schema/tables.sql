@@ -14,7 +14,7 @@ CREATE TABLE projects(
     name VARCHAR(255) NOT NULL,
     description TEXT,
     start_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    expected_end_date TIMESTAMP, 
+    expected_end_date TIMESTAMP,
     completion_time TIMESTAMP
 );
 
@@ -32,7 +32,6 @@ CREATE TABLE tasks(
     assigned_user_id INTEGER REFERENCES users(id),
     project_id INTEGER REFERENCES projects(id) ON DELETE CASCADE
 );
-
 
 DROP TABLE IF EXISTS project_users CASCADE;
 
