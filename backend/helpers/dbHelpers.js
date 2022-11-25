@@ -23,6 +23,19 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const createProject = (name, description, start_date, expected_end_date) => {
+    const query = {
+      text: `INSERT INTO projects (name, description, start_date, expected_end_date)
+    VALUES ($1, $2, $3, $4) RETURNING *`,
+      values: [name, description, start_date, expected_end_date]
+    };
+
+    return db
+      .query(query)
+      .then(result => result.rows[0])
+      .catch(err => err);
+  };
+
   const deleteProject = (id) => {
     const query = {
       text: 'DELETE FROM projects WHERE id = $1',
@@ -30,6 +43,7 @@ module.exports = (db) => {
     };
     return db
       .query(query);
+
   };
 
 
@@ -52,15 +66,16 @@ module.exports = (db) => {
       values: [name, avatar, email, password]
     };
 
-    return db.query(query)
-      .then(result => result.rows[0])
-      .catch(err => err);
+    return db
+      .query(query);
+
   };
 
 
   return {
     getUsers,
     getProjects,
+    createProject,
     deleteProject,
     getUserByEmail,
     addUser,
