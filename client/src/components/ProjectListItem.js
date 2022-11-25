@@ -1,7 +1,8 @@
-import useApplicationData from '../hooks/useApplicationData';
+import { useApplicationDispatch } from '../hooks/useApplicationData';
+import { deleteProject } from '../api/project';
 
 export default function ProjectListItem(props) {
-  const { deleteProject } = useApplicationData();
+  const dispatch = useApplicationDispatch();
   return (
     <tr key={props.id}>
       <th>{props.name}</th>
@@ -11,7 +12,7 @@ export default function ProjectListItem(props) {
       <th>
         <button
           onClick={() => {
-            deleteProject(props.id);
+            deleteProject(dispatch, props.id);
           }}
         >
           Delete
