@@ -7,7 +7,9 @@ const App = () => {
   const {
     state,
     dispatch,
-    deleteProject
+    deleteProject,
+    createProject,
+    editProject
   } = useApplicationData();
 
   const userList = state.users.map((user) => (
@@ -37,18 +39,32 @@ const App = () => {
         {project.expected_end_date}
       </p>
       <button onClick={() => { deleteProject(project.id); }}>Delete</button>
+      {/* <button onClick={() => { editProject(project.id); }}>Edit</button>  DO AN ID PAGE AND SET IT UP THERE*/}
       <hr />
     </li>
   ));
 
-  const [cookie, setCookie] = useState();
 
-  if (!cookie) {
-    return <Login setCookie={setCookie} />;
-  }
+
+  const [cookie, setCookie] = useState();
+  const [project, setProject] = useState({});
+
+  // if (!cookie) {
+  //   return <Login setCookie={setCookie} />;
+  // }
 
   return (<div className="App" >
     <h1> Users </h1>
+    <form
+      autoComplete="off"
+      onSubmit={(e) => {
+        e.preventDefault();
+        createProject(project);
+      }} >
+      <input type="text" name="name" placeholder="Enter Project Name" value={project.name} onChange={(event) => setProject((prev) => ({ ...prev, name: event.target.value }))} />
+      <button type="submit">Add New Project</button>
+    </form>
+
     <ul> {userList} </ul>
     <h1> Projects </h1>
     <ul> {projectList} </ul>
