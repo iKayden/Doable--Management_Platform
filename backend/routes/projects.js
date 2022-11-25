@@ -1,20 +1,27 @@
 const express = require('express');
 const router = express.Router();
-const { getProjects, deleteProject, createProject, editProject } = require('../helpers/dbHelpers');
+const {
+  getProjects,
+  deleteProject,
+  createProject,
+  editProject,
+} = require('../helpers/dbHelpers');
 module.exports = ({
   getProjects,
   deleteProject,
   createProject,
-  editProject
+  editProject,
 }) => {
   router.get('/', (req, res) => {
     getProjects()
       .then((projects) => {
         res.json(projects);
       })
-      .catch((err) => res.json({
-        error: err.message
-      }));
+      .catch((err) =>
+        res.json({
+          error: err.message,
+        })
+      );
   });
 
   router.post('/', (req, res) => {
@@ -24,9 +31,9 @@ module.exports = ({
         res.send({ project });
       })
       .catch((err) => {
-        console.log("err from post", err.message);
+        console.log('err from post', err.message);
         res.json({
-          error: err.message
+          error: err.message,
         });
       });
   });
@@ -38,9 +45,9 @@ module.exports = ({
         res.send({ project });
       })
       .catch((err) => {
-        console.log("err from post", err.message);
+        console.log('err from post', err.message);
         res.json({
-          error: err.message
+          error: err.message,
         });
       });
   });
@@ -51,9 +58,9 @@ module.exports = ({
         res.send({ success: true });
       })
       .catch((err) => {
-        console.log("err from delete", err.message);
+        console.log('err from delete', err.message);
         res.json({
-          error: err.message
+          error: err.message,
         });
       });
   });
