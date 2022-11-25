@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useApplicationState } from '../hooks/useApplicationData';
 import { getTasksForProject } from '../api/task';
 
-export default function TaskList({ projectId }) {
-  // const { projectId } = useApplicationState();
+export default function TaskList() {
+  const { projectId } = useApplicationState();
   const [tasks, setTasks] = useState([]);
   // const { id } = useParams();
   console.log("project id from Task List", projectId);

@@ -49,7 +49,7 @@ export default function ProjectList() {
             <th scope="col">Start Date</th>
             <th scope="col">Expected End Date</th>
             <th scope="col">Description</th>
-            <th scope="col">Delete Project</th>
+            <th scope="col">Delete</th>
           </tr>
         </thead>
         <tbody>{projectList}</tbody>

@@ -16,7 +16,7 @@ export default function ProjectListItem(props) {
           dispatch({ type: SET_PROJECT, id: props.id });
         }}
       >
-        <Link to={`projects/${props.id}`}>
+        <Link to={`projects/${props.id}/tasks`}>
           {props.name}
         </Link>
       </th>

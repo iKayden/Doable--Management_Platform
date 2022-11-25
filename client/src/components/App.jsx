@@ -33,10 +33,6 @@ const App = () => {
       element: <ProjectList />,
     },
     {
-      path: `/projects/:id`,
-      element: <ProjectListItem />,
-    },
-    {
       path: `/projects/:id/tasks`,
       element: <TaskList projectId={state.projectId} />,
     },
