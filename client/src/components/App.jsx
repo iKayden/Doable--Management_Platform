@@ -6,6 +6,7 @@ import ProjectList from './ProjectList';
 
 import { ApplicationContext, defaultState } from '../hooks/useApplicationData';
 import dataReducer from '../reducer/data_reducer';
+import ProjectForm from './ProjectForm';
 
 const App = () => {
   const [user, setUser] = useState(localStorage.getItem('user'));
@@ -23,6 +24,7 @@ const App = () => {
           <UserList />
         </ul>
         <h1>Projects</h1>
+        <ProjectForm />
         <ul>
           <ProjectList />
         </ul>

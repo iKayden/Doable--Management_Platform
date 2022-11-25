@@ -9,6 +9,7 @@ import {
 import { SET_PROJECTS } from '../reducer/data_reducer';
 import ProjectListItem from './ProjectListItem';
 
+
 export default function ProjectList() {
   const { projects } = useApplicationState();
   const dispatch = useApplicationDispatch();
@@ -40,27 +41,21 @@ export default function ProjectList() {
     );
   });
   return (
-    <table className="table table-light table-striped">
-      <thead>
-        <tr>
-          <th scope="col">Project</th>
-          <th scope="col">Start Date</th>
-          <th scope="col">Expected End Date</th>
-          <th scope="col">Description</th>
-          <th scope="col">Delete Project</th>
-        </tr>
-      </thead>
-      <tbody>{projectList}</tbody>
-    </table>
+    <>
+
+      <table className="table table-light table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Project</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">Expected End Date</th>
+            <th scope="col">Description</th>
+            <th scope="col">Delete Project</th>
+          </tr>
+        </thead>
+        <tbody>{projectList}</tbody>
+      </table>
+    </>
   );
 }
 
-// <form
-// autoComplete="off"
-// onSubmit={(e) => {
-//   e.preventDefault();
-//   createProject(project);
-// }} >
-// <input type="text" name="name" placeholder="Enter Project Name" value={project.name} onChange={(event) => setProject((prev) => ({ ...prev, name: event.target.value }))} />
-// <button type="submit">Add New Project</button>
-// </form>
