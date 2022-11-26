@@ -46,12 +46,12 @@ module.exports = (db) => {
     return db.query(query);
   };
 
-  const createTask = (name, description, status = 'TO-DO', deadline = '2025-11-08 05:00:00', assigned_user_id = 1, project_id = 1) => {
+  const createTask = (name, description, assigned_user_id, project_id) => {
     // We can build query string depending on the availability of start_date
     const query = {
-      text: `INSERT INTO projects (name, description, status, deadLine, assigned_user_id, project_id)
-    VALUES ($1, $2, $3) RETURNING *`,
-      values: [name, description, status, deadline, assigned_user_id, project_id],
+      text: `INSERT INTO tasks (name, description, assigned_user_id, project_id)
+    VALUES ($1, $2, $3, $4) RETURNING *`,
+      values: [name, description, assigned_user_id, project_id],
     };
 
     return db.query(query).then((result) => result.rows[0]);

@@ -15,7 +15,8 @@ export const createTask = (dispatch, task) => {
         type: ADD_TASK,
         task: data.task,
       });
-    });
+    })
+    .catch((err) => console.log("AXIOS PUT ERROR", err.message));
 };
 
 export const deleteTask = (dispatch, id) => {

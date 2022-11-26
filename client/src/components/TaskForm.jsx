@@ -5,7 +5,7 @@ import { useApplicationDispatch } from '../hooks/useApplicationData';
 
 export default function TaskForm() {
   const dispatch = useApplicationDispatch();
-  const [task, setTask] = useState({ name: '', description: '' });
+  const [task, setTask] = useState({ name: '', description: '', assigned_user_id: 1, project_id: 1 });
 
   return (
     <form
@@ -24,12 +24,17 @@ export default function TaskForm() {
           setTask((prev) => ({ ...prev, name: event.target.value }))
         }
       />
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 bg-light text-right">
-            <button type="button" class="btn btn-warning">Add</button>
-          </div>
-        </div>
+      <input
+        type="text"
+        name="description"
+        placeholder="Enter Task description"
+        value={task.description}
+        onChange={(event) =>
+          setTask((prev) => ({ ...prev, description: event.target.value }))
+        }
+      />
+      <div className="container">
+        <button type="submit" className="btn btn-warning">Add</button>
       </div>
     </form>
   );

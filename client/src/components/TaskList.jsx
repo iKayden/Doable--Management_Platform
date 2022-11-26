@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getTasksForProject } from "../api/task";
 import TaskListItem from "./TaskListItem";
@@ -7,13 +7,13 @@ import {
   useApplicationDispatch,
 } from '../hooks/useApplicationData';
 import { SET_TASKS } from '../reducer/data_reducer';
+import TaskForm from "./TaskForm";
 
 export default function TaskList() {
-  const { projectId, tasks } = useApplicationState();
+  const { taskId, tasks } = useApplicationState();
   const dispatch = useApplicationDispatch();
 
   const { id } = useParams();
-  console.log("id from TaskList", id);
 
   useEffect(() => {
     getTasksForProject(id)
@@ -56,7 +56,7 @@ export default function TaskList() {
         </thead>
         <tbody>{taskList}</tbody>
       </table>
-
+      <TaskForm />
     </>
   );
 }

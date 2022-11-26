@@ -25,8 +25,8 @@ module.exports = ({
   });
 
   router.post('/', (req, res) => {
-    const { name, description, status, deadline, assigned_user_id, project_id } = req.body;
-    createTask(name, description, status, deadline, assigned_user_id, project_id)
+    const { name, description, assigned_user_id, project_id } = req.body;
+    createTask(name, description, assigned_user_id, project_id)
       .then((task) => {
         res.send({ task });
       })
