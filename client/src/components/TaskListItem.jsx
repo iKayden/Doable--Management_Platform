@@ -1,15 +1,11 @@
 import { deleteTask, editTask } from "../api/task";
 import { useApplicationDispatch } from "../hooks/useApplicationData";
 import Button from 'react-bootstrap/Button';
-import { useState } from "react";
 
 
 export default function TaskListItem({ task }) {
   // extract current path (url)
   const dispatch = useApplicationDispatch();
-  const [show, setShow] = useState(false);
-  const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
 
   return (
 
@@ -34,7 +30,6 @@ export default function TaskListItem({ task }) {
         <Button
           onClick={() => {
             editTask(dispatch, task);
-            setShow(true);
           }}
         >
           Edit
