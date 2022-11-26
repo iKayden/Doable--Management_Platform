@@ -14,7 +14,7 @@ CREATE TABLE projects(
     name VARCHAR(255) NOT NULL,
     description TEXT,
     start_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    expected_end_date TIMESTAMP, -- Ask Mentor
+    expected_end_date TIMESTAMP, 
     completion_time TIMESTAMP
 );
 

@@ -7,11 +7,22 @@ import ProjectList from "./ProjectList";
 
 const App = () => {
 
+  // const {
+  //   state,
+  //   dispatch,
+  //   deleteProject,
+  //   createProject,
+  //   editProject
+  // } = useApplicationData();
+
+
   const [user, setUser] = useState(localStorage.getItem("user"));
+  const [project, setProject] = useState({});
 
   if (!user) {
     return <Login setUser={setUser} />;
   }
+
 
   return (<div className="App" >
     <h1> Users </h1>
