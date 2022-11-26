@@ -3,6 +3,7 @@ export const SET_PROJECTS = 'SET_PROJECTS';
 export const REMOVE_PROJECT = 'REMOVE_PROJECT';
 export const ADD_PROJECT = 'ADD_PROJECT';
 export const SET_PROJECT = 'SET_PROJECT';
+export const ADD_TASK = 'ADD_TASK';
 export const REMOVE_TASK = 'REMOVE_TASK';
 export const SET_TASKS = 'SET_TASKS';
 
@@ -34,16 +35,21 @@ const dataReducer = (state, action) => {
         ...state,
         projectId: action.id,
       };
-      case REMOVE_TASK:
-        return {
-          ...state,
-          tasks: state.tasks.filter((task) => task.id !== action.id),
-        };
-        case SET_TASKS:
-          return {
-            ...state,
-            tasks: action.tasks,
-          };
+    case ADD_TASK:
+      return {
+        ...state,
+        tasks: [action.task, ...state.tasks],
+      };
+    case REMOVE_TASK:
+      return {
+        ...state,
+        tasks: state.tasks.filter((task) => task.id !== action.id),
+      };
+    case SET_TASKS:
+      return {
+        ...state,
+        tasks: action.tasks,
+      };
     default:
       return state;
   }
