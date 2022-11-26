@@ -31,11 +31,10 @@ export default function TaskList() {
 
   const taskList = tasks.map((task) => {
     return (
-      <>
-        <TaskListItem
-          task={task}
-        />
-      </>
+      <TaskListItem
+        key={task.id}
+        task={task}
+      />
     );
   });
 
