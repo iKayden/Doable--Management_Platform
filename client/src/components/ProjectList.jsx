@@ -9,7 +9,6 @@ import {
 import { SET_PROJECTS } from '../reducer/data_reducer';
 import ProjectListItem from './ProjectListItem';
 
-
 export default function ProjectList() {
   const { projects } = useApplicationState();
   const dispatch = useApplicationDispatch();
@@ -22,7 +21,8 @@ export default function ProjectList() {
       .then(({ data }) => {
         dispatch({
           type: SET_PROJECTS,
-          projects: data,
+          //list projects in reverse order so that new project is on the top
+          projects: data.reverse(),
         });
       })
       .catch((err) => console.log(err));
@@ -42,7 +42,6 @@ export default function ProjectList() {
   });
   return (
     <>
-
       <table className="table table-light table-striped">
         <thead>
           <tr>
@@ -58,4 +57,3 @@ export default function ProjectList() {
     </>
   );
 }
-
