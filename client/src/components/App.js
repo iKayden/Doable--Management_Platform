@@ -16,12 +16,13 @@ const App = () => {
   // } = useApplicationData();
 
 
-  const [cookie, setCookie] = useState();
+  const [user, setUser] = useState(localStorage.getItem("user"));
   const [project, setProject] = useState({});
 
-  // if (!cookie) {
-  //   return <Login setCookie={setCookie} />;
-  //  } //
+  if (!user) {
+    return <Login setUser={setUser} />;
+  }
+
 
   return (<div className="App" >
     <h1> Users </h1>

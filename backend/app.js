@@ -14,8 +14,22 @@ const db = require('./db');
 
 const app = express();
 
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// parse various different custom JSON types as JSON
+app.use(bodyParser.json({ type: 'application/*+json' }))
+
+// parse some custom thing into a Buffer
+app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }))
+
+// parse an HTML body into a string
+app.use(bodyParser.text({ type: 'text/html' }))
+
+// parse application/json
+app.use(bodyParser.json())
+
 const session = require('express-session');
-app.use(express.json());
 app.use(
   session({ secret: 'my-secret', resave: false, saveUninitialized: true })
 );
