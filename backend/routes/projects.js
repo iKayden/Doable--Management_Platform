@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { getProjects, deleteProject, createProject } = require('../helpers/dbHelpers');
+const { getProjects, deleteProject, createProject, editProject } = require('../helpers/dbHelpers');
 module.exports = ({
   getProjects,
   deleteProject,
-  createProject
+  createProject,
+  editProject
 }) => {
   router.get('/', (req, res) => {
     getProjects()
@@ -17,10 +18,24 @@ module.exports = ({
   });
 
   router.post('/', (req, res) => {
-    const { name, description, start_date, expected_end_date } = req;
+    const { name, description, start_date, expected_end_date } = req.body;
     createProject(name, description, start_date, expected_end_date)
-      .then(() => {
-        res.send({ success: true });
+      .then((project) => {
+        res.send({ project });
+      })
+      .catch((err) => {
+        console.log("err from post", err.message);
+        res.json({
+          error: err.message
+        });
+      });
+  });
+
+  router.put('/:id', (req, res) => {
+    const { name, description, start_date, expected_end_date } = req.body;
+    editProject(req.params.id, name, description, start_date, expected_end_date)
+      .then((project) => {
+        res.send({ project });
       })
       .catch((err) => {
         console.log("err from post", err.message);

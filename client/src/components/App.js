@@ -7,11 +7,21 @@ import ProjectList from "./ProjectList";
 
 const App = () => {
 
-  const [cookie, setCookie] = useState();
+  // const {
+  //   state,
+  //   dispatch,
+  //   deleteProject,
+  //   createProject,
+  //   editProject
+  // } = useApplicationData();
 
-  if (!cookie) {
-    return <Login setCookie={setCookie} />;
-  }
+
+  const [cookie, setCookie] = useState();
+  const [project, setProject] = useState({});
+
+  // if (!cookie) {
+  //   return <Login setCookie={setCookie} />;
+  //  } //
 
   return (<div className="App" >
     <h1> Users </h1>
