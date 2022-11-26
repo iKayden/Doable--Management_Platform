@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { useApplicationState } from "../hooks/useApplicationData";
 import { getTasksForProject } from "../api/task";
 import TaskListItem from "./TaskListItem";
- 
+
 export default function TaskList() {
   const { projectId } = useApplicationState();
   const [tasks, setTasks] = useState([]);
@@ -16,18 +15,18 @@ export default function TaskList() {
   const taskList = tasks.map((task) => {
     return (
       <TaskListItem
-      key={task.id}
-      id={task.id}
-      name={task.name}
-      status={task.status}
-      deadline={task.deadline}
-      assigned_user_id={task.assigned_user_id}
-      project_id={task.project_id}
-      description={task.description}
+        key={task.id}
+        id={task.id}
+        name={task.name}
+        status={task.status}
+        deadline={task.deadline}
+        assigned_user_id={task.assigned_user_id}
+        project_id={task.project_id}
+        description={task.description}
       />
-      );
-    });
-    
+    );
+  });
+
   return (
     <>
       <table className="table table-light table-striped">
