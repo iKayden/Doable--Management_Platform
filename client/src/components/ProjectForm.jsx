@@ -1,9 +1,11 @@
+import { useState } from 'react';
+
 import { createProject } from '../api/project';
-import { useApplicationDispatch, useApplicationState } from '../hooks/useApplicationData';
+import { useApplicationDispatch } from '../hooks/useApplicationData';
 
 export default function ProjectForm() {
-  const { projects } = useApplicationState();
   const dispatch = useApplicationDispatch();
+  const [project, setProject] = useState({ name: '', description: '' });
 
   return (
     <form
@@ -11,16 +13,21 @@ export default function ProjectForm() {
       onSubmit={(e) => {
         e.preventDefault();
         createProject(dispatch, project);
-      }} >
+      }}
+    >
       <input
         type="text"
         name="name"
         placeholder="Enter Project Name"
         value={project.name}
-        onChange={(event) => setProject((prev) => ({ ...prev, name: event.target.value }))}
+        onChange={(event) =>
+          setProject((prev) => ({ ...prev, name: event.target.value }))
+        }
       />
-      <button type="submit">Add New Project</button>
+      {/* disable is used to disable submit button if name is missing. */}
+      <button type="submit" disabled={project.name === ''}>
+        Add New Project
+      </button>
     </form>
   );
-
 }
