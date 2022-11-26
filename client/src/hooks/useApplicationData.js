@@ -3,6 +3,7 @@ import { createContext, useContext } from 'react';
 export const defaultState = {
   users: [],
   projects: [],
+  projectId: undefined,
   loading: true,
 };
 

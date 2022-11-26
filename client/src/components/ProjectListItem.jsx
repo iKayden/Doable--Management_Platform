@@ -1,6 +1,6 @@
 import { useApplicationDispatch } from '../hooks/useApplicationData';
 import { deleteProject } from '../api/project';
-import { getTasksForProject } from '../api/task';
+import { SET_PROJECT } from '../reducer/data_reducer';
 
 export default function ProjectListItem(props) {
   const dispatch = useApplicationDispatch();
@@ -8,7 +8,7 @@ export default function ProjectListItem(props) {
     <tr key={props.id}>
       <th
         onClick={() => {
-          getTasksForProject(dispatch, props.id);
+          dispatch({ type: SET_PROJECT, id: props.id });
         }}
       >
         {props.name}

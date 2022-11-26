@@ -2,6 +2,7 @@ export const SET_USERS = 'SET_USERS';
 export const SET_PROJECTS = 'SET_PROJECTS';
 export const REMOVE_PROJECT = 'REMOVE_PROJECT';
 export const ADD_PROJECT = 'ADD_PROJECT';
+export const SET_PROJECT = 'SET_PROJECT';
 
 const dataReducer = (state, action) => {
   switch (action.type) {
@@ -25,6 +26,11 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         projects: [action.project, ...state.projects],
+      };
+    case SET_PROJECT:
+      return {
+        ...state,
+        projectId: action.id,
       };
     default:
       return state;
