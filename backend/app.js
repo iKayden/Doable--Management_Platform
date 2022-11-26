@@ -9,25 +9,26 @@ const cors = require('cors'); // Installed To solve BUG
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const projectRouter = require('./routes/projects');
+const tasksRouter = require('./routes/tasks');
 
 const db = require('./db');
 
 const app = express();
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse various different custom JSON types as JSON
-app.use(bodyParser.json({ type: 'application/*+json' }))
+app.use(bodyParser.json({ type: 'application/*+json' }));
 
 // parse some custom thing into a Buffer
-app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }))
+app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }));
 
 // parse an HTML body into a string
-app.use(bodyParser.text({ type: 'text/html' }))
+app.use(bodyParser.text({ type: 'text/html' }));
 
 // parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 const session = require('express-session');
 app.use(
@@ -52,6 +53,7 @@ app.use(bodyParser.json());
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter(dbHelpers));
 app.use('/api/projects', projectRouter(dbHelpers));
+app.use('/api/tasks', tasksRouter(dbHelpers));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
