@@ -5,11 +5,9 @@ import ProjectList from './ProjectList';
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
 } from "react-router-dom";
 
 import Home from './Home';
-import ProjectListItem from './ProjectListItem';
 import { ApplicationContext, defaultState } from '../hooks/useApplicationData';
 import { useReducer } from 'react';
 import dataReducer from '../reducer/data_reducer';
