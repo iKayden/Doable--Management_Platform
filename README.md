@@ -1,9 +1,9 @@
 # doable
 ## Project Description
 ### Stack Choices:
-Front-end: React, SASS,
-Back-end:NodeJS, Express
-Database:PostgreSQL
+- Front-end: React, SASS,
+- Back-end:NodeJS, Express
+- Database:PostgreSQL
 
 ## Project description: 
 Our project will strive to make it easy for your team
