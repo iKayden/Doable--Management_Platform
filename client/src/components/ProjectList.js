@@ -1,19 +1,19 @@
-import "./ProjectList.css";
-import useApplicationData from "../hooks/useApplicationData";
+import './ProjectList.css';
+import useApplicationData from '../hooks/useApplicationData';
+import ProjectListItem from './ProjectListItem';
 
 export default function ProjectList() {
   const { state, deleteProject } = useApplicationData();
-
-  return state.projects.map((project) => (
-    <li key={project.id}>
-      <p>{project.name}</p>
-      <p>{project.description}</p>
-      <p>{project.start_date}</p>
-      <p>{project.expected_end_date}</p>
-      <button onClick={() => { deleteProject(project.id) }} >
-        Delete
-      </button>
-      <hr />
-    </li>
-  ));
+  const projectList = state.projects.map((project) => {
+    return (
+      <ProjectListItem
+        key={project.id}
+        name={project.name}
+        start_date={project.start_date}
+        expected_end_date={project.expected_end_date}
+        description={project.description}
+      />
+    );
+  });
+  return <ul>{projectList}</ul>;
 }
