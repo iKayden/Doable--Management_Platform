@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getTasksForProject } from "../api/task";
+import { editTask, getTasksForProject } from "../api/task";
 import TaskListItem from "./TaskListItem";
 import {
   useApplicationState,
@@ -8,15 +8,17 @@ import {
 } from '../hooks/useApplicationData';
 import { SET_TASKS } from '../reducer/data_reducer';
 import TaskForm from "./TaskForm";
+import EditTaskForm from "./EditTaskForm";
 
 export default function TaskList() {
-  const { taskId, tasks } = useApplicationState();
+  const { taskId, tasks, taskToEdit } = useApplicationState();
   const dispatch = useApplicationDispatch();
 
   const { id } = useParams();
 
 
   useEffect(() => {
+    console.log("ID ==========>", id);
     getTasksForProject(id)
       .then((data) => {
         dispatch({
@@ -27,17 +29,11 @@ export default function TaskList() {
   }, [id]);
 
   const taskList = tasks.map((task) => {
+    console.log("TASK FROM MAP =========>", task);
     return (
       <>
         <TaskListItem
-          key={task.id}
-          id={task.id}
-          name={task.name}
-          status={task.status}
-          deadline={task.deadline}
-          assigned_user_id={task.assigned_user_id}
-          project_id={task.project_id}
-          description={task.description}
+          task={task}
         />
       </>
     );
@@ -61,6 +57,8 @@ export default function TaskList() {
         <tbody>{taskList}</tbody>
       </table>
       <TaskForm />
+      {taskToEdit && <EditTaskForm taskToEdit={taskToEdit} />}
+      {/* if edit show Edit Form? */}
     </>
   );
 }

@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { useParams } from "react-router-dom";
-import { createTask } from '../api/task';
+import { createTask, editTask, updateTask } from '../api/task';
 import { useApplicationDispatch } from '../hooks/useApplicationData';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { CLOSE_EDIT_TASK, EDIT_TASK } from '../reducer/data_reducer';
 
-export default function TaskForm() {
+export default function EditTaskForm(props) {
   const { id } = useParams();
   const dispatch = useApplicationDispatch();
-  const [task, setTask] = useState({ name: '', description: '', assigned_user_id: 1, project_id: id });
-
+  const [task, setTask] = useState(props.taskToEdit);
   return (
     <Modal.Dialog>
       <Modal.Header closeButton>
@@ -21,7 +21,7 @@ export default function TaskForm() {
           autoComplete="off"
           onSubmit={(e) => {
             e.preventDefault();
-            createTask(dispatch, task);
+            updateTask(dispatch, task);
           }}
         >
           <input
@@ -49,7 +49,11 @@ export default function TaskForm() {
       </Modal.Body>
 
       <Modal.Footer>
-        <Button variant="secondary">Close</Button>
+        <Button variant="secondary" onClick={() => {
+          dispatch({
+            type: CLOSE_EDIT_TASK
+          });
+        }}>Close</Button>
         <Button variant="primary">Save changes</Button>
       </Modal.Footer>
     </Modal.Dialog>

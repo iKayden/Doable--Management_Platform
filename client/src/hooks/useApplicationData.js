@@ -7,6 +7,7 @@ export const defaultState = {
   projectId: undefined,
   tasks: [],
   taskId: undefined,
+  taskToEdit: undefined,
   loading: true,
 };
 
@@ -14,6 +15,7 @@ export const ApplicationContext = createContext({
   dispatch: () => { },
   state: defaultState,
 });
+
 
 export const useApplicationState = () => useContext(ApplicationContext).state;
 
