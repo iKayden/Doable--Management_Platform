@@ -3,19 +3,20 @@ import useApplicationData from '../hooks/useApplicationData';
 export default function ProjectListItem(props) {
   const { deleteProject } = useApplicationData();
   return (
-    <li key={props.id}>
-      <p>{props.name}</p>
-      <p>{props.start_date}</p>
-      <p>{props.expected_end_date}</p>
-      <p>{props.description}</p>
-      <button
-        onClick={() => {
-          deleteProject(props.id);
-        }}
-      >
-        Delete
-      </button>
-      <hr />
-    </li>
+    <tr key={props.id}>
+      <th>{props.name}</th>
+      <th>{props.start_date}</th>
+      <th>{props.expected_end_date}</th>
+      <th>{props.description}</th>
+      <th>
+        <button
+          onClick={() => {
+            deleteProject(props.id);
+          }}
+        >
+          Delete
+        </button>
+      </th>
+    </tr>
   );
 }

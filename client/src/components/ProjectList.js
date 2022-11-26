@@ -3,7 +3,7 @@ import useApplicationData from '../hooks/useApplicationData';
 import ProjectListItem from './ProjectListItem';
 
 export default function ProjectList() {
-  const { state, deleteProject } = useApplicationData();
+  const { state } = useApplicationData();
   const projectList = state.projects.map((project) => {
     return (
       <ProjectListItem
@@ -15,5 +15,17 @@ export default function ProjectList() {
       />
     );
   });
-  return <ul>{projectList}</ul>;
+  return (
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Project</th>
+          <th scope="col">Start Date</th>
+          <th scope="col">Expected End Date</th>
+          <th scope="col">Description</th>
+        </tr>
+      </thead>
+      <tbody>{projectList}</tbody>
+    </table>
+  );
 }
