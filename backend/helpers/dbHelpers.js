@@ -74,6 +74,25 @@ module.exports = (db) => {
     return db.query(query);
   };
 
+  const editTask = (
+    id, name, description, status, deadline, completion_time, assigned_user_id, project_id
+  ) => {
+    const query = {
+      text: `
+      UPDATE tasks
+      SET name = $2, description = $3,
+      status = $4,
+      deadline = $5,
+      completion_time = $6,
+      assigned_user_id = $7,
+      project_id = $8
+      WHERE id = $1
+      RETURNING *`,
+      values: [id, name, description, status, deadline, completion_time, assigned_user_id, project_id],
+    };
+    return db.query(query);
+  };
+
   const getTasksByProjectId = (id) => {
     const query = {
       text: `
@@ -113,6 +132,7 @@ module.exports = (db) => {
     addUser,
     createTask,
     getTasksByProjectId,
+    editTask,
     deleteTask,
   };
 };

@@ -6,6 +6,7 @@ export const SET_PROJECT = 'SET_PROJECT';
 export const ADD_TASK = 'ADD_TASK';
 export const REMOVE_TASK = 'REMOVE_TASK';
 export const SET_TASKS = 'SET_TASKS';
+export const EDIT_TASK = 'EDIT_TASK';
 
 const dataReducer = (state, action) => {
   switch (action.type) {
@@ -37,6 +38,11 @@ const dataReducer = (state, action) => {
       };
     case ADD_TASK:
       return {
+        ...state,
+        tasks: [action.task, ...state.tasks],
+      };
+    case EDIT_TASK:
+      return { // Need to ask MENTOR about it
         ...state,
         tasks: [action.task, ...state.tasks],
       };

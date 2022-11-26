@@ -1,9 +1,16 @@
-import { deleteTask } from "../api/task";
+import { deleteTask, editTask } from "../api/task";
 import { useApplicationDispatch } from "../hooks/useApplicationData";
 
 export default function TaskListItem(props) {
   // extract current path (url)
   const dispatch = useApplicationDispatch();
+
+  console.log("Task ID", props.id);
+  // console.log("Tasks", tasks);
+  console.log("Dispatch", dispatch);
+  // const updatedTask = (id, tasksArr) => {
+  //   tasks()
+  // }
 
   return (
 
@@ -21,6 +28,15 @@ export default function TaskListItem(props) {
           }}
         >
           Delete
+        </button>
+      </th>
+      <th>
+        <button
+          onClick={() => {
+            editTask(dispatch, props.id);
+          }}
+        >
+          Edit
         </button>
       </th>
     </tr>

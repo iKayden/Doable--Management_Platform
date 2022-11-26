@@ -15,6 +15,7 @@ export default function TaskList() {
 
   const { id } = useParams();
 
+
   useEffect(() => {
     getTasksForProject(id)
       .then((data) => {
@@ -27,16 +28,18 @@ export default function TaskList() {
 
   const taskList = tasks.map((task) => {
     return (
-      <TaskListItem
-        key={task.id}
-        id={task.id}
-        name={task.name}
-        status={task.status}
-        deadline={task.deadline}
-        assigned_user_id={task.assigned_user_id}
-        project_id={task.project_id}
-        description={task.description}
-      />
+      <>
+        <TaskListItem
+          key={task.id}
+          id={task.id}
+          name={task.name}
+          status={task.status}
+          deadline={task.deadline}
+          assigned_user_id={task.assigned_user_id}
+          project_id={task.project_id}
+          description={task.description}
+        />
+      </>
     );
   });
 
@@ -52,6 +55,7 @@ export default function TaskList() {
             <th scope="col">Project ID</th>
             <th scope="col">Description</th>
             <th scope="col">Delete</th>
+            <th scope="col">Edit</th>
           </tr>
         </thead>
         <tbody>{taskList}</tbody>

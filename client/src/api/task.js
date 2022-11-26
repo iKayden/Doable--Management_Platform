@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { useApplicationState } from '../hooks/useApplicationData';
 
-import { REMOVE_TASK, ADD_TASK } from '../reducer/data_reducer';
+import { REMOVE_TASK, ADD_TASK, EDIT_TASK } from '../reducer/data_reducer';
 
 export const getTasksForProject = (id) => {
   return axios.get(`/api/tasks/?projectId=${id}`)
@@ -17,6 +18,16 @@ export const createTask = (dispatch, task) => {
       });
     })
     .catch((err) => console.log("AXIOS PUT ERROR", err.message));
+};
+
+export const editTask = (dispatch, id) => {
+  return axios.put(`/api/tasks/${id}`)
+    .then(() => {
+      dispatch({
+        type: EDIT_TASK,
+        id
+      });
+    });
 };
 
 export const deleteTask = (dispatch, id) => {
