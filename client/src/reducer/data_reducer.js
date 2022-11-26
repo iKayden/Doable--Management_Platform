@@ -72,12 +72,9 @@ const dataReducer = (state, action) => {
     case OPEN_EDIT_TASK:
       return {
         ...state,
-        taskToEdit: true
-      };
-    case EDIT_TASK: //This shows the model to edit model
-      return {
-        ...state,
         taskToEdit: action.task
+        //Points to the state that exists. Model will have full object access(truthy ref)
+        // will populate/get state props aw well.
       };
     case REMOVE_TASK:
       return {

@@ -12,7 +12,7 @@ import TaskForm from "./TaskForm";
 import EditTaskForm from "./EditTaskForm";
 
 export default function TaskList() {
-  const { taskId, tasks, taskToEdit, taskToAdd } = useApplicationState();
+  const { tasks, taskToEdit, taskToAdd } = useApplicationState();
   const dispatch = useApplicationDispatch();
 
   const { id } = useParams();

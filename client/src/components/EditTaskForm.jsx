@@ -10,12 +10,11 @@ import { CLOSE_EDIT_TASK } from '../reducer/data_reducer';
 export default function EditTaskForm(props) {
   const { id } = useParams();
   const dispatch = useApplicationDispatch();
-  const [task, setTask] = useState(props.taskToEdit);
-  const { taskToEdit } = useApplicationState();
-
+  const [task, setTask] = useState(props.taskToEdit || null);
+  // const { taskToEdit } = useApplicationState();
 
   return (
-    <Modal show={taskToEdit}>
+    <Modal show={props.taskToEdit}>
       <Modal.Header closeButton onClick={() => {
         dispatch({
           type: CLOSE_EDIT_TASK
@@ -24,16 +23,15 @@ export default function EditTaskForm(props) {
         <Modal.Title>Edit Task</Modal.Title>
       </Modal.Header>
 
-      <Modal.Body>
-        <Form
-          autoComplete="off"
-          onSubmit={(e) => {
-            e.preventDefault();
-            updateTask(dispatch, task);
-          }}
-        >
+      <Form
+        autoComplete="off"
+        onSubmit={(e) => {
+          e.preventDefault();
+          updateTask(dispatch, task);
+        }}
+      >
+        <Modal.Body>
           <Form.Group>
-
             <Form.Control
               type="text"
               name="name"
@@ -58,18 +56,18 @@ export default function EditTaskForm(props) {
               }
             />
           </Form.Group>
-        </Form>
-      </Modal.Body>
+        </Modal.Body>
 
-      <Modal.Footer>
-        <Button variant="secondary" onClick={() => {
-          dispatch({
-            type: CLOSE_EDIT_TASK
-          });
-        }}>Close</Button>
-        <Button variant="primary" type="submit" block>Save changes</Button>
-      </Modal.Footer>
-    </Modal>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => {
+            dispatch({
+              type: CLOSE_EDIT_TASK
+            });
+          }}>Close</Button>
+          <Button variant="primary" type="submit">Save changes</Button>
+        </Modal.Footer>
+      </Form>
+    </Modal >
   );
 }
 

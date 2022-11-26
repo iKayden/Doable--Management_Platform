@@ -31,7 +31,8 @@ export default function TaskListItem({ task }) {
         <Button
           onClick={() => {
             dispatch({
-              type: OPEN_EDIT_TASK
+              type: OPEN_EDIT_TASK,
+              task
             });
           }}
         >
