@@ -28,11 +28,11 @@ export default function UserList() {
   }, [dispatch]);
 
   return users.map((user) => (
-    <li key={user.id}>
+    <div className='user--profile' key={user.id}>
       <p>{user.name}</p>
       <img className="user--avatar" src={user.avatar} alt="avatar" />
       <p>{user.email}</p>
       <hr />
-    </li>
+    </div>
   ));
 }

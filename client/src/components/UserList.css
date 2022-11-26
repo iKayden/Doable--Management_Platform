@@ -1,0 +1,7 @@
+.user--profile {
+  width: fit-content;
+}
+
+.user--avatar {
+  border-radius: 20%;
+}
