@@ -4,10 +4,8 @@ import { createTask } from '../api/task';
 import { useApplicationDispatch } from '../hooks/useApplicationData';
 import { UserContext } from './Home';
 export default function TaskForm() {
-
   const user = useContext(UserContext);
   console.log("USER FROM CONTEXT OF THE FORM", user);
-
   const { id } = useParams();
   const dispatch = useApplicationDispatch();
   const [task, setTask] = useState({ name: '', description: '', assigned_user_id: user, project_id: id });

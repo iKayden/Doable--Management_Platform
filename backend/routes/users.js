@@ -49,7 +49,6 @@ module.exports = ({
         } else {
           return addUser(name, avatar, email, password);
         }
-
       })
       .then(newUser => res.json(newUser))
       .catch(err => res.json({

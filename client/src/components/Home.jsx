@@ -13,6 +13,7 @@ import ProjectForm from './ProjectForm';
 export const UserContext = createContext();
 
 const Home = () => {
+  // We need to figure out how to keep user in state after page refresh
   const [user, setUser] = useState(localStorage.getItem('user'));
   console.log("USER HOME", user);
 

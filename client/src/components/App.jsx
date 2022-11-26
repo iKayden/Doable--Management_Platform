@@ -12,10 +12,12 @@ import { ApplicationContext, defaultState } from '../hooks/useApplicationData';
 import { useReducer } from 'react';
 import dataReducer from '../reducer/data_reducer';
 import TaskList from './TaskList';
+import UserList from './UserList';
 
 const App = () => {
 
   const [state, dispatch] = useReducer(dataReducer, defaultState);
+  console.log("STATE OF APP", state);
   const router = createBrowserRouter([
     {
       path: "/",
@@ -24,6 +26,10 @@ const App = () => {
     {
       path: "/login",
       element: <Login />,
+    },
+    {
+      path: "/users",
+      element: <UserList userId={state.userId} />
     },
     {
       path: "/projects",
