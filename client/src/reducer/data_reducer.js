@@ -11,6 +11,7 @@ export const UPDATE_TASK = 'UPDATE_TASK';
 export const CLOSE_EDIT_TASK = 'CLOSE_EDIT_TASK';
 export const CLOSE_ADD_TASK = 'CLOSE_ADD_TASK';
 export const OPEN_ADD_TASK = 'OPEN_ADD_TASK';
+export const OPEN_EDIT_TASK = 'OPEN_EDIT_TASK';
 
 const dataReducer = (state, action) => {
   switch (action.type) {
@@ -67,6 +68,11 @@ const dataReducer = (state, action) => {
         ...state,
         taskToEdit: undefined
 
+      };
+    case OPEN_EDIT_TASK:
+      return {
+        ...state,
+        taskToEdit: true
       };
     case EDIT_TASK: //This shows the model to edit model
       return {

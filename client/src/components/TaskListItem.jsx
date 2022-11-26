@@ -1,6 +1,7 @@
 import { deleteTask, editTask } from "../api/task";
 import { useApplicationDispatch } from "../hooks/useApplicationData";
 import Button from 'react-bootstrap/Button';
+import { OPEN_EDIT_TASK } from "../reducer/data_reducer";
 
 
 export default function TaskListItem({ task }) {
@@ -29,7 +30,9 @@ export default function TaskListItem({ task }) {
       <th>
         <Button
           onClick={() => {
-            editTask(dispatch, task);
+            dispatch({
+              type: OPEN_EDIT_TASK
+            });
           }}
         >
           Edit

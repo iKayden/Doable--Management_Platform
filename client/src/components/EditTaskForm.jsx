@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams } from "react-router-dom";
 import { updateTask } from '../api/task';
-import { useApplicationDispatch } from '../hooks/useApplicationData';
+import { useApplicationDispatch, useApplicationState } from '../hooks/useApplicationData';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
@@ -11,8 +11,11 @@ export default function EditTaskForm(props) {
   const { id } = useParams();
   const dispatch = useApplicationDispatch();
   const [task, setTask] = useState(props.taskToEdit);
+  const { taskToEdit } = useApplicationState();
+
+
   return (
-    <Modal show={props.show}>
+    <Modal show={taskToEdit}>
       <Modal.Header closeButton onClick={() => {
         dispatch({
           type: CLOSE_EDIT_TASK
