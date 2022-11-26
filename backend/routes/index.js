@@ -14,7 +14,7 @@ router.post('/login', async (req, res) => {
   const findUserByEmail = `
   SELECT * FROM users WHERE email = $1;
   `;
-
+  console.log("req.body", req.body);
   const data = await db.query(findUserByEmail, [req.body.email]);
 
   if (data.rows.length === 0) {
@@ -27,7 +27,8 @@ router.post('/login', async (req, res) => {
   console.log('user', user);
   if (user.password !== req.body.password) {
     console.log('password does not match', user.password, req.body.password);
-    return res.send({
+    return res.status(403).send
+    ({
       status: 'error',
       message: 'Email or password is wrong',
     });

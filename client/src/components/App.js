@@ -7,10 +7,10 @@ import ProjectList from "./ProjectList";
 
 const App = () => {
 
-  const [cookie, setCookie] = useState();
+  const [user, setUser] = useState(localStorage.getItem("user"));
 
-  if (!cookie) {
-    return <Login setCookie={setCookie} />;
+  if (!user) {
+    return <Login setUser={setUser} />;
   }
 
   return (<div className="App" >
