@@ -11,6 +11,10 @@ import TaskForm from "./TaskForm";
 
 export default function TaskList() {
   const { taskId, tasks } = useApplicationState();
+  // We can access all users info (can use for assigning to tasks or project)
+  const { users } = useApplicationState();
+  // console.log("USERS FROM APP STATE", users);
+  // console.log("USER 1 FROM APP STATE", users[0]);
   const dispatch = useApplicationDispatch();
 
   const { id } = useParams();

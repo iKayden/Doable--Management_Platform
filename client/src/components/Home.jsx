@@ -1,5 +1,5 @@
 import './Home.css';
-import { useReducer, useState } from 'react';
+import { createContext, useReducer, useState } from 'react';
 import Login from './Login';
 import UserList from './UserList';
 import ProjectList from './ProjectList';
@@ -10,28 +10,32 @@ import { Link } from 'react-router-dom';
 import { ApplicationContext, defaultState, useApplicationDispatch, useApplicationState } from '../hooks/useApplicationData';
 import dataReducer from '../reducer/data_reducer';
 import ProjectForm from './ProjectForm';
+export const UserContext = createContext();
 
 const Home = () => {
   const [user, setUser] = useState(localStorage.getItem('user'));
+  console.log("USER HOME", user);
 
   if (!user) {
     return <Login setUser={setUser} />;
   }
 
   return (
-    <div className="App">
-      <Link to="/projects">
-        <h1>Projects</h1>
-      </Link>
-      <ProjectForm />
-      <ul>
-        <ProjectList />
-      </ul>
-      <h1>Users</h1>
-      <div className='user--list'>
-        <UserList />
-      </div>
-    </div >
+    <UserContext.Provider value={user}>
+      <div className="App">
+        <Link to="/projects">
+          <h1>Projects</h1>
+        </Link>
+        <ProjectForm />
+        <ul>
+          <ProjectList />
+        </ul>
+        <h1>Users</h1>
+        <div className='user--list'>
+          <UserList />
+        </div>
+      </div >
+    </UserContext.Provider>
   );
 };
 
