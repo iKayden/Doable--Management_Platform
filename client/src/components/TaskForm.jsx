@@ -1,11 +1,13 @@
 import { useState } from 'react';
-
+import { useParams } from "react-router-dom";
 import { createTask } from '../api/task';
 import { useApplicationDispatch } from '../hooks/useApplicationData';
 
 export default function TaskForm() {
+  const { id } = useParams();
   const dispatch = useApplicationDispatch();
-  const [task, setTask] = useState({ name: '', description: '', assigned_user_id: 1, project_id: 1 });
+  const [task, setTask] = useState({ name: '', description: '', assigned_user_id: 1, project_id: id });
+
 
   return (
     <form
