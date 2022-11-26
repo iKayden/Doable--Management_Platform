@@ -9,7 +9,6 @@ const cors = require('cors'); // Installed To solve BUG
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const projectRouter = require('./routes/projects');
-const bodyParser = require('body-parser');
 
 const db = require('./db');
 
