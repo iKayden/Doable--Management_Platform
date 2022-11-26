@@ -5,7 +5,8 @@ import {
 import dataReducer, {
   SET_USERS,
   SET_PROJECTS,
-  REMOVE_PROJECT
+  REMOVE_PROJECT,
+  ADD_PROJECT
 } from '../reducer/data_reducer';
 import axios from 'axios';
 
@@ -48,12 +49,17 @@ const useApplicationData = () => {
       })
       .catch((err) => console.log(err));
   }, []);
-  // REVIEW WITH MENTOR
-  const createProject = () => {
-    return axios.post('/api/projects')
-      .then(() => {
-        // ??? dispatch?
 
+  // REVIEW WITH MENTOR
+  const createProject = (project) => {
+    console.log("PROJECT FROM FRONT END", project);
+    return axios.post('/api/projects', project)
+      .then((response) => {
+        const { data } = response;
+        dispatch({
+          type: ADD_PROJECT,
+          project: data.project
+        });
       });
   };
   const deleteProject = (id) => {

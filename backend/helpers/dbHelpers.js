@@ -8,8 +8,7 @@ module.exports = (db) => {
 
     return db
       .query(query)
-      .then((result) => result.rows)
-      .catch((err) => err);
+      .then((result) => result.rows);
   };
 
   const getProjects = () => {
@@ -19,8 +18,7 @@ module.exports = (db) => {
 
     return db
       .query(query)
-      .then((result) => result.rows)
-      .catch((err) => err);
+      .then((result) => result.rows);
   };
 
   const createProject = (name, description, start_date, expected_end_date) => {
@@ -32,8 +30,20 @@ module.exports = (db) => {
 
     return db
       .query(query)
-      .then(result => result.rows[0])
-      .catch(err => err);
+      .then(result => result.rows[0]);
+  };
+
+  const editProject = (id, name, description, start_date, expected_end_date) => {
+    const query = {
+      text: `
+      UPDATE projects
+      SET name = $2, description = $3, start_date = $4, expected_end_date = $5
+      WHERE id = $1
+      RETURNING *`,
+      values: [id, name, description, start_date, expected_end_date]
+    };
+    return db
+      .query(query);
   };
 
   const deleteProject = (id) => {
@@ -56,8 +66,7 @@ module.exports = (db) => {
 
     return db
       .query(query)
-      .then(result => result.rows[0])
-      .catch((err) => err);
+      .then(result => result.rows[0]);
   };
 
   const addUser = (name, avatar, email, password) => {
@@ -68,7 +77,6 @@ module.exports = (db) => {
 
     return db
       .query(query);
-
   };
 
 
@@ -76,6 +84,7 @@ module.exports = (db) => {
     getUsers,
     getProjects,
     createProject,
+    editProject,
     deleteProject,
     getUserByEmail,
     addUser,
