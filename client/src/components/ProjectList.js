@@ -16,13 +16,14 @@ export default function ProjectList() {
     );
   });
   return (
-    <table class="table">
+    <table class="table table-light table-striped">
       <thead>
         <tr>
           <th scope="col">Project</th>
           <th scope="col">Start Date</th>
           <th scope="col">Expected End Date</th>
           <th scope="col">Description</th>
+          <th scope="col">Delete Project</th>
         </tr>
       </thead>
       <tbody>{projectList}</tbody>
