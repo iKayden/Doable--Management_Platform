@@ -2,16 +2,17 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { editTask, getTasksForProject } from "../api/task";
 import TaskListItem from "./TaskListItem";
+import Button from 'react-bootstrap/Button';
 import {
   useApplicationState,
   useApplicationDispatch,
 } from '../hooks/useApplicationData';
-import { SET_TASKS } from '../reducer/data_reducer';
+import { ADD_TASK, CLOSE_ADD_TASK, SET_TASKS } from '../reducer/data_reducer';
 import TaskForm from "./TaskForm";
 import EditTaskForm from "./EditTaskForm";
 
 export default function TaskList() {
-  const { taskId, tasks, taskToEdit } = useApplicationState();
+  const { taskId, tasks, taskToEdit, taskToAdd } = useApplicationState();
   const dispatch = useApplicationDispatch();
 
   const { id } = useParams();
@@ -29,7 +30,6 @@ export default function TaskList() {
   }, [id]);
 
   const taskList = tasks.map((task) => {
-    console.log("TASK FROM MAP =========>", task);
     return (
       <>
         <TaskListItem
@@ -56,9 +56,9 @@ export default function TaskList() {
         </thead>
         <tbody>{taskList}</tbody>
       </table>
-      <TaskForm />
+      <TaskForm taskToAdd={taskToAdd} />
       {taskToEdit && <EditTaskForm taskToEdit={taskToEdit} />}
-      {/* if edit show Edit Form? */}
+
     </>
   );
 }
