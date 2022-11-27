@@ -200,9 +200,11 @@ export default function TaskList() {
 
       {taskToEdit && <EditTaskForm taskToEdit={taskToEdit} />}
       {taskToAdd && <TaskForm taskToAdd={taskToAdd} />}
-      <Button onClick={() => dispatch({
-        type: OPEN_ADD_TASK
-      })}>Add New Task</Button>
+      <Button
+        className="add-new-task__button"
+        onClick={() => dispatch({
+          type: OPEN_ADD_TASK
+        })}>Add New Task</Button>
     </>
   );
 };
