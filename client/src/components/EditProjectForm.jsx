@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 import { CLOSE_UPDATE_PROJECT } from '../reducer/data_reducer';
 import { updateProject } from '../api/project';
 
-export default function EditProjectForm(props) {
+export default function EditProjectForm() {
   const dispatch = useApplicationDispatch();
   const { projectToEdit } = useApplicationState();
   const [project, setProject] = useState(projectToEdit || null);

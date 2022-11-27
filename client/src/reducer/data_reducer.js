@@ -45,18 +45,18 @@ const dataReducer = (state, action) => {
     case OPEN_UPDATE_PROJECT:
       return {
         ...state,
-        projectToEdit: true
+        projectToEdit: action.project
       };
     case UPDATE_PROJECT:
       return {
         ...state,
         projects: [action.project, ...state.projects],
-        projectToEdit: false
+        projectToEdit: undefined
       };
     case CLOSE_UPDATE_PROJECT:
       return {
         ...state,
-        projectToEdit: false
+        projectToEdit: undefined
       };
     case SET_PROJECT:
       return {

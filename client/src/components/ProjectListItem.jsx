@@ -6,33 +6,33 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import EditProjectForm from './EditProjectForm';
 // useParams
-export default function ProjectListItem(props) {
+export default function ProjectListItem({ project }) {
   // extract current path (url)
   const dispatch = useApplicationDispatch();
   const { projectToEdit } = useApplicationState();
 
   return (
 
-    <tr key={props.id}>
+    <tr key={project.id}>
       <th
         onClick={() => {
-          dispatch({ type: SET_PROJECT, id: props.id });
+          dispatch({ type: SET_PROJECT, id: project.id });
         }}
       >
-        <Link to={`projects/${props.id}/tasks`}>
-          {props.name}
+        <Link to={`projects/${project.id}/tasks`}>
+          {project.name}
         </Link>
       </th>
-      <th>{props.start_date}</th>
-      <th>{props.expected_end_date}</th>
-      <th>{props.description}</th>
+      <th>{project.start_date}</th>
+      <th>{project.expected_end_date}</th>
+      <th>{project.description}</th>
       <th>
         <Button
           variant='warning'
           onClick={() => {
-            updateProject({
+            dispatch({
               type: OPEN_UPDATE_PROJECT,
-              props
+              project
             });
           }}
         >
@@ -45,7 +45,7 @@ export default function ProjectListItem(props) {
         <Button
           variant='danger'
           onClick={() => {
-            deleteProject(dispatch, props.id);
+            deleteProject(dispatch, project.id);
           }}
         >
           Delete

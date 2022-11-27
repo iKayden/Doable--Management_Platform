@@ -11,7 +11,7 @@ export default function EditTaskForm(props) {
   const { id } = useParams();
   const dispatch = useApplicationDispatch();
   const [task, setTask] = useState(props.taskToEdit || null);
-  // const { taskToEdit } = useApplicationState();
+
 
   return (
     <Modal show={props.taskToEdit}>

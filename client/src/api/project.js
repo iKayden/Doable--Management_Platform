@@ -14,7 +14,7 @@ export const createProject = (dispatch, project) => {
 };
 
 export const updateProject = (dispatch, project) => {
-  return axios.put(`/api/${project.id}`)
+  return axios.put(`/api/projects/${project.id}`)
     .then(() => {
       dispatch({
         type: UPDATE_PROJECT,
