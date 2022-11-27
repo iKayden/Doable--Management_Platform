@@ -1,7 +1,6 @@
 import axios from 'axios';
-import { useApplicationState } from '../hooks/useApplicationData';
 
-import { REMOVE_TASK, ADD_TASK, EDIT_TASK, UPDATE_TASK } from '../reducer/data_reducer';
+import { REMOVE_TASK, ADD_TASK, UPDATE_TASK } from '../reducer/data_reducer';
 
 export const getTasksForProject = (id) => {
   return axios.get(`/api/tasks/?projectId=${id}`)
@@ -22,7 +21,7 @@ export const createTask = (dispatch, task) => {
 
 
 export const updateTask = (dispatch, task) => {
-  return axios.put(`/api/tasks/${task.id}`)
+  return axios.put(`/api/tasks/${task.id}`, task)
     .then(() => {
       dispatch({
         type: UPDATE_TASK,
