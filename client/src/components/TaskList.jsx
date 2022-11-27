@@ -16,24 +16,24 @@ import _ from 'lodash';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import "./TaskList.css";
 // For fake data purposes, Delete after
-import uniqid from 'uniqid';
+import { v4 } from 'uuid';
 
 
 // Fake data items
 const item = {
-  id: uniqid(),
+  id: v4(),
   name: "Clean the house"
 };
 const item2 = {
-  id: uniqid(),
+  id: v4(),
   name: "Clean the car"
 };
 const item3 = {
-  id: uniqid(),
+  id: v4(),
   name: "Build the house"
 };
 const item4 = {
-  id: uniqid(),
+  id: v4(),
   name: "Wash the cat"
 };
 console.log("ITEMS", item, item2, item3, item4);
