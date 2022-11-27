@@ -10,13 +10,17 @@ export const EDIT_TASK = "EDIT_TASK";
 export const UPDATE_TASK = "UPDATE_TASK";
 export const CLOSE_EDIT_TASK = "CLOSE_EDIT_TASK";
 export const TO_ADD_PROJ = "TO_ADD_PROJ";
-export const CLOSE_ADD_PROJ = "CLOSE_ADD_PROJ"
+export const CLOSE_ADD_PROJ = "CLOSE_ADD_PROJ";
 export const CLOSE_ADD_TASK = 'CLOSE_ADD_TASK';
 export const OPEN_ADD_TASK = 'OPEN_ADD_TASK';
 export const OPEN_EDIT_TASK = 'OPEN_EDIT_TASK';
+export const OPEN_UPDATE_PROJECT = 'OPEN_UPDATE_PROJECT';
+export const UPDATE_PROJECT = 'UPDATE_PROJECT';
+export const CLOSE_UPDATE_PROJECT = 'CLOSE_UPDATE_PROJECT';
 
 const dataReducer = (state, action) => {
   switch (action.type) {
+    //======== PROJECT ACTIONS ==============
     case SET_USERS:
       return {
         ...state,
@@ -38,11 +42,40 @@ const dataReducer = (state, action) => {
         ...state,
         projects: [action.project, ...state.projects],
       };
+    case OPEN_UPDATE_PROJECT:
+      return {
+        ...state,
+        projectToEdit: true
+      };
+    case UPDATE_PROJECT:
+      return {
+        ...state,
+        projects: [action.project, ...state.projects],
+        projectToEdit: false
+      };
+    case CLOSE_UPDATE_PROJECT:
+      return {
+        ...state,
+        projectToEdit: false
+      };
     case SET_PROJECT:
       return {
         ...state,
         projectId: action.id,
       };
+    case TO_ADD_PROJ: // Shows add project modal
+      return {
+        ...state,
+        projectToAdd: true,
+      };
+    case CLOSE_ADD_PROJ: // To close add project modal
+      return {
+        ...state,
+        projectToAdd: undefined,
+      };
+    // ======= END OF PROJECT ACTIONS =========
+
+    // ======= TASK ACTIONS ===================
     case ADD_TASK:
       return {
         ...state,
@@ -87,16 +120,8 @@ const dataReducer = (state, action) => {
         ...state,
         tasks: action.tasks,
       };
-    case TO_ADD_PROJ: // Shows add project modal
-      return {
-        ...state,
-        projectToAdd: true,
-      };
-    case CLOSE_ADD_PROJ: // To close add project modal
-      return {
-        ...state,
-        projectToAdd: undefined,
-      };
+
+    // ========= END OF TASK ACTIONS ===========
     default:
       return state;
   }

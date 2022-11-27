@@ -1,12 +1,16 @@
-import { useApplicationDispatch } from '../hooks/useApplicationData';
-import { deleteProject } from '../api/project';
-import { SET_PROJECT } from '../reducer/data_reducer';
+import { useApplicationDispatch, useApplicationState } from '../hooks/useApplicationData';
+import { deleteProject, updateProject } from '../api/project';
+import { OPEN_UPDATE_PROJECT, SET_PROJECT } from '../reducer/data_reducer';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import EditProjectForm from './EditProjectForm';
 // useParams
 export default function ProjectListItem(props) {
   // extract current path (url)
   const dispatch = useApplicationDispatch();
+  const { projectToEdit } = useApplicationState();
+
   return (
 
     <tr key={props.id}>
@@ -23,13 +27,29 @@ export default function ProjectListItem(props) {
       <th>{props.expected_end_date}</th>
       <th>{props.description}</th>
       <th>
-        <button
+        <Button
+          variant='warning'
+          onClick={() => {
+            updateProject({
+              type: OPEN_UPDATE_PROJECT,
+              props
+            });
+          }}
+        >
+          Edit
+        </Button>
+      </th>
+      {projectToEdit && <EditProjectForm projectToEdit={projectToEdit} />}
+
+      <th>
+        <Button
+          variant='danger'
           onClick={() => {
             deleteProject(dispatch, props.id);
           }}
         >
           Delete
-        </button>
+        </Button>
       </th>
     </tr>
   );

@@ -5,10 +5,11 @@ export const defaultState = {
   users: [],
   projects: [],
   projectId: undefined,
+  projectToAdd: undefined,
+  projectToEdit: undefined,
   tasks: [],
   taskId: undefined,
   taskToEdit: undefined,
-  projectToAdd: undefined,
   taskToAdd: undefined,
   loading: true,
 };

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { ADD_PROJECT, REMOVE_PROJECT } from '../reducer/data_reducer';
+import { ADD_PROJECT, REMOVE_PROJECT, UPDATE_PROJECT } from '../reducer/data_reducer';
 
 export const createProject = (dispatch, project) => {
   return axios.post('/api/projects', project)
@@ -9,6 +9,16 @@ export const createProject = (dispatch, project) => {
       dispatch({
         type: ADD_PROJECT,
         project: data.project,
+      });
+    });
+};
+
+export const updateProject = (dispatch, project) => {
+  return axios.put(`/api/${project.id}`)
+    .then(() => {
+      dispatch({
+        type: UPDATE_PROJECT,
+        project
       });
     });
 };

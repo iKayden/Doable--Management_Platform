@@ -43,10 +43,14 @@ export default function ProjectList() {
   });
   return (
     <>
-    {projectToAdd && <ProjectForm projectToAdd={projectToAdd} />}
-      <Button variant="primary"
+      {projectToAdd && <ProjectForm projectToAdd={projectToAdd} />}
+
+      <h1 className="d-inline">Projects</h1>
+      <Button
+        variant="primary"
+        className="d-inline-block add--newProject__button"
         onClick={() => {
-          dispatch({ type: TO_ADD_PROJ})
+          dispatch({ type: TO_ADD_PROJ });
         }}
       >
         Add New Project
@@ -60,7 +64,8 @@ export default function ProjectList() {
             <th scope="col">Start Date</th>
             <th scope="col">Expected End Date</th>
             <th scope="col">Description</th>
-            <th scope="col">Delete</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>{projectList}</tbody>
