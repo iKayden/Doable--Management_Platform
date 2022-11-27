@@ -37,20 +37,20 @@ export default function TaskList() {
 
   useEffect(() => {
     const toDo = tasks.filter((task) => {
-      return task.status === "TO-DO"
-    }).map(({id, name}) => {
-      return {id: String(id), name}
-    })
+      return task.status === "TO-DO";
+    }).map(({ id, name }) => {
+      return { id: String(id), name };
+    });
     const inProgress = tasks.filter((task) => {
-      return task.status === "IN-PROGRESS"
-    }).map(({id, name}) => {
-      return {id: String(id), name}
-    })
+      return task.status === "IN-PROGRESS";
+    }).map(({ id, name }) => {
+      return { id: String(id), name };
+    });
     const completed = tasks.filter((task) => {
-      return task.status === "COMPLETED"
-    }).map(({id, name}) => {
-      return {id: String(id), name}
-    })
+      return task.status === "COMPLETED";
+    }).map(({ id, name }) => {
+      return { id: String(id), name };
+    });
     setState({
       "TO-DO": {
         title: "To-Do",
@@ -64,8 +64,8 @@ export default function TaskList() {
         title: "Complete",
         items: completed
       }
-    })
-  }, [tasks])
+    });
+  }, [tasks]);
 
   const taskList = tasks.map((task) => {
     return (
@@ -84,8 +84,8 @@ export default function TaskList() {
     //creating a copy of item before removing it from state
     const itemCopy = { ...state[source.droppableId].items[source.index] };
 
-    const draggedTask = tasks.find((task) => task.id == itemId)
-    draggedTask.status = destination.droppableId
+    const draggedTask = tasks.find((task) => task.id == itemId);
+    draggedTask.status = destination.droppableId;
     updateTask(dispatch, draggedTask);
 
     setState(prev => {
@@ -176,7 +176,7 @@ export default function TaskList() {
           })}
         </DragDropContext>
       </div>
-
+      {/*
       <table className="table table-light table-striped">
         <thead>
           <tr>
@@ -191,7 +191,7 @@ export default function TaskList() {
           </tr>
         </thead>
         <tbody>{taskList}</tbody>
-      </table>
+      </table> */}
 
       {taskToEdit && <EditTaskForm taskToEdit={taskToEdit} />}
       {taskToAdd && <TaskForm taskToAdd={taskToAdd} />}
