@@ -15,13 +15,28 @@ import { useState } from "react";
 import _ from 'lodash';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import "./TaskList.css";
+// For fake data purposes, Delete after
+import uniqid from 'uniqid';
 
 
 // Fake data items
 const item = {
-  id: "randomish",
+  id: uniqid(),
   name: "Clean the house"
 };
+const item2 = {
+  id: uniqid(),
+  name: "Clean the car"
+};
+const item3 = {
+  id: uniqid(),
+  name: "Build the house"
+};
+const item4 = {
+  id: uniqid(),
+  name: "Wash the cat"
+};
+console.log("ITEMS", item, item2, item3, item4);
 
 
 export default function TaskList() {
@@ -29,15 +44,15 @@ export default function TaskList() {
   const [state, setState] = useState({
     "TO-DO": {
       title: "Todo",
-      items: []
+      items: [item, item3]
     },
     "IN-PROGRESS": {
       title: "In progress",
-      items: []
+      items: [item2]
     },
     "COMPLETED": {
       title: "Complete",
-      items: []
+      items: [item4]
     }
   });
 
@@ -75,7 +90,7 @@ export default function TaskList() {
         <DragDropContext onDragEnd={e => console.log(e)}>
           {_.map(state, (data, key) => {
             return (
-              <div className="dnd-column">
+              <div key={key} className={"dnd-column"}>
                 <h3>{data.title}</h3>
                 <Droppable droppableId={key}>
                   {(provided) => {
@@ -83,9 +98,29 @@ export default function TaskList() {
                       <div
                         ref={provided.innerRef}
                         {...provided.droppableProps}
-                        className="droppable-col"
+                        className={"droppable-col"}
                       >
-
+                        {data.items.map((el, index) => {
+                          return (
+                            <Draggable
+                              key={el.id}
+                              index={index}
+                              draggableId={el.id}
+                            >
+                              {(provided) => {
+                                return (
+                                  <div
+                                    ref={provided.innerRef}
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+                                  >
+                                    {el.name}
+                                  </div>
+                                );
+                              }}
+                            </Draggable>
+                          );
+                        })}
                       </div>
                     );
                   }}

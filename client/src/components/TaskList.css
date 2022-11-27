@@ -7,3 +7,9 @@
 .dnd-column {
   width: 30%;
 }
+
+.droppable-col {
+  width: 100%;
+  height: 50px;
+  background-color: green;
+}
