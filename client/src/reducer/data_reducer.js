@@ -94,11 +94,6 @@ const dataReducer = (state, action) => {
         taskToAdd: undefined,
       };
     case UPDATE_TASK: // This sets the state with the updated task
-      // const filteredProjects = state.projects.filter((project) => project.id !== action.project.id);
-      // return {
-      //   ...state,
-      //   projects: [action.project, ...filteredProjects],
-      //   projectToEdit: undefined
       const filteredTasks = state.tasks.filter((task) => task.id !== action.task.id);
       return {
         ...state,
