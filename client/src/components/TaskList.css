@@ -18,6 +18,7 @@
   display: flex;
   flex-direction: column;
   height: fit-content;
+  min-height: 100px;
 }
 
 .draggable-item {
@@ -29,6 +30,10 @@
   background-color: grey;
 }
 
+.draggable-item:hover {
+  background-color: rgb(111, 111, 111);
+  box-shadow: 10px 5px 5px black;
+}
 .draggable-item.dragging {
   background-color: dodgerblue;
 }
