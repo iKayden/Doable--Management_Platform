@@ -7,9 +7,10 @@ import {
   useApplicationState,
   useApplicationDispatch,
 } from '../hooks/useApplicationData';
-import { ADD_TASK, CLOSE_ADD_TASK, OPEN_ADD_TASK, SET_TASKS } from '../reducer/data_reducer';
+import { OPEN_ADD_TASK, SET_TASKS } from '../reducer/data_reducer';
 import TaskForm from "./TaskForm";
 import EditTaskForm from "./EditTaskForm";
+import Column from "./Column";
 
 export default function TaskList() {
   const { tasks, taskToEdit, taskToAdd } = useApplicationState();
@@ -37,8 +38,18 @@ export default function TaskList() {
     );
   });
 
+  // const tasksIds =
+
   return (
     <>
+      <Column
+        // key={column.id}
+        // column={column}
+        tasks={taskList}
+      >
+
+      </Column>
+
       <table className="table table-light table-striped">
         <thead>
           <tr>
