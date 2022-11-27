@@ -179,7 +179,7 @@ export default function TaskList() {
         </DragDropContext>
       </div>
 
-      <table className="table table-light table-striped">
+      {/* <table className="table table-light table-striped">
         <thead>
           <tr>
             <th scope="col">Task</th>
@@ -199,7 +199,7 @@ export default function TaskList() {
       {taskToAdd && <TaskForm taskToAdd={taskToAdd} />}
       <Button onClick={() => dispatch({
         type: OPEN_ADD_TASK
-      })}>Add New Task</Button>
+      })}>Add New Task</Button> */}
     </>
   );
 };
