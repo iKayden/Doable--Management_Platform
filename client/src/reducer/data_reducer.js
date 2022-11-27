@@ -48,9 +48,10 @@ const dataReducer = (state, action) => {
         projectToEdit: action.project
       };
     case UPDATE_PROJECT:
+      const filteredProjects = state.projects.filter((project) => project.id !== action.project.id);
       return {
         ...state,
-        projects: [action.project, ...state.projects],
+        projects: [action.project, ...filteredProjects],
         projectToEdit: undefined
       };
     case CLOSE_UPDATE_PROJECT:
@@ -93,9 +94,15 @@ const dataReducer = (state, action) => {
         taskToAdd: undefined,
       };
     case UPDATE_TASK: // This sets the state with the updated task
+      // const filteredProjects = state.projects.filter((project) => project.id !== action.project.id);
+      // return {
+      //   ...state,
+      //   projects: [action.project, ...filteredProjects],
+      //   projectToEdit: undefined
+      const filteredTasks = state.tasks.filter((task) => task.id !== action.task.id);
       return {
         ...state,
-        tasks: [action.task, ...state.tasks],
+        tasks: [action.task, ...filteredTasks],
         taskToEdit: undefined,
       };
     case CLOSE_EDIT_TASK:
