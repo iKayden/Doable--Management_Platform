@@ -78,6 +78,38 @@ VALUES
       1
     ),
     (
+      'Sing A Song',
+      'sing Baby Shark',
+      'TO-DO',
+      '2025-11-08 05:00:00',
+      1,
+      1
+    ),
+    (
+      'Dance around',
+      'Like no one sees you',
+      'TO-DO',
+      '2025-11-08 05:00:00',
+      1,
+      1
+    ),
+    (
+      'Wash your face',
+      'it is dirty, time to clean up',
+      'IN-PROGRESS',
+      '2025-11-08 05:00:00',
+      1,
+      1
+    ),
+    (
+      'Eat your food',
+      'it is dirty, time to clean up',
+      'IN-PROGRESS',
+      '2025-11-08 05:00:00',
+      1,
+      1
+    ),
+    (
       'Create database',
       'Create tables in SQL',
       'IN-PROGRESS',
@@ -129,6 +161,24 @@ VALUES
       '2022-11-08 04:00:00',
       1,
       2
+    ),
+    (
+      'Eat Up Food',
+      'Me hungry, me want to eat a lot',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      1,
+      1
+    ),
+    (
+      'Throw Away Food',
+      'Me hungry, me want to eat a lot',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      1,
+      1
     ),
     (
       'Conquer the world',
