@@ -11,10 +11,39 @@ import { OPEN_ADD_TASK, SET_TASKS } from '../reducer/data_reducer';
 import TaskForm from "./TaskForm";
 import EditTaskForm from "./EditTaskForm";
 import Column from "./Column";
+import { useState } from "react";
+import _ from 'lodash';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import "./TaskList.css";
+
+
+// Fake data items
+const item = {
+  id: "randomish",
+  name: "Clean the house"
+};
+
 
 export default function TaskList() {
+  // Faking data
+  const [state, setState] = useState({
+    "TO-DO": {
+      title: "Todo",
+      items: []
+    },
+    "IN-PROGRESS": {
+      title: "In progress",
+      items: []
+    },
+    "COMPLETED": {
+      title: "Complete",
+      items: []
+    }
+  });
+
   const { tasks, taskToEdit, taskToAdd } = useApplicationState();
   const dispatch = useApplicationDispatch();
+
 
   const { id } = useParams();
 
@@ -38,17 +67,36 @@ export default function TaskList() {
     );
   });
 
-  // const tasksIds =
+
 
   return (
     <>
-      <Column
-        // key={column.id}
-        // column={column}
-        tasks={taskList}
-      >
+      <div className="dnd-wrapper-container">
+        <DragDropContext onDragEnd={e => console.log(e)}>
+          {_.map(state, (data, key) => {
+            return (
+              <div className="dnd-column">
+                <h3>{data.title}</h3>
+                <Droppable droppableId={key}>
+                  {(provided) => {
+                    return (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                        className="droppable-col"
+                      >
 
-      </Column>
+                      </div>
+                    );
+                  }}
+                </Droppable>
+              </div>
+
+            );
+          })}
+
+        </DragDropContext>
+      </div>
 
       <table className="table table-light table-striped">
         <thead>

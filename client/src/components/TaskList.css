@@ -1,0 +1,9 @@
+.dnd-wrapper-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.dnd-column {
+  width: 30%;
+}
