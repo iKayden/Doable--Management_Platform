@@ -41,6 +41,7 @@ console.log("ITEMS", item, item2, item3, item4);
 
 export default function TaskList() {
   // Faking data
+  const [text, setText] = useState("");
   const [state, setState] = useState({
     "TO-DO": {
       title: "Todo",
@@ -82,12 +83,57 @@ export default function TaskList() {
     );
   });
 
+  const handleDragEnd = ({ destination, source }) => {
+
+    if (!destination) return;
+
+    if (destination.index === source.index && destination.droppableId === source.droppableId) return;
+
+    //creating a copy of item before removing it from state
+    const itemCopy = { ...state[source.droppableId].items[source.index] };
+    setState(prev => {
+      prev = { ...prev };
+      //remove from prev item array
+      prev[source.droppableId].items.splice(source.index, 1);
+      // adding to new items array location
+      prev[destination.droppableId].items.splice(destination.index, 0, itemCopy);
+
+
+
+      return prev;
+    });
+
+
+  };
+
+  const addItem = () => {
+    setState(prev => {
+      return {
+        ...prev,
+        "TO-DO": {
+          title: "title",
+          items: [
+            {
+              id: v4(),
+              name: text
+            },
+            ...prev["TO-DO"].items
+          ]
+        }
+      };
+    });
+    setText("");
+  };
 
 
   return (
     <>
       <div className="dnd-wrapper-container">
-        <DragDropContext onDragEnd={e => console.log(e)}>
+        <div>
+          <input type={"text"} value={text} onChange={(e) => setText(e.target.value)} />
+          <Button onClick={addItem}>Add</Button>
+        </div>
+        <DragDropContext onDragEnd={handleDragEnd}>
           {_.map(state, (data, key) => {
             return (
               <div key={key} className={"dnd-column"}>
@@ -156,4 +202,4 @@ export default function TaskList() {
       })}>Add New Task</Button> */}
     </>
   );
-}
+};
