@@ -57,7 +57,7 @@ module.exports = (db) => {
   const getTasksByProjectId = (id) => {
     const query = {
       text: `
-      SELECT projects.name AS project_name, tasks.id, tasks.name, tasks.description, tasks.status, tasks.deadline, tasks.completion_time, tasks.assigned_user_id FROM projects JOIN tasks ON project_id=projects.id
+      SELECT projects.name AS project_name, projects.id AS project_id, tasks.id, tasks.name, tasks.description, tasks.status, tasks.deadline, tasks.completion_time, tasks.assigned_user_id FROM projects JOIN tasks ON project_id=projects.id
       WHERE projects.id = $1
       `,
       values: [id],
