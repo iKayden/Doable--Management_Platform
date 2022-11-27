@@ -60,7 +60,11 @@ export default function TaskList() {
   const { tasks, taskToEdit, taskToAdd } = useApplicationState();
   const dispatch = useApplicationDispatch();
 
+  // PLACE FOR DND DATA
+  const taskItemList = tasks.map((task) => {
 
+
+  });
   const { id } = useParams();
 
 
@@ -128,11 +132,16 @@ export default function TaskList() {
 
   return (
     <>
+      <div className="d-block">
+        <input type={"text"} value={text} onChange={(e) => setText(e.target.value)} />
+        <Button
+          className="d-inline"
+          onClick={addItem}
+        >
+          Add
+        </Button>
+      </div>
       <div className="dnd-wrapper-container">
-        <div>
-          <input type={"text"} value={text} onChange={(e) => setText(e.target.value)} />
-          <Button className="d-inline" onClick={addItem}>Add</Button>
-        </div>
         <DragDropContext onDragEnd={handleDragEnd}>
           {_.map(state, (data, key) => {
             return (
