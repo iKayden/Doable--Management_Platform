@@ -5,6 +5,8 @@ export const defaultState = {
   users: [],
   projects: [],
   projectId: undefined,
+  tasks: [],
+  taskId: undefined,
   loading: true,
 };
 

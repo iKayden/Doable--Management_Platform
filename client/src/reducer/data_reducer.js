@@ -3,6 +3,7 @@ export const SET_PROJECTS = 'SET_PROJECTS';
 export const REMOVE_PROJECT = 'REMOVE_PROJECT';
 export const ADD_PROJECT = 'ADD_PROJECT';
 export const SET_PROJECT = 'SET_PROJECT';
+export const REMOVE_TASK = 'REMOVE_TASK';
 
 const dataReducer = (state, action) => {
   switch (action.type) {
@@ -32,6 +33,11 @@ const dataReducer = (state, action) => {
         ...state,
         projectId: action.id,
       };
+      case REMOVE_TASK:
+        return {
+          ...state,
+          tasks: state.tasks.filter((task) => task.id !== action.id),
+        };
     default:
       return state;
   }
