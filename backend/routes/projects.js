@@ -15,7 +15,7 @@ module.exports = ({
   addUsersToProject,
 }) => {
   router.get('/', (req, res) => {
-    getProjects()
+    getProjects(req.query.userId)
       .then((projects) => {
         res.json(projects);
       })

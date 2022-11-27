@@ -1,12 +1,16 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import { Form } from 'react-bootstrap';
+
 import { createTask } from '../api/task';
 import { getUsersByProjectId } from '../api/user';
 import {
   useApplicationDispatch,
   useApplicationState,
 } from '../hooks/useApplicationData';
+import { CLOSE_ADD_TASK } from '../reducer/data_reducer';
 
 export default function TaskForm(props) {
   const { id } = useParams();
@@ -25,7 +29,8 @@ export default function TaskForm(props) {
       setProjectUsers(users);
     });
   }, [id]);
-  console.log(projectUsers);
+
+  const { taskToAdd } = useApplicationState();
   // Function to display all users for select in Add New Task
   const userList = projectUsers.map((user) => (
     <option value={user.id} key={`${user.id}${user.name}`}>
@@ -39,65 +44,94 @@ export default function TaskForm(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createTask(dispatch, newAssignedUser(selectedUser, task));
-    setTask((prev) => ({ ...prev, description: '' }));
-    setTask((prev) => ({ ...prev, name: '' }));
+    createTask(dispatch, newAssignedUser(selectedUser, task))
+      .then(() => {
+        setTask((prev) => ({ ...prev, name: '', description: '' }));
+        dispatch({
+          type: CLOSE_ADD_TASK,
+        });
+      })
+      .catch((err) => {
+        console.log('AXIOS PUT ERROR', err.message);
+      });
   };
 
   return (
-    <form autoComplete="off" onSubmit={handleSubmit}>
-      <div className="container">
-        <div className="d-inline">
-          <label htmlFor="name" className="m-3">
-            Task Name:
-          </label>
-          <input
-            id="name"
-            className="m-3"
-            type="text"
-            name="name"
-            placeholder="Enter Task Name"
-            value={task.name}
-            onChange={(event) =>
-              setTask((prev) => ({ ...prev, name: event.target.value }))
-            }
-          />
-        </div>
-        <div className="d-inline">
-          <label htmlFor="description" className="m-3">
-            Task Description:
-          </label>
-          <input
-            id="description"
-            type="text"
-            name="description"
-            className="m-3"
-            placeholder="Enter Task description"
-            value={task.description}
-            onChange={(event) =>
-              setTask((prev) => ({ ...prev, description: event.target.value }))
-            }
-          />
-        </div>
-        <div className="d-inline">
-          <label htmlFor="assigned_user_id" className="m-3">
-            Assign a user:
-          </label>
-          <select
-            name="assigned_user_id"
-            id="assigned_user_id"
-            onChange={(e) => {
-              setSelectedUser(e.target.value);
+    <Modal show={taskToAdd}>
+      <Modal.Header
+        closeButton
+        onClick={() => {
+          dispatch({
+            type: CLOSE_ADD_TASK,
+          });
+        }}
+      >
+        <Modal.Title>Add a New Task</Modal.Title>
+      </Modal.Header>
+
+      <form autoComplete="off" onSubmit={handleSubmit}>
+        <Modal.Body>
+          <Form.Group controlId="dob">
+            <Form.Label>Task name</Form.Label>
+            <Form.Control
+              type="text"
+              name="name"
+              placeholder="Enter Task Name:"
+              value={task.name}
+              onChange={(event) =>
+                setTask((prev) => ({ ...prev, name: event.target.value }))
+              }
+            />
+          </Form.Group>
+
+          <Form.Group controlId="dob">
+            <Form.Label>Description</Form.Label>
+            <Form.Control
+              type="text"
+              name="description"
+              placeholder="Enter Task Description"
+              value={task.description}
+              onChange={(event) =>
+                setTask((prev) => ({
+                  ...prev,
+                  description: event.target.value,
+                }))
+              }
+            />
+          </Form.Group>
+
+          <Form.Group controlId="dob">
+            <Form.Label>Assign a user</Form.Label>
+            <Form.Select
+              name="assigned_user_id"
+              id="assigned_user_id"
+              onChange={(e) => {
+                setSelectedUser(e.target.value);
+              }}
+            >
+              <option value="">--Please assign a user--</option>
+              {userList}
+            </Form.Select>
+          </Form.Group>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              dispatch({
+                type: CLOSE_ADD_TASK,
+              });
             }}
           >
-            <option value="">--Please assign a user--</option>
-            {userList}
-          </select>
-          <button type="submit" className="btn btn-warning m-3">
-            Add
-          </button>
-        </div>
-      </div>
-    </form>
+            Close
+          </Button>
+          {/* disable is used to disable submit button if name is missing. */}
+          <Button variant="primary" type="submit" disabled={task.name === ''}>
+            Save
+          </Button>
+        </Modal.Footer>
+      </form>
+    </Modal>
   );
 }

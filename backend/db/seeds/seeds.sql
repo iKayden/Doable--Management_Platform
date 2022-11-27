@@ -67,6 +67,16 @@ VALUES
      );
 
 INSERT INTO
+projects(name, description, start_date, expected_end_date, completion_time)
+VALUES (
+      'Finished project',
+      'Has been finished',
+      '2021-11-12 01:00:00',
+      '2025-12-30 03:14:07',
+      '2025-12-28 03:14:07'
+     );
+
+INSERT INTO
 tasks(name, description, status, deadline, assigned_user_id, project_id)
 VALUES
     (
@@ -216,6 +226,10 @@ VALUES
     (
       4,
       2
+    ),
+    (
+      1,
+      6
     ),
     (
       4,

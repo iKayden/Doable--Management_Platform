@@ -1,38 +1,22 @@
-import { useEffect } from "react";
-import axios from "axios";
-import ProjectForm from "./ProjectForm";
+import ProjectForm from './ProjectForm';
 import Button from 'react-bootstrap/Button';
-import "./ProjectList.css";
+import './ProjectList.css';
 import {
   useApplicationState,
   useApplicationDispatch,
-} from "../hooks/useApplicationData";
-import { SET_PROJECTS, TO_ADD_PROJ } from "../reducer/data_reducer";
-import ProjectListItem from "./ProjectListItem";
+} from '../hooks/useApplicationData';
+import { TO_ADD_PROJ } from '../reducer/data_reducer';
+import ProjectListItem from './ProjectListItem';
 
-export default function ProjectList() {
-  const { projects, projectToAdd } = useApplicationState();
+export default function ProjectList(props) {
+  const { projects } = props;
+  const { projectToAdd } = useApplicationState();
   const dispatch = useApplicationDispatch();
-
-  useEffect(() => {
-    axios({
-      method: "GET",
-      url: "/api/projects",
-    })
-      .then(({ data }) => {
-        dispatch({
-          type: SET_PROJECTS,
-          //list projects in reverse order so that new project is on the top
-          projects: data.reverse(),
-        });
-      })
-      .catch((err) => console.log(err));
-  }, []);
 
   const projectList = projects.map((project) => {
     // converting date to readable date string
-    const startDateString = new Date(project.start_date).toDateString()
-    const endDateString = new Date(project.expected_end_date).toDateString()
+    const startDateString = new Date(project.start_date).toDateString();
+    const endDateString = new Date(project.expected_end_date).toDateString();
 
     return (
       <ProjectListItem
@@ -57,7 +41,6 @@ export default function ProjectList() {
       >
         Add New Project
       </Button>
-
 
       <table className="table table-light table-striped">
         <thead>
