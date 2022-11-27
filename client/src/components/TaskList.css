@@ -37,3 +37,24 @@
 .draggable-item.dragging {
   background-color: dodgerblue;
 }
+
+.draggable-item__inside {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fa-solid.fa-trash-can {
+  margin-left: 15px;
+  margin-right: 5px;
+}
+.draggable-item__icons {
+  cursor: pointer;
+}
+
+.fa-solid.fa-pen-to-square:hover {
+  color: burlywood;
+}
+
+.fa-solid.fa-trash-can:hover {
+  color: rgba(255, 0, 0, 0.77);
+}

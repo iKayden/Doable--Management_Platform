@@ -159,7 +159,12 @@ export default function TaskList() {
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
                                   >
-                                    {el.name}
+                                    <div className="draggable-item__inside">
+                                      {el.name}
+                                      <div className="draggable-item__icons">
+                                        <i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i>
+                                      </div>
+                                    </div>
                                   </div>
                                 );
                               }}
