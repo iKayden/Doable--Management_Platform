@@ -131,7 +131,7 @@ export default function TaskList() {
       <div className="dnd-wrapper-container">
         <div>
           <input type={"text"} value={text} onChange={(e) => setText(e.target.value)} />
-          <Button onClick={addItem}>Add</Button>
+          <Button className="d-inline" onClick={addItem}>Add</Button>
         </div>
         <DragDropContext onDragEnd={handleDragEnd}>
           {_.map(state, (data, key) => {
@@ -153,10 +153,10 @@ export default function TaskList() {
                               index={index}
                               draggableId={el.id}
                             >
-                              {(provided) => {
+                              {(provided, snapshot) => {
                                 return (
                                   <div
-                                    className="draggable-item"
+                                    className={`draggable-item ${snapshot.isDragging && "dragging"}`}
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
@@ -179,7 +179,7 @@ export default function TaskList() {
         </DragDropContext>
       </div>
 
-      {/* <table className="table table-light table-striped">
+      <table className="table table-light table-striped">
         <thead>
           <tr>
             <th scope="col">Task</th>
@@ -199,7 +199,7 @@ export default function TaskList() {
       {taskToAdd && <TaskForm taskToAdd={taskToAdd} />}
       <Button onClick={() => dispatch({
         type: OPEN_ADD_TASK
-      })}>Add New Task</Button> */}
+      })}>Add New Task</Button>
     </>
   );
 };

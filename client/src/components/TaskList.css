@@ -27,3 +27,7 @@
   color: aliceblue;
   background-color: grey;
 }
+
+.draggable-item.dragging {
+  background-color: dodgerblue;
+}
