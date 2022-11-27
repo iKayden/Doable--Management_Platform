@@ -22,9 +22,6 @@ module.exports = ({
       );
   });
 
-  // project/:id/task/:id
-  // task/:id
-
   router.delete('/:id', (req, res) => {
     deleteTask(req.params.id)
       .then(() => {

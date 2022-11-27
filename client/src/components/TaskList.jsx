@@ -1,17 +1,29 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useApplicationState } from "../hooks/useApplicationData";
 import { getTasksForProject } from "../api/task";
 import TaskListItem from "./TaskListItem";
+import {
+  useApplicationState,
+  useApplicationDispatch,
+} from '../hooks/useApplicationData';
+import { SET_TASKS } from '../reducer/data_reducer';
  
 export default function TaskList() {
-  const { projectId } = useApplicationState();
-  const [tasks, setTasks] = useState([]);
-  // const { id } = useParams();
+  const { projectId, tasks } = useApplicationState();
+  const dispatch = useApplicationDispatch();
+  
+  const { id } = useParams();
+  console.log("id from TaskList", id);
 
   useEffect(() => {
-    getTasksForProject(projectId).then((data) => setTasks(data));
-  }, [projectId]);
+    getTasksForProject(id)
+    .then((data) => {
+      dispatch({
+        type: SET_TASKS,
+        tasks: data,
+      });
+    });
+  }, [id]);
 
   const taskList = tasks.map((task) => {
     return (
