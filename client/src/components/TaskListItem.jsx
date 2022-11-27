@@ -17,7 +17,7 @@ export default function TaskListItem(props) {
       <th>
         <button
           onClick={() => {
-            // deleteTask(dispatch, props.id);
+            deleteTask(dispatch, props.id);
           }}
         >
           Delete

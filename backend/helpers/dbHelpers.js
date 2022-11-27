@@ -54,6 +54,14 @@ module.exports = (db) => {
     return db.query(query);
   };
 
+  const deleteTask = (id) => {
+    const query = {
+      text: 'DELETE FROM tasks WHERE id = $1',
+      values: [id],
+    };
+    return db.query(query);
+  };
+
   const getTasksByProjectId = (id) => {
     const query = {
       text: `
@@ -92,5 +100,6 @@ module.exports = (db) => {
     getUserByEmail,
     addUser,
     getTasksByProjectId,
+    deleteTask,
   };
 };
