@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 export default function ProjectListItem(props) {
   // extract current path (url)
   const dispatch = useApplicationDispatch();
-  console.log("props id", props.id);
   return (
 
     <tr key={props.id}>

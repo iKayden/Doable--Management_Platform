@@ -28,9 +28,9 @@ const Home = () => {
         <ProjectList />
       </ul>
       <h1>Users</h1>
-      <ul>
+      <div className='user--list'>
         <UserList />
-      </ul>
+      </div>
     </div >
   );
 };
