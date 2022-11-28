@@ -35,10 +35,10 @@ export default function ChatPage({ socket }) {
       setTypingStatus(data);
       setTimeout(() => {
         setTypingStatus('');
-      }, 2000)
+      }, 2000);
     });
   }, [socket]);
-  
+
   const loginHandler = (userName) => {
     setUser(userName);
   };
@@ -61,24 +61,5 @@ export default function ChatPage({ socket }) {
         />
       </div>
     </div>
-
-    // <input
-    //   placeholder="Room Number..."
-    //   onChange={(event) => {
-    //     setRoom(event.target.value);
-    //   }}
-    // />
-    // <button onClick={joinRoom}> Join Room</button>
-    // <input
-    //   placeholder="Message.."
-    //   onChange={(event) => {
-    //     setMessage(event.target.value);
-    //   }}
-    // />
-    // <h1>Message:</h1>
-    // <button onClick={sendMessage}>Send Message</button>
-    // <ul>
-    //   {messageReceived}
-    // </ul>
   );
 }
