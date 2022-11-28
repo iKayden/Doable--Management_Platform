@@ -21,9 +21,9 @@ export default function TaskList() {
   // const [text, setText] = useState("");
   const [state, setState] = useState();
   const [itemId, setItemId] = useState();
-  const { tasks, taskToEdit, taskToAdd } = useApplicationState();
+  const { tasks, taskToEdit, taskToAdd, projects } = useApplicationState();
   const dispatch = useApplicationDispatch();
-  const { id } = useParams();
+  const { id } = useParams(); //Project ID
 
   useEffect(() => {
     getTasksForProject(id)
@@ -34,6 +34,12 @@ export default function TaskList() {
         });
       });
   }, [id]);
+
+  //Gets the project object of this task
+  const getCurrentProjectId = (objectArr, projId) => {
+    return objectArr.find((project) => String(project.id) === String(projId));
+  };
+  const currentProject = getCurrentProjectId(projects, id);
 
   useEffect(() => {
     const toDo = tasks.filter((task) => {
@@ -99,41 +105,15 @@ export default function TaskList() {
     });
   };
 
-  // const addItem = () => {
-  //   setState(prev => {
-  //     return {
-  //       ...prev,
-  //       "TO-DO": {
-  //         title: "title",
-  //         items: [
-  //           {
-  //             id: ????,
-  //             name: text
-  //           },
-  //           ...prev["TO-DO"].items
-  //         ]
-  //       }
-  //     };
-  //   });
-  //   setText("");
-  // };
-
-
   return (
     <>
-      {/* <div className="d-block">
-        <input type={"text"} value={text} onChange={(e) => setText(e.target.value)} />
-        <Button
-          className="d-inline"
-          onClick={addItem}
-        >
-          Add
-        </Button>
-      </div> */}
+      <h1
+        className="task-list__projectName">
+        Project: {currentProject.name}
+      </h1>
       <div className="dnd-wrapper-container">
         <DragDropContext onDragEnd={handleDragEnd} onDragStart={(e) => setItemId(e.draggableId)}>
           {_.map(state, (data, key) => {
-            console.log("DATA FROM DND", data);
             return (
               <div key={key} className={"dnd-column"}>
                 <h3>{data.title}</h3>
@@ -200,30 +180,14 @@ export default function TaskList() {
           })}
         </DragDropContext>
       </div>
-
-      {/* <table className="table table-light table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Task</th>
-            <th scope="col">Status</th>
-            <th scope="col">Deadline</th>
-            <th scope="col">Assigned User</th>
-            <th scope="col">Project ID</th>
-            <th scope="col">Description</th>
-            <th scope="col">Delete</th>
-            <th scope="col">Edit</th>
-          </tr>
-        </thead>
-        <tbody>{taskList}</tbody>
-      </table> */}
-
+      {/* Logic for modal pop ups */}
       {taskToEdit && <EditTaskForm taskToEdit={taskToEdit} />}
       {taskToAdd && <TaskForm taskToAdd={taskToAdd} />}
       <Button
         className="add-new-task__button"
         onClick={() => dispatch({
           type: OPEN_ADD_TASK
-        })}><i class="fa-solid fa-plus"></i> New Task </Button>
+        })}><i className="fa-solid fa-plus"></i> New Task </Button>
     </>
   );
 };
