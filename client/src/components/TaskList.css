@@ -32,7 +32,7 @@
 
 .draggable-item:hover {
   background-color: rgb(111, 111, 111);
-  box-shadow: 10px 5px 5px black;
+  box-shadow: 5px 5px 0px 0px rgba(67, 106, 247, 0.293);
 }
 .draggable-item.dragging {
   background-color: dodgerblue;
@@ -60,7 +60,8 @@
 }
 
 .add-new-task__button {
-  margin: 15px 10px 10px 15px;
+  margin: 15px 10px 10px 40%;
+  box-shadow: 5px 5px 0px 0px rgba(67, 106, 247, 0.293);
 }
 
 .task-list__projectName {
@@ -70,4 +71,5 @@
   border-bottom: 2px solid cornflowerblue;
   padding: 15px;
   cursor: default;
+  box-shadow: 5px 5px 0px 0px rgba(67, 106, 247, 0.293);
 }
