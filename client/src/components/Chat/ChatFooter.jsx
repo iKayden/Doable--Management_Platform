@@ -5,10 +5,10 @@ const ChatFooter = ({ socket }) => {
 
   const handleSendMessage = (e) => {
     e.preventDefault();
-    if (message.trim() && localStorage.getItem('user')) {
+    if (message.trim() && localStorage.getItem('userName')) {
       socket.emit('message', {
         text: message,
-        name: localStorage.getItem('user'),
+        name: localStorage.getItem('userName'),
         id: `${socket.id}${Math.random()}`,
         socketID: socket.id,
       });

@@ -8,25 +8,26 @@ import './ChatPage.css';
 
 
 export default function ChatPage({ socket }) {
-  const [messageReceived, setMessageReceived] = useState("");
-  const [message, setMessage] = useState("");
-  const [room, setRoom] = useState("");
-  const [user, setUser] = useState(localStorage.getItem("user"));
-  const sendMessage = () => {
-    socket.emit("send_message", { message, room });
-  };
+  //Initial Websocket Installation Guide code
+  // const [messageReceived, setMessageReceived] = useState("");
+  // const [room, setRoom] = useState("");
+  const [messages, setMessages] = useState([]);
+  const [user, setUser] = useState(localStorage.getItem("userName"));
+  // const sendMessage = () => {
+  //   socket.emit("send_message", { messages, room });
+  // };
 
-  const joinRoom = () => {
-    if (room !== "") {
-      socket.emit("join_room", room);
-    }
-  };
+  // const joinRoom = () => {
+  //   if (room !== "") {
+  //     socket.emit("join_room", room);
+  //   }
+  // };
 
   useEffect(() => {
-    socket.on("receive_message", (data) => {
-      setMessageReceived(data.message);
+    socket.on("messageResponse", (data) => {
+      setMessages([...messages, data]);
     });
-  }, [socket]);
+  }, [socket, messages]);
 
   if (!user) {
     return <Login setUser={setUser} />;
@@ -34,9 +35,9 @@ export default function ChatPage({ socket }) {
 
   return (
     <div className="chat">
-      <ChatBar />
+      <ChatBar socket={socket} />
       <div className="chat__main">
-        <ChatBody />
+        <ChatBody messages={messages} />
         <ChatFooter socket={socket} />
       </div>
     </div>

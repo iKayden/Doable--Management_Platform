@@ -8,7 +8,7 @@ export default function Login(props) {
   const [password, setPassword] = useState();
   const [error, setError] = useState();
 
-  const handleSubmit = function (event) {
+  const handleSubmit = function(event) {
     event.preventDefault();
     fetch('/login', {
       method: 'POST',
@@ -26,6 +26,7 @@ export default function Login(props) {
       })
       .then((data) => {
         localStorage.setItem('user', data.id);
+        localStorage.setItem('userName', data.name);
         props.setUser(data.id);
         setError('');
       })
