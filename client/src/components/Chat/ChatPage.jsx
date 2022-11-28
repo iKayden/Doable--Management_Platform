@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import io from "socket.io-client";
+import { useEffect, useRef, useState } from "react";
 import Login from "../Login";
 import ChatBar from "./ChatBar";
 import ChatBody from "./ChatBody";
@@ -8,11 +7,11 @@ import './ChatPage.css';
 
 
 export default function ChatPage({ socket }) {
-  //Initial Websocket Installation Guide code
-  // const [messageReceived, setMessageReceived] = useState("");
-  // const [room, setRoom] = useState("");
+
   const [messages, setMessages] = useState([]);
   const [user, setUser] = useState(localStorage.getItem("userName"));
+  const [typingStatus, setTypingStatus] = useState('');
+  const lastMessageRef = useRef(null);
 
   useEffect(() => {
     socket.on("messageResponse", (data) => {
@@ -26,8 +25,19 @@ export default function ChatPage({ socket }) {
     socket.emit('newUser', { userName: user, socketID: socket.id });
   }, [user]);
 
+  useEffect(() => {
+    // 👇️ scroll to bottom every time messages change
+    lastMessageRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
+  // Probable culprit //////////////
+  useEffect(() => {
+    socket.on('typingResponse', (data) => {
+      setTypingStatus(data);
+    });
+  }, [socket]);
+  ///////////////////////////////////////
   const loginHandler = (userName) => {
-    console.log("USER NAME ===", userName);
     setUser(userName);
   };
 
@@ -39,8 +49,17 @@ export default function ChatPage({ socket }) {
     <div className="chat">
       <ChatBar socket={socket} />
       <div className="chat__main">
-        <ChatBody messages={messages} />
-        <ChatFooter socket={socket} />
+        <ChatBody
+          messages={messages}
+          lastMessageRef={lastMessageRef}
+          typingStatus={typingStatus}
+          setTypingStatus={setTypingStatus}
+        />
+        <ChatFooter
+          socket={socket}
+          typingStatus={typingStatus}
+          setTypingStatus={setTypingStatus}
+        />
       </div>
     </div>
 

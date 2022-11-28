@@ -34,11 +34,12 @@ socketIO.on("connection", (socket) => {
     socketIO.emit('messageResponse', data);
   });
 
+  socket.on('typing', (data) => socket.broadcast.emit('typingResponse', data));
+
+
   //Listens when a new user joins the server
   socket.on('newUser', (data) => {
-    console.log('BEFORE ACTIVE USERS', activeChatUsers);
     //Adds the new user to the list of users
-
     if (!activeChatUsers.find((user) => user.socketID === socket.id)) {
       activeChatUsers.push({ ...data, socketID: socket.id });
     } else {
@@ -52,19 +53,15 @@ socketIO.on("connection", (socket) => {
     }
     // console.log(activeChatUsers);
     //Sends the list of activeChatUsers to the client
-    console.log("ACTIVE USERS", activeChatUsers);
     socketIO.emit('newUserResponse', activeChatUsers);
-
   });
 
   socket.on('disconnect', () => {
     console.log('🔥: A user disconnected');
-    console.log('BEFORE DISCONNECTED USERS', activeChatUsers);
     //Updates the list of users when a user disconnects from the server
     activeChatUsers = activeChatUsers.filter((user) => user.socketID !== socket.id);
     //Sends the list of users to the client
     socketIO.emit('newUserResponse', activeChatUsers);
-    console.log('AFTER DISCONNECTED USERS', activeChatUsers);
     socket.disconnect();
   });
 });

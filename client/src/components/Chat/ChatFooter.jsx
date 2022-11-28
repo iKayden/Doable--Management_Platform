@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 
-const ChatFooter = ({ socket }) => {
+const ChatFooter = ({ socket, typingStatus, setTypingStatus }) => {
   const [message, setMessage] = useState('');
+
+  const handleTyping = () =>
+    socket.emit('typing', `${localStorage.getItem('userName')} is typing`);
 
   const handleSendMessage = (e) => {
     e.preventDefault();
@@ -13,6 +16,7 @@ const ChatFooter = ({ socket }) => {
         socketID: socket.id,
       });
     }
+    setTypingStatus('');
     setMessage('');
   };
 
@@ -25,8 +29,10 @@ const ChatFooter = ({ socket }) => {
           className="message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
+          onKeyDown={handleTyping}
         />
-        <button className="sendBtn">SEND</button>
+        <button className="sendBtn"
+        >SEND</button>
       </form>
     </div>
   );
