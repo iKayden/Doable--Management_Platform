@@ -20,7 +20,6 @@ const ChatBody = ({ messages, lastMessageRef, typingStatus }) => {
       </header>
 
       <div className="message__container">
-        {console.log("msgs", messages)}
         {messages.map((message) =>
           message.name === localStorage.getItem('userName') ? (
             <div className="message__chats" key={message.id}>

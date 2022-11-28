@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import './Login.css';
 
-export default function Login(props, { socket }) {
+export default function Login(props) {
   const url = '/';
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [userName, setUserName] = useState('');
+  // const [userName, setUserName] = useState('');
   const [error, setError] = useState();
 
   const handleSubmit = function(event) {

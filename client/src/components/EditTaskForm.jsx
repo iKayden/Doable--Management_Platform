@@ -1,12 +1,8 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
-
 import { updateTask } from '../api/task';
-import {
-  useApplicationDispatch,
-  useApplicationState,
-} from '../hooks/useApplicationData';
+import { useApplicationDispatch } from '../hooks/useApplicationData';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';

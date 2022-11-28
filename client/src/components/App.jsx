@@ -9,7 +9,6 @@ import AllProjects from './AllProjects';
 import {
   createBrowserRouter,
   RouterProvider,
-  Link,
   Outlet,
 } from 'react-router-dom';
 import Home from './Home';
