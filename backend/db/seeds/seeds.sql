@@ -9,7 +9,7 @@ VALUES
     ),
     (
       'Luigi',
-      'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/95c11630-5da8-4a40-ab79-c9e14a6ef87a/d3d2tnf-816c5ac4-f0d8-44db-9fd5-d824277c6cc1.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzk1YzExNjMwLTVkYTgtNGE0MC1hYjc5LWM5ZTE0YTZlZjg3YVwvZDNkMnRuZi04MTZjNWFjNC1mMGQ4LTQ0ZGItOWZkNS1kODI0Mjc3YzZjYzEuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.zflf9PuLlIWONvmiN-SMn04Pr97n9wwsSoq1bo14ko4',
+      'https://i1.sndcdn.com/avatars-000196757680-714qmm-t240x240.jpg',
       'luigi@nintendo.com',
       'test'
     ),
