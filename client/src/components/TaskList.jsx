@@ -99,41 +99,12 @@ export default function TaskList() {
     });
   };
 
-  // const addItem = () => {
-  //   setState(prev => {
-  //     return {
-  //       ...prev,
-  //       "TO-DO": {
-  //         title: "title",
-  //         items: [
-  //           {
-  //             id: ????,
-  //             name: text
-  //           },
-  //           ...prev["TO-DO"].items
-  //         ]
-  //       }
-  //     };
-  //   });
-  //   setText("");
-  // };
-
 
   return (
     <>
-      {/* <div className="d-block">
-        <input type={"text"} value={text} onChange={(e) => setText(e.target.value)} />
-        <Button
-          className="d-inline"
-          onClick={addItem}
-        >
-          Add
-        </Button>
-      </div> */}
       <div className="dnd-wrapper-container">
         <DragDropContext onDragEnd={handleDragEnd} onDragStart={(e) => setItemId(e.draggableId)}>
           {_.map(state, (data, key) => {
-            console.log("DATA FROM DND", data);
             return (
               <div key={key} className={"dnd-column"}>
                 <h3>{data.title}</h3>
@@ -200,23 +171,6 @@ export default function TaskList() {
           })}
         </DragDropContext>
       </div>
-
-      {/* <table className="table table-light table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Task</th>
-            <th scope="col">Status</th>
-            <th scope="col">Deadline</th>
-            <th scope="col">Assigned User</th>
-            <th scope="col">Project ID</th>
-            <th scope="col">Description</th>
-            <th scope="col">Delete</th>
-            <th scope="col">Edit</th>
-          </tr>
-        </thead>
-        <tbody>{taskList}</tbody>
-      </table> */}
-
       {taskToEdit && <EditTaskForm taskToEdit={taskToEdit} />}
       {taskToAdd && <TaskForm taskToAdd={taskToAdd} />}
       <Button
