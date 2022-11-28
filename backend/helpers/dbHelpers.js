@@ -46,6 +46,18 @@ module.exports = (db) => {
     return db.query(query);
   };
 
+  const createTask = (name, description, assigned_user_id, project_id) => {
+    // We can build query string depending on the availability of start_date
+    const query = {
+      text: `INSERT INTO tasks (name, description, assigned_user_id, project_id)
+    VALUES ($1, $2, $3, $4) RETURNING *`,
+      values: [name, description, assigned_user_id, project_id],
+    };
+
+    return db.query(query).then((result) => result.rows[0]);
+  };
+
+
   const deleteProject = (id) => {
     const query = {
       text: 'DELETE FROM projects WHERE id = $1',
@@ -99,6 +111,7 @@ module.exports = (db) => {
     deleteProject,
     getUserByEmail,
     addUser,
+    createTask,
     getTasksByProjectId,
     deleteTask,
   };

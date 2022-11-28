@@ -4,11 +4,13 @@ const router = express.Router();
 const {
   deleteTask,
   getTasksByProjectId,
+  createTask
 } = require('../helpers/dbHelpers');
 
 module.exports = ({
   deleteTask,
   getTasksByProjectId,
+  createTask
 }) => {
   router.get('/', (req, res) => {
     getTasksByProjectId(req.query.projectId)
@@ -20,6 +22,20 @@ module.exports = ({
           error: err.message,
         })
       );
+  });
+
+  router.post('/', (req, res) => {
+    const { name, description, assigned_user_id, project_id } = req.body;
+    createTask(name, description, assigned_user_id, project_id)
+      .then((task) => {
+        res.send({ task });
+      })
+      .catch((err) => {
+        console.log('err from post', err.message);
+        res.json({
+          error: err.message,
+        });
+      });
   });
 
   router.delete('/:id', (req, res) => {

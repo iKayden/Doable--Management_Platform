@@ -16,7 +16,6 @@ import TaskList from './TaskList';
 const App = () => {
 
   const [state, dispatch] = useReducer(dataReducer, defaultState);
-  // console.log("STATE PROJECTS", state);
   const router = createBrowserRouter([
     {
       path: "/",
