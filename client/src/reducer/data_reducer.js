@@ -6,6 +6,9 @@ export const SET_PROJECT = 'SET_PROJECT';
 export const ADD_TASK = 'ADD_TASK';
 export const REMOVE_TASK = 'REMOVE_TASK';
 export const SET_TASKS = 'SET_TASKS';
+export const EDIT_TASK = 'EDIT_TASK';
+export const UPDATE_TASK = 'UPDATE_TASK';
+export const CLOSE_EDIT_TASK = 'CLOSE_EDIT_TASK';
 
 const dataReducer = (state, action) => {
   switch (action.type) {
@@ -39,6 +42,23 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         tasks: [action.task, ...state.tasks],
+      };
+    case UPDATE_TASK: // This sets the state with the updated task
+      return {
+        ...state,
+        tasks: [action.task, ...state.tasks],
+        taskToEdit: undefined
+      };
+    case CLOSE_EDIT_TASK:
+      return {
+        ...state,
+        taskToEdit: undefined
+
+      };
+    case EDIT_TASK: //This shows the model to edit model
+      return {
+        ...state,
+        taskToEdit: action.task
       };
     case REMOVE_TASK:
       return {

@@ -8,14 +8,16 @@ import {
 } from "react-router-dom";
 
 import Home from './Home';
-import { ApplicationContext, defaultState } from '../hooks/useApplicationData';
+import { ApplicationContext, defaultState, useApplicationState } from '../hooks/useApplicationData';
 import { useReducer } from 'react';
 import dataReducer from '../reducer/data_reducer';
 import TaskList from './TaskList';
 
 const App = () => {
+  // const { taskId, tasks } = useApplicationState();
 
   const [state, dispatch] = useReducer(dataReducer, defaultState);
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -38,7 +40,6 @@ const App = () => {
   return (
     <ApplicationContext.Provider value={{ state, dispatch }}>
       <RouterProvider router={router} />
-
     </ApplicationContext.Provider>
   );
 };
