@@ -60,7 +60,7 @@ const App = () => {
         },
         {
           path: '/login',
-          element: <Login />,
+          element: <Login socket={socket} />,
         },
         {
           path: '/projects',

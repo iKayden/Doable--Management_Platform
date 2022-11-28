@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './Login.css';
 
-export default function Login(props) {
+export default function Login(props, { socket }) {
   const url = '/';
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [userName, setUserName] = useState('');
   const [error, setError] = useState();
 
   const handleSubmit = function(event) {
@@ -27,6 +28,7 @@ export default function Login(props) {
       .then((data) => {
         localStorage.setItem('user', data.id);
         localStorage.setItem('userName', data.name);
+        socket.emit('newUser', { userName, socketID: socket.id });
         props.setUser(data.id);
         setError('');
       })
