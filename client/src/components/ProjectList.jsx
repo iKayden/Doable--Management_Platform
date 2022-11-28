@@ -18,12 +18,17 @@ export default function ProjectList(props) {
     const startDateString = new Date(project.start_date).toDateString();
     const endDateString = new Date(project.expected_end_date).toDateString();
 
+    const progressPercentage = Math.round(
+      (project.completed_tasks / project.total_tasks) * 100
+    );
+
     return (
       <ProjectListItem
         key={project.id}
         start_date={startDateString}
         expected_end_date={endDateString}
         project={project}
+        progress={progressPercentage}
       />
     );
   });
@@ -46,6 +51,7 @@ export default function ProjectList(props) {
         <thead>
           <tr>
             <th scope="col">Project</th>
+            <th scope="col">Progress</th>
             <th scope="col">Start Date</th>
             <th scope="col">Expected End Date</th>
             <th scope="col">Description</th>

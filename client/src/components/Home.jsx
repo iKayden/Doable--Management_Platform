@@ -1,7 +1,6 @@
 import "./Home.css";
 import { useState, useEffect } from "react";
 import Login from "./Login";
-import UserList from "./UserList";
 import ProjectList from "./ProjectList";
 
 import { useApplicationState } from "../hooks/useApplicationData";

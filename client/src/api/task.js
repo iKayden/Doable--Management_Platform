@@ -25,13 +25,14 @@ export const updateTask = (dispatch, task) => {
   });
 };
 
-export const deleteTask = (dispatch, id) => {
+export const deleteTask = (dispatch, id, status) => {
   return axios
     .delete(`/api/tasks/${id}`)
     .then(() => {
       dispatch({
         type: REMOVE_TASK,
         id,
+        status,
       });
     })
     .catch((err) => console.log(err.message));

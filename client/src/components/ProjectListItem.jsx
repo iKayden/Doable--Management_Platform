@@ -1,5 +1,10 @@
 import React from 'react';
-import { useApplicationDispatch, useApplicationState } from '../hooks/useApplicationData';
+import {
+  useApplicationDispatch,
+  useApplicationState,
+} from '../hooks/useApplicationData';
+import ProgressBar from 'react-bootstrap/ProgressBar';
+
 import { deleteProject } from '../api/project';
 import { OPEN_UPDATE_PROJECT, SET_PROJECT } from '../reducer/data_reducer';
 import { Link } from 'react-router-dom';
@@ -10,6 +15,7 @@ export default function ProjectListItem({
   project,
   expected_end_date,
   start_date,
+  progress,
 }) {
   // extract current path (url)
   const dispatch = useApplicationDispatch();
@@ -23,6 +29,9 @@ export default function ProjectListItem({
         }}
       >
         <Link to={`/projects/${project.id}/tasks`}>{project.name}</Link>
+      </th>
+      <th>
+        <ProgressBar now={progress} label={`${progress}%`} />
       </th>
       <th>{start_date}</th>
       <th>{expected_end_date}</th>

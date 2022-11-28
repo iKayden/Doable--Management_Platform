@@ -11,7 +11,7 @@ module.exports = (db) => {
 
   const getProjects = (userId) => {
     const query = {
-      text: 'SELECT projects.id, projects.name, projects.description, projects.start_date, projects.expected_end_date, projects. completion_time FROM projects JOIN project_users ON project_id=projects.id WHERE subscribed_user_id=$1',
+      text: `SELECT projects.id, projects.name, projects.description, projects.start_date, projects.expected_end_date, projects. completion_time, COUNT(tasks.id) AS total_tasks, (SELECT COUNT(tasks.status) FROM tasks WHERE tasks.status='COMPLETED' AND tasks.project_id=projects.id) AS completed_tasks FROM projects JOIN tasks ON projects.id=tasks.project_id JOIN project_users ON project_users.project_id=projects.id WHERE subscribed_user_id=$1 GROUP BY projects.id`,
       values: [userId],
     };
 
@@ -46,12 +46,18 @@ module.exports = (db) => {
     return db.query(query);
   };
 
-  const createTask = (name, description, assigned_user_id, project_id) => {
+  const createTask = (
+    name,
+    description,
+    assigned_user_id,
+    deadline,
+    project_id
+  ) => {
     // We can build query string depending on the availability of start_date
     const query = {
-      text: `INSERT INTO tasks (name, description, assigned_user_id, project_id)
-    VALUES ($1, $2, $3, $4) RETURNING *`,
-      values: [name, description, assigned_user_id, project_id],
+      text: `INSERT INTO tasks (name, description, assigned_user_id, deadline, project_id)
+    VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+      values: [name, description, assigned_user_id, deadline, project_id],
     };
 
     return db.query(query).then((result) => result.rows[0]);
@@ -105,6 +111,7 @@ module.exports = (db) => {
         project_id,
       ],
     };
+
     return db.query(query);
   };
 

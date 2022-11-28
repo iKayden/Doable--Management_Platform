@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ChatFooter = ({ socket, typingStatus, setTypingStatus }) => {
+const ChatFooter = ({ socket }) => {
   const [message, setMessage] = useState('');
 
   const handleTyping = () =>
@@ -16,7 +16,6 @@ const ChatFooter = ({ socket, typingStatus, setTypingStatus }) => {
         socketID: socket.id,
       });
     }
-    setTypingStatus('');
     setMessage('');
   };
 
