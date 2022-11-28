@@ -28,15 +28,16 @@ export default function Login(props, { socket }) {
       .then((data) => {
         localStorage.setItem('user', data.id);
         localStorage.setItem('userName', data.name);
-        socket.emit('newUser', { userName, socketID: socket.id });
-        props.setUser(data.id);
+        props.setUser(data.name);
         setError('');
       })
       .catch((err) => {
         if (err) {
-          err.json().then((json) => {
-            setError(json.message);
-          });
+          console.log(err);
+          err.json()
+            .then((json) => {
+              setError(json.message);
+            });
         }
       });
   };

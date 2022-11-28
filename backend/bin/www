@@ -25,22 +25,47 @@ const socketIO = new Server(server, {
   }
 });
 
+let activeChatUsers = [];
+
 socketIO.on("connection", (socket) => {
   console.log(`⚡: ${socket.id} user just connected!`);
-
-  // socket.on("join_room", (data) => {
-  //   socket.join(data);
-  // });
-
-  // socket.on("send_message", (data) => {
-  //   socket.to(data.room).emit("receive_message", data);
-  // });
 
   socket.on('message', (data) => {
     socketIO.emit('messageResponse', data);
   });
+
+  //Listens when a new user joins the server
+  socket.on('newUser', (data) => {
+    console.log('BEFORE ACTIVE USERS', activeChatUsers);
+    //Adds the new user to the list of users
+
+    if (!activeChatUsers.find((user) => user.socketID === socket.id)) {
+      activeChatUsers.push({ ...data, socketID: socket.id });
+    } else {
+      activeChatUsers = activeChatUsers.map((user) => {
+        if (user.socketID === socket.id) {
+          user.userName = data.userName;
+        }
+
+        return user;
+      });
+    }
+    // console.log(activeChatUsers);
+    //Sends the list of activeChatUsers to the client
+    console.log("ACTIVE USERS", activeChatUsers);
+    socketIO.emit('newUserResponse', activeChatUsers);
+
+  });
+
   socket.on('disconnect', () => {
     console.log('🔥: A user disconnected');
+    console.log('BEFORE DISCONNECTED USERS', activeChatUsers);
+    //Updates the list of users when a user disconnects from the server
+    activeChatUsers = activeChatUsers.filter((user) => user.socketID !== socket.id);
+    //Sends the list of users to the client
+    socketIO.emit('newUserResponse', activeChatUsers);
+    console.log('AFTER DISCONNECTED USERS', activeChatUsers);
+    socket.disconnect();
   });
 });
 

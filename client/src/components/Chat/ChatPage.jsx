@@ -13,24 +13,26 @@ export default function ChatPage({ socket }) {
   // const [room, setRoom] = useState("");
   const [messages, setMessages] = useState([]);
   const [user, setUser] = useState(localStorage.getItem("userName"));
-  // const sendMessage = () => {
-  //   socket.emit("send_message", { messages, room });
-  // };
-
-  // const joinRoom = () => {
-  //   if (room !== "") {
-  //     socket.emit("join_room", room);
-  //   }
-  // };
 
   useEffect(() => {
     socket.on("messageResponse", (data) => {
-      setMessages([...messages, data]);
+      setMessages((prev) => {
+        return [...prev, data];
+      });
     });
-  }, [socket, messages]);
+  }, []);
+
+  useEffect(() => {
+    socket.emit('newUser', { userName: user, socketID: socket.id });
+  }, [user]);
+
+  const loginHandler = (userName) => {
+    console.log("USER NAME ===", userName);
+    setUser(userName);
+  };
 
   if (!user) {
-    return <Login setUser={setUser} />;
+    return <Login setUser={loginHandler} />;
   }
 
   return (
