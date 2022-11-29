@@ -52,7 +52,11 @@ module.exports = (db) => {
     VALUES ($1, $2, $3, $4) RETURNING *`,
       values: [name, description, start_date, expected_end_date],
     };
-    return db.query(query).then((result) => result.rows[0]);
+    return db.query(query).then((result) => ({
+      ...result.rows[0],
+      total_tasks: 0,
+      completed_tasks: 0,
+    }));
   };
 
   const editProject = (
@@ -191,7 +195,6 @@ module.exports = (db) => {
   };
 
   const addUsersToProject = (users, projectId) => {
-    console.log("USERS from helpers back end", users);
     const usersValues = users
       .map((user) => {
         return `(${user.value}, ${projectId})`;

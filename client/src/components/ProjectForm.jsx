@@ -149,7 +149,13 @@ export default function ProjectForm() {
           <Button
             variant="primary"
             type="submit"
-            disabled={project.name === ''}
+            disabled={
+              project.name === '' ||
+              project.assigned_users.length === 0 ||
+              project.expected_end_date === '' ||
+              project.start_date === '' ||
+              project.description === ''
+            }
           >
             Save
           </Button>

@@ -38,7 +38,6 @@ const dataReducer = (state, action) => {
         projects: state.projects.filter((project) => project.id !== action.id),
       };
     case ADD_PROJECT:
-
       return {
         ...state,
         projects: [action.project, ...state.projects],

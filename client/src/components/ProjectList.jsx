@@ -47,7 +47,7 @@ export default function ProjectList(props) {
         Add New Project
       </Button>
 
-      <table className="table table-light table-striped">
+      <table className="table table-light">
         <thead>
           <tr>
             <th scope="col">Project</th>
