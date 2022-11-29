@@ -128,7 +128,15 @@ export default function TaskList() {
     });
 
   // console.log("Tasks from tasks", tasks);
-
+  const doneEdit = () => {
+    getTasksForProject(id)
+      .then((data) => {
+        dispatch({
+          type: SET_TASKS,
+          tasks: data,
+        });
+      });
+  };
   const handleDragEnd = ({ destination, source }) => {
     if (!destination) return;
 
@@ -251,8 +259,8 @@ export default function TaskList() {
                                     <div className="draggable-item__inside">
                                       <img
                                         className='draggable-item__task-avatar'
-
-                                        src={el.avatar ? el.avatar : "https://cdn.dribbble.com/users/5592443/screenshots/12434328/drbl_mario_q-block_4x.png"}
+                                        src={el.avatar ? el.avatar :
+                                          "https://cdn.dribbble.com/users/5592443/screenshots/12434328/drbl_mario_q-block_4x.png"}
                                         key={el.name}
                                         alt={el.name}
                                       />
@@ -312,7 +320,7 @@ export default function TaskList() {
       </div>
       {/* Logic for modal pop ups */}
       {taskToEdit && <EditTaskForm taskToEdit={taskToEdit} />}
-      {taskToAdd && <TaskForm taskToAdd={taskToAdd} />}
+      {taskToAdd && <TaskForm taskToAdd={taskToAdd} doneEdit={doneEdit} />}
     </>
   );
 }
