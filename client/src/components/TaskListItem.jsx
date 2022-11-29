@@ -7,6 +7,8 @@ import { OPEN_EDIT_TASK } from "../reducer/data_reducer";
 export default function TaskListItem({ task }) {
   // extract current path (url)
   const dispatch = useApplicationDispatch();
+  // const startDateString = new Date(project.start_date).toDateString()
+  // const endDateString = new Date(task.deadline).toDateString()
 
   return (
 
