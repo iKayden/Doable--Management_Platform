@@ -1,22 +1,23 @@
-import { useEffect } from 'react';
-import axios from 'axios';
-
-import './ProjectList.css';
+import { useEffect } from "react";
+import axios from "axios";
+import ProjectForm from "./ProjectForm";
+import Button from 'react-bootstrap/Button';
+import "./ProjectList.css";
 import {
   useApplicationState,
   useApplicationDispatch,
-} from '../hooks/useApplicationData';
-import { SET_PROJECTS } from '../reducer/data_reducer';
-import ProjectListItem from './ProjectListItem';
+} from "../hooks/useApplicationData";
+import { SET_PROJECTS, TO_ADD_PROJ } from "../reducer/data_reducer";
+import ProjectListItem from "./ProjectListItem";
 
 export default function ProjectList() {
-  const { projects } = useApplicationState();
+  const { projects, projectToAdd } = useApplicationState();
   const dispatch = useApplicationDispatch();
 
   useEffect(() => {
     axios({
-      method: 'GET',
-      url: '/api/projects',
+      method: "GET",
+      url: "/api/projects",
     })
       .then(({ data }) => {
         dispatch({
@@ -42,6 +43,16 @@ export default function ProjectList() {
   });
   return (
     <>
+    {projectToAdd && <ProjectForm projectToAdd={projectToAdd} />}
+      <Button variant="primary"
+        onClick={() => {
+          dispatch({ type: TO_ADD_PROJ})
+        }}
+      >
+        Add New Project
+      </Button>
+
+
       <table className="table table-light table-striped">
         <thead>
           <tr>
