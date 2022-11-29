@@ -20,12 +20,7 @@ export const createTask = (dispatch, task) => {
     .catch((err) => console.log("AXIOS PUT ERROR", err.message));
 };
 
-export const editTask = (dispatch, task) => {
-  dispatch({
-    type: EDIT_TASK,
-    task
-  });
-};
+
 export const updateTask = (dispatch, task) => {
   return axios.put(`/api/tasks/${task.id}`)
     .then(() => {

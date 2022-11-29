@@ -9,6 +9,7 @@ export const defaultState = {
   taskId: undefined,
   taskToEdit: undefined,
   projectToAdd: undefined,
+  taskToAdd: undefined,
   loading: true,
 };
 
