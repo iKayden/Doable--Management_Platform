@@ -28,6 +28,7 @@ export default function Login(props) {
       .then((data) => {
         localStorage.setItem('user', data.id);
         localStorage.setItem('userName', data.name);
+        localStorage.setItem('userAvatar', data.avatar);
         props.setUser(data.name);
         setError('');
       })
