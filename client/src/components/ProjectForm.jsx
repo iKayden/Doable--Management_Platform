@@ -1,20 +1,52 @@
-import { useState } from "react";
-import { createProject } from "../api/project";
-import { useApplicationDispatch } from "../hooks/useApplicationData";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import { CLOSE_ADD_PROJ } from "../reducer/data_reducer";
-import { Form } from "react-bootstrap";
-import { useApplicationState } from "../hooks/useApplicationData";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+import { createProject } from '../api/project';
+import { useApplicationDispatch } from '../hooks/useApplicationData';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { CLOSE_ADD_PROJ, SET_USERS } from '../reducer/data_reducer';
+import { Form } from 'react-bootstrap';
+import { useApplicationState } from '../hooks/useApplicationData';
+
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
 
 export default function ProjectForm() {
   const dispatch = useApplicationDispatch();
-  const [project, setProject] = useState({ name: "", description: "", expected_end_date: "" });
+  const [project, setProject] = useState({
+    name: '',
+    description: '',
+    expected_end_date: '',
+  });
   const { projectToAdd } = useApplicationState();
-  
+
+  useEffect(() => {
+    axios({
+      method: 'GET',
+      url: '/api/users',
+    })
+      .then(({ data }) => {
+        dispatch({
+          type: SET_USERS,
+          users: data,
+        });
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const { users } = useApplicationState();
+
+  const animatedComponents = makeAnimated();
+
+  const userList = users.map((user) => ({
+    value: user.id,
+    label: user.name + ': ' + user.email,
+  }));
+
   return (
     <Modal show={projectToAdd}>
-    <Modal.Header
+      <Modal.Header
         closeButton
         onClick={() => {
           dispatch({
@@ -68,15 +100,23 @@ export default function ProjectForm() {
               name="expected_end_date"
               placeholder="Expected End Date"
               value={project.expected_end_date}
-              onChange={(event) =>
-                { console.log("event.target.value", event.target.value)
-                console.log("event.target.value", typeof event.target.value)
-                  setProject((prev) => ({
+              onChange={(event) => {
+                console.log('event.target.value', event.target.value);
+                console.log('event.target.value', typeof event.target.value);
+                setProject((prev) => ({
                   ...prev,
                   expected_end_date: event.target.value,
-                }))
-              }
-              }
+                }));
+              }}
+            />
+          </Form.Group>
+          <Form.Group controlId="dob">
+            <Form.Label>Add team members:</Form.Label>
+            <Select
+              closeMenuOnSelect={false}
+              components={animatedComponents}
+              isMulti
+              options={userList}
             />
           </Form.Group>
         </Modal.Body>
@@ -96,7 +136,7 @@ export default function ProjectForm() {
           <Button
             variant="primary"
             type="submit"
-            disabled={project.name === ""}
+            disabled={project.name === ''}
           >
             Save
           </Button>
