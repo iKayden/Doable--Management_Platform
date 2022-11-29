@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 export default function Login(props) {
@@ -6,8 +7,8 @@ export default function Login(props) {
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  // const [userName, setUserName] = useState('');
   const [error, setError] = useState();
+  const navigate = useNavigate();
 
   const handleSubmit = function(event) {
     event.preventDefault();
@@ -30,6 +31,7 @@ export default function Login(props) {
         localStorage.setItem('userName', data.name);
         localStorage.setItem('userAvatar', data.avatar);
         props.setUser(data.name);
+        navigate("/projects");
         setError('');
       })
       .catch((err) => {
