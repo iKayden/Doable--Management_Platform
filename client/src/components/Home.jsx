@@ -23,7 +23,6 @@ const Home = () => {
       <Link to="/projects">
         <h1>Projects</h1>
       </Link>
-      <ProjectForm />
       <ul>
         <ProjectList />
       </ul>

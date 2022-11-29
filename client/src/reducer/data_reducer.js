@@ -1,14 +1,16 @@
-export const SET_USERS = 'SET_USERS';
-export const SET_PROJECTS = 'SET_PROJECTS';
-export const REMOVE_PROJECT = 'REMOVE_PROJECT';
-export const ADD_PROJECT = 'ADD_PROJECT';
-export const SET_PROJECT = 'SET_PROJECT';
-export const ADD_TASK = 'ADD_TASK';
-export const REMOVE_TASK = 'REMOVE_TASK';
-export const SET_TASKS = 'SET_TASKS';
-export const EDIT_TASK = 'EDIT_TASK';
-export const UPDATE_TASK = 'UPDATE_TASK';
-export const CLOSE_EDIT_TASK = 'CLOSE_EDIT_TASK';
+export const SET_USERS = "SET_USERS";
+export const SET_PROJECTS = "SET_PROJECTS";
+export const REMOVE_PROJECT = "REMOVE_PROJECT";
+export const ADD_PROJECT = "ADD_PROJECT";
+export const SET_PROJECT = "SET_PROJECT";
+export const ADD_TASK = "ADD_TASK";
+export const REMOVE_TASK = "REMOVE_TASK";
+export const SET_TASKS = "SET_TASKS";
+export const EDIT_TASK = "EDIT_TASK";
+export const UPDATE_TASK = "UPDATE_TASK";
+export const CLOSE_EDIT_TASK = "CLOSE_EDIT_TASK";
+export const TO_ADD_PROJ = "TO_ADD_PROJ";
+export const CLOSE_ADD_PROJ = "CLOSE_ADD_PROJ"
 
 const dataReducer = (state, action) => {
   switch (action.type) {
@@ -47,18 +49,17 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         tasks: [action.task, ...state.tasks],
-        taskToEdit: undefined
+        taskToEdit: undefined,
       };
     case CLOSE_EDIT_TASK:
       return {
         ...state,
-        taskToEdit: undefined
-
+        taskToEdit: undefined,
       };
     case EDIT_TASK: //This shows the model to edit model
       return {
         ...state,
-        taskToEdit: action.task
+        taskToEdit: action.task,
       };
     case REMOVE_TASK:
       return {
@@ -69,6 +70,16 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         tasks: action.tasks,
+      };
+    case TO_ADD_PROJ: // Shows add project modal
+      return {
+        ...state,
+        projectToAdd: true,
+      };
+    case CLOSE_ADD_PROJ: // To close add project modal
+      return {
+        ...state,
+        projectToAdd: undefined,
       };
     default:
       return state;
