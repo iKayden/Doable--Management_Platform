@@ -39,9 +39,22 @@ module.exports = ({
   });
 
   router.put('/:id', (req, res) => {
-    const { name, description, start_date, expected_end_date } = req.body;
+    const {
+      name,
+      description,
+      start_date,
+      expected_end_date,
+      completion_time,
+    } = req.body;
 
-    editProject(req.params.id, name, description, start_date, expected_end_date)
+    editProject(
+      req.params.id,
+      name,
+      description,
+      start_date,
+      expected_end_date,
+      completion_time
+    )
       .then((project) => {
         res.send({ project });
       })
