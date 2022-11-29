@@ -1,11 +1,20 @@
 import './TaskListItem.css';
-import { deleteTask } from '../api/task';
+import React, { useState } from 'react';
 import { useApplicationDispatch } from '../hooks/useApplicationData';
 import Button from 'react-bootstrap/Button';
 import { OPEN_EDIT_TASK } from '../reducer/data_reducer';
+import DeleteConfirmation from './DeleteConfirmation';
+import { deleteTask } from '../api/task';
 
 export default function TaskListItem({ task }) {
   const dispatch = useApplicationDispatch();
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+
+  const handleDelete = () => {
+    deleteTask(dispatch, task.id, task.status)
+   }
+
   //only year, date, time
   const formattedDate = new Date(task.deadline)
     .toString()

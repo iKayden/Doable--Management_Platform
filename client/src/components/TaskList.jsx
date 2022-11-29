@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { deleteTask, getTasksForProject, updateTask } from '../api/task';
 import TaskListItem from './TaskListItem';
 import {
   useApplicationState,
   useApplicationDispatch,
-} from '../hooks/useApplicationData';
+} from "../hooks/useApplicationData";
 import {
   OPEN_ADD_TASK,
   OPEN_EDIT_TASK,
@@ -21,6 +21,7 @@ import _ from 'lodash';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import './TaskList.css';
 import { getUsers, getUsersByProjectId } from '../api/user';
+import DeleteConfirmation from "./DeleteConfirmation";
 
 export default function TaskList() {
   const [state, setState] = useState();
@@ -29,6 +30,9 @@ export default function TaskList() {
     useApplicationState();
   const dispatch = useApplicationDispatch();
   const { id } = useParams(); //Current Project ID(from URL)
+  const [showDelete, setShowDelete] = useState(false);
+  const [taskId, setTaskId] = useState(0);
+  const [status, setStatus] = useState("");
   const [projectUsers, setProjectUsers] = useState([]);
   const [modalTask, setModalTask] = useState({
     name: '',
@@ -76,36 +80,36 @@ export default function TaskList() {
   useEffect(() => {
     const toDo = tasks
       .filter((task) => {
-        return task.status === 'TO-DO';
+        return task.status === "TO-DO";
       })
       .map(({ id, ...task }) => {
         return { id: String(id), ...task };
       });
     const inProgress = tasks
       .filter((task) => {
-        return task.status === 'IN-PROGRESS';
+        return task.status === "IN-PROGRESS";
       })
       .map(({ id, ...task }) => {
         return { id: String(id), ...task };
       });
     const completed = tasks
       .filter((task) => {
-        return task.status === 'COMPLETED';
+        return task.status === "COMPLETED";
       })
       .map(({ id, ...task }) => {
         return { id: String(id), ...task };
       });
     setState({
-      'TO-DO': {
-        title: 'To-Do',
+      "TO-DO": {
+        title: "To-Do",
         items: toDo,
       },
-      'IN-PROGRESS': {
-        title: 'In-Progress',
+      "IN-PROGRESS": {
+        title: "In-Progress",
         items: inProgress,
       },
       COMPLETED: {
-        title: 'Complete',
+        title: "Complete",
         items: completed,
       },
     });
@@ -141,9 +145,9 @@ export default function TaskList() {
     draggedTask.status = destination.droppableId;
 
     //for changing the number of completed tasks
-    if (source.droppableId === 'COMPLETED') {
+    if (source.droppableId === "COMPLETED") {
       draggedTask.taskStatusChange = -1;
-    } else if (destination.droppableId === 'COMPLETED') {
+    } else if (destination.droppableId === "COMPLETED") {
       draggedTask.taskStatusChange = 1;
     } else draggedTask.taskStatusChange = 0;
 
@@ -162,6 +166,11 @@ export default function TaskList() {
 
       return prev;
     });
+  };
+
+  const navigate = useNavigate();
+  const chatRoute = () => {
+    navigate(`/chat`);
   };
 
   return (
@@ -184,7 +193,6 @@ export default function TaskList() {
         Project: {currentProject?.name}
         <Button
           variant="primary"
-          size="lg"
           className="add-new-task__button"
           onClick={() =>
             dispatch({
@@ -192,7 +200,10 @@ export default function TaskList() {
             })
           }
         >
-          <i className="fa-solid fa-plus"></i> New Task
+          <i className="fa-solid fa-plus"></i> New Task{" "}
+        </Button>
+        <Button variant="primary" onClick={chatRoute}>
+          Chat Now! <i className="fa-solid fa-message"></i>
         </Button>
       </h1>
       <div className="task-list__project-users">
@@ -207,7 +218,7 @@ export default function TaskList() {
           {_.map(state, (data, key) => {
             // console.log("before return", data);
             return (
-              <div key={key} className={'dnd-column'}>
+              <div key={key} className={"dnd-column"}>
                 <h3>{data.title}</h3>
                 <Droppable droppableId={key}>
                   {(provided) => {
@@ -215,7 +226,7 @@ export default function TaskList() {
                       <div
                         ref={provided.innerRef}
                         {...provided.droppableProps}
-                        className={'droppable-col'}
+                        className={"droppable-col"}
                       >
                         {data.items.map((el, index) => {
                           return (
@@ -227,7 +238,7 @@ export default function TaskList() {
                               {(provided, snapshot) => {
                                 return (
                                   <div
-                                    className={`draggable-item ${snapshot.isDragging && 'dragging'
+                                    className={`draggable-item ${snapshot.isDragging && "dragging"
                                       }`}
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
@@ -265,11 +276,9 @@ export default function TaskList() {
                                         <i
                                           onClick={(e) => {
                                             e.stopPropagation();
-                                            deleteTask(
-                                              dispatch,
-                                              el.id,
-                                              el.status
-                                            );
+                                            setStatus(el.status);
+                                            setTaskId(el.id);
+                                            setShowDelete(true);
                                           }}
                                           className="fa-solid fa-trash-can"
                                         ></i>
@@ -281,6 +290,16 @@ export default function TaskList() {
                             </Draggable>
                           );
                         })}
+                        {showDelete && (
+                          <DeleteConfirmation
+                            showDelete={showDelete}
+                            setShowDelete={setShowDelete}
+                            handleDelete={() => {
+                              deleteTask(dispatch, taskId, status);
+                              setShowDelete(false);
+                            }}
+                          />
+                        )}
                         {provided.placeholder}
                       </div>
                     );
