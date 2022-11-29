@@ -1,35 +1,55 @@
-import { useApplicationDispatch } from '../hooks/useApplicationData';
-import { deleteProject } from '../api/project';
-import { SET_PROJECT } from '../reducer/data_reducer';
+import { useApplicationDispatch, useApplicationState } from '../hooks/useApplicationData';
+import { deleteProject, updateProject } from '../api/project';
+import { OPEN_UPDATE_PROJECT, SET_PROJECT } from '../reducer/data_reducer';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import EditProjectForm from './EditProjectForm';
 // useParams
-export default function ProjectListItem(props) {
+export default function ProjectListItem({ project }) {
   // extract current path (url)
   const dispatch = useApplicationDispatch();
+  const { projectToEdit } = useApplicationState();
+
   return (
 
-    <tr key={props.id}>
+    <tr key={project.id}>
       <th
         onClick={() => {
-          dispatch({ type: SET_PROJECT, id: props.id });
+          dispatch({ type: SET_PROJECT, id: project.id });
         }}
       >
-        <Link to={`projects/${props.id}/tasks`}>
-          {props.name}
+        <Link to={`projects/${project.id}/tasks`}>
+          {project.name}
         </Link>
       </th>
-      <th>{props.start_date}</th>
-      <th>{props.expected_end_date}</th>
-      <th>{props.description}</th>
+      <th>{project.start_date}</th>
+      <th>{project.expected_end_date}</th>
+      <th>{project.description}</th>
       <th>
-        <button
+        <Button
+          variant='warning'
           onClick={() => {
-            deleteProject(dispatch, props.id);
+            dispatch({
+              type: OPEN_UPDATE_PROJECT,
+              project
+            });
+          }}
+        >
+          Edit
+        </Button>
+      </th>
+      {projectToEdit && <EditProjectForm projectToEdit={projectToEdit} />}
+
+      <th>
+        <Button
+          variant='danger'
+          onClick={() => {
+            deleteProject(dispatch, project.id);
           }}
         >
           Delete
-        </button>
+        </Button>
       </th>
     </tr>
   );
