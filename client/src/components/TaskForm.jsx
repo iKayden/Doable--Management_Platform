@@ -68,7 +68,6 @@ export default function TaskForm(props) {
             name="assigned_user_id"
             id="assigned_user_id"
             onChange={(e) => {
-              console.log("e.target.value", e.target.value);
               setSelectedUser(e.target.value);
             }}>
             <option value="" >--Please assign a user--</option>

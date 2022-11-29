@@ -7,12 +7,12 @@ import {
   useApplicationState,
   useApplicationDispatch,
 } from '../hooks/useApplicationData';
-import { ADD_TASK, CLOSE_ADD_TASK, SET_TASKS } from '../reducer/data_reducer';
+import { ADD_TASK, CLOSE_ADD_TASK, OPEN_ADD_TASK, SET_TASKS } from '../reducer/data_reducer';
 import TaskForm from "./TaskForm";
 import EditTaskForm from "./EditTaskForm";
 
 export default function TaskList() {
-  const { taskId, tasks, taskToEdit, taskToAdd } = useApplicationState();
+  const { tasks, taskToEdit, taskToAdd } = useApplicationState();
   const dispatch = useApplicationDispatch();
 
   const { id } = useParams();
@@ -55,9 +55,12 @@ export default function TaskList() {
         </thead>
         <tbody>{taskList}</tbody>
       </table>
-      <TaskForm taskToAdd={taskToAdd} />
-      {taskToEdit && <EditTaskForm taskToEdit={taskToEdit} />}
 
+      {taskToEdit && <EditTaskForm taskToEdit={taskToEdit} />}
+      {taskToAdd && <TaskForm taskToAdd={taskToAdd} />}
+      <Button onClick={() => dispatch({
+        type: OPEN_ADD_TASK
+      })}>Add New Task</Button>
     </>
   );
 }

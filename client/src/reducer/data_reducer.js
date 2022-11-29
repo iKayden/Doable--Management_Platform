@@ -10,6 +10,8 @@ export const EDIT_TASK = 'EDIT_TASK';
 export const UPDATE_TASK = 'UPDATE_TASK';
 export const CLOSE_EDIT_TASK = 'CLOSE_EDIT_TASK';
 export const CLOSE_ADD_TASK = 'CLOSE_ADD_TASK';
+export const OPEN_ADD_TASK = 'OPEN_ADD_TASK';
+export const OPEN_EDIT_TASK = 'OPEN_EDIT_TASK';
 
 const dataReducer = (state, action) => {
   switch (action.type) {
@@ -44,6 +46,12 @@ const dataReducer = (state, action) => {
         ...state,
         tasks: [action.task, ...state.tasks],
       };
+    case OPEN_ADD_TASK:
+      return {
+        ...state,
+        taskToAdd: true
+
+      };
     case CLOSE_ADD_TASK:
       return {
         ...state,
@@ -61,10 +69,12 @@ const dataReducer = (state, action) => {
         taskToEdit: undefined
 
       };
-    case EDIT_TASK: //This shows the model to edit model
+    case OPEN_EDIT_TASK:
       return {
         ...state,
         taskToEdit: action.task
+        //Points to the state that exists. Model will have full object access(truthy ref)
+        // will populate/get state props aw well.
       };
     case REMOVE_TASK:
       return {
