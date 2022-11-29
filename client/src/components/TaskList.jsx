@@ -19,7 +19,6 @@ export default function TaskList() {
 
 
   useEffect(() => {
-    console.log("ID ==========>", id);
     getTasksForProject(id)
       .then((data) => {
         dispatch({
