@@ -37,11 +37,6 @@ export default function ProjectList() {
     return (
       <ProjectListItem
         key={project.id}
-        // id={project.id}
-        // name={project.name}
-        // start_date={project.start_date}
-        // expected_end_date={project.expected_end_date}
-        // description={project.description}
         start_date={startDateString}
         expected_end_date={endDateString}
         project={project}
