@@ -73,8 +73,6 @@ export default function TaskList() {
   };
   // we already have 'projects' from useApplicationState and 'id' from useParams
   const currentProject = getCurrentProjectId(projects, id);
-  // const usersOfThisProject =
-  // console.log("currentProject", currentProject);
 
   // Filters to reassign status of the draggable item in DB for DnD
   useEffect(() => {
@@ -127,7 +125,6 @@ export default function TaskList() {
       );
     });
 
-  // console.log("Tasks from tasks", tasks);
   const doneEdit = () => {
     getTasksForProject(id)
       .then((data) => {
@@ -224,7 +221,6 @@ export default function TaskList() {
           onDragStart={(e) => setItemId(e.draggableId)}
         >
           {_.map(state, (data, key) => {
-            // console.log("before return", data);
             return (
               <div key={key} className={"dnd-column"}>
                 <h3>{data.title}</h3>

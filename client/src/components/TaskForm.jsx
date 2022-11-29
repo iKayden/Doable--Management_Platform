@@ -42,8 +42,6 @@ export default function TaskForm(props) {
   ));
 
   const newAssignedUser = (selectedUser, task) => {
-    console.log("Selected user =====", selectedUser);
-    console.log("Selected task =====", task);
     return { ...task, assigned_user_id: selectedUser };
   };
 
