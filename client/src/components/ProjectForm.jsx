@@ -4,6 +4,7 @@ import { useApplicationDispatch } from "../hooks/useApplicationData";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { CLOSE_ADD_PROJ } from "../reducer/data_reducer";
+import { Form } from "react-bootstrap";
 
 export default function ProjectForm() {
   const dispatch = useApplicationDispatch();
@@ -11,7 +12,14 @@ export default function ProjectForm() {
 
   return (
     <Modal.Dialog>
-      <Modal.Header closeButton>
+      <Modal.Header
+        closeButton
+        onClick={() => {
+          dispatch({
+            type: CLOSE_ADD_PROJ,
+          });
+        }}
+      >
         <Modal.Title>Add a New Project</Modal.Title>
       </Modal.Header>
 
@@ -33,31 +41,36 @@ export default function ProjectForm() {
             }
           />
 
-          <div><input
-            type="text"
-            name="description"
-            placeholder="Enter Project Description"
-            value={project.description}
-            onChange={(event) =>
-              setProject((prev) => ({
-                ...prev,
-                description: event.target.value,
-              }))
-            }
-          /></div>
+          <div>
+            <input
+              type="text"
+              name="description"
+              placeholder="Enter Project Description"
+              value={project.description}
+              onChange={(event) =>
+                setProject((prev) => ({
+                  ...prev,
+                  description: event.target.value,
+                }))
+              }
+            />
+          </div>
 
-          <input
-            type="text"
-            name="expected_end_date"
-            placeholder="Expected End Date"
-            value={project.expected_end_date}
-            onChange={(event) =>
-              setProject((prev) => ({
-                ...prev,
-                expected_end_date: event.target.value,
-              }))
-            }
-          />
+          <Form.Group controlId="dob">
+            <Form.Label>Expected Completion Date</Form.Label>
+            <Form.Control
+              type="date"
+              name="expected_end_date"
+              placeholder="Expected End Date"
+              value={project.expected_end_date}
+              onChange={(event) =>
+                setProject((prev) => ({
+                  ...prev,
+                  expected_end_date: event.target.value,
+                }))
+              }
+            />
+          </Form.Group>
         </Modal.Body>
 
         <Modal.Footer>
@@ -65,7 +78,7 @@ export default function ProjectForm() {
             variant="secondary"
             onClick={() => {
               dispatch({
-                type: CLOSE_ADD_PROJ
+                type: CLOSE_ADD_PROJ,
               });
             }}
           >
