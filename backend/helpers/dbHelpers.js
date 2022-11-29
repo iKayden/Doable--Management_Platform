@@ -57,7 +57,6 @@ module.exports = (db) => {
     return db.query(query).then((result) => result.rows[0]);
   };
 
-
   const deleteProject = (id) => {
     const query = {
       text: 'DELETE FROM projects WHERE id = $1',
@@ -75,7 +74,14 @@ module.exports = (db) => {
   };
 
   const editTask = (
-    id, name, description, status, deadline, completion_time, assigned_user_id, project_id
+    id,
+    name,
+    description,
+    status,
+    deadline,
+    completion_time,
+    assigned_user_id,
+    project_id
   ) => {
     const query = {
       text: `
@@ -88,7 +94,16 @@ module.exports = (db) => {
       project_id = $8
       WHERE id = $1
       RETURNING *`,
-      values: [id, name, description, status, deadline, completion_time, assigned_user_id, project_id],
+      values: [
+        id,
+        name,
+        description,
+        status,
+        deadline,
+        completion_time,
+        assigned_user_id,
+        project_id,
+      ],
     };
     return db.query(query);
   };
@@ -122,6 +137,16 @@ module.exports = (db) => {
     return db.query(query);
   };
 
+  const addUsersToProject = (users, projectId) => {
+    const usersValues = users
+      .map((user) => {
+        return `(${user.value}, ${projectId})`;
+      })
+      .join(',');
+    const query = `INSERT INTO project_users (subscribed_user_id, project_id) VALUES ${usersValues} RETURNING *`;
+    return db.query(query);
+  };
+
   return {
     getUsers,
     getProjects,
@@ -134,5 +159,6 @@ module.exports = (db) => {
     getTasksByProjectId,
     editTask,
     deleteTask,
+    addUsersToProject,
   };
 };
