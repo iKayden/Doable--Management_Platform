@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { useParams } from "react-router-dom";
 import { createTask } from '../api/task';
 import { useApplicationDispatch, useApplicationState } from '../hooks/useApplicationData';
-import Button from 'react-bootstrap/Button';
-import { CLOSE_ADD_TASK } from '../reducer/data_reducer';
 
 export default function TaskForm(props) {
   const { id } = useParams();
@@ -21,13 +19,17 @@ export default function TaskForm(props) {
     return { ...task, assigned_user_id: selectedUser };
   };
 
+  const handleSubmit = event => {
+    event.preventDefault();
+    createTask(dispatch, newAssignedUser(selectedUser, task));
+    setTask((prev) => ({ ...prev, description: "" }));
+    setTask((prev) => ({ ...prev, name: "" }));
+  };
+
   return (
     <form
       autoComplete="off"
-      onSubmit={(e) => {
-        e.preventDefault();
-        createTask(dispatch, newAssignedUser(selectedUser, task));
-      }}
+      onSubmit={handleSubmit}
     >
       <div className="container">
         <div className='d-inline'>
@@ -66,9 +68,10 @@ export default function TaskForm(props) {
             name="assigned_user_id"
             id="assigned_user_id"
             onChange={(e) => {
+              console.log("e.target.value", e.target.value);
               setSelectedUser(e.target.value);
             }}>
-            <option value="">--Please assign a user--</option>
+            <option value="" >--Please assign a user--</option>
             {userList}
           </select>
           <button type="submit" className="btn btn-warning m-3">Add</button>
