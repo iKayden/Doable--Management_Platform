@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
 import { createProject } from '../api/project';
 import { useApplicationDispatch } from '../hooks/useApplicationData';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { CLOSE_ADD_PROJ, SET_USERS } from '../reducer/data_reducer';
+import { CLOSE_ADD_PROJ } from '../reducer/data_reducer';
 import { Form } from 'react-bootstrap';
 import { useApplicationState } from '../hooks/useApplicationData';
+import { getUsers } from '../api/user';
 
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
@@ -18,22 +18,13 @@ export default function ProjectForm() {
     name: '',
     description: '',
     expected_end_date: '',
+    assigned_users: [],
   });
   const { projectToAdd } = useApplicationState();
 
   useEffect(() => {
-    axios({
-      method: 'GET',
-      url: '/api/users',
-    })
-      .then(({ data }) => {
-        dispatch({
-          type: SET_USERS,
-          users: data,
-        });
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    getUsers(dispatch);
+  }, [dispatch]);
 
   const { users } = useApplicationState();
 
@@ -101,8 +92,6 @@ export default function ProjectForm() {
               placeholder="Expected End Date"
               value={project.expected_end_date}
               onChange={(event) => {
-                console.log('event.target.value', event.target.value);
-                console.log('event.target.value', typeof event.target.value);
                 setProject((prev) => ({
                   ...prev,
                   expected_end_date: event.target.value,
@@ -117,6 +106,16 @@ export default function ProjectForm() {
               components={animatedComponents}
               isMulti
               options={userList}
+              type="assigned_users"
+              name="assigned_users"
+              defaultValue={[]}
+              onChange={(event) => {
+                const assigned_users = event;
+                setProject((prev) => ({
+                  ...prev,
+                  assigned_users: assigned_users,
+                }));
+              }}
             />
           </Form.Group>
         </Modal.Body>
