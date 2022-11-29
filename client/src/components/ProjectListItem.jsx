@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import EditProjectForm from './EditProjectForm';
 // useParams
-export default function ProjectListItem({ project }) {
+export default function ProjectListItem({ project, expected_end_date, start_date }) {
   // extract current path (url)
   const dispatch = useApplicationDispatch();
   const { projectToEdit } = useApplicationState();
@@ -23,8 +23,8 @@ export default function ProjectListItem({ project }) {
           {project.name}
         </Link>
       </th>
-      <th>{project.start_date}</th>
-      <th>{project.expected_end_date}</th>
+      <th>{start_date}</th>
+      <th>{expected_end_date}</th>
       <th>{project.description}</th>
       <th>
         <Button
