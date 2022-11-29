@@ -9,6 +9,7 @@ export const SET_TASKS = 'SET_TASKS';
 export const EDIT_TASK = 'EDIT_TASK';
 export const UPDATE_TASK = 'UPDATE_TASK';
 export const CLOSE_EDIT_TASK = 'CLOSE_EDIT_TASK';
+export const CLOSE_ADD_TASK = 'CLOSE_ADD_TASK';
 
 const dataReducer = (state, action) => {
   switch (action.type) {
@@ -42,6 +43,11 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         tasks: [action.task, ...state.tasks],
+      };
+    case CLOSE_ADD_TASK:
+      return {
+        ...state,
+        taskToAdd: undefined,
       };
     case UPDATE_TASK: // This sets the state with the updated task
       return {

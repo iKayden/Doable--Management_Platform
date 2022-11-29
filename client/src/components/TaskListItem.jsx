@@ -5,13 +5,6 @@ export default function TaskListItem({ task }) {
   // extract current path (url)
   const dispatch = useApplicationDispatch();
 
-  // console.log("Task ID", props.id);
-  // // console.log("Tasks", tasks);
-  // console.log("Dispatch", dispatch);
-  // const updatedTask = (id, tasksArr) => {
-  //   tasks()
-  // }
-
   return (
 
     <tr key={task.id}>
@@ -33,7 +26,6 @@ export default function TaskListItem({ task }) {
       <th>
         <button
           onClick={() => {
-            // editTask(dispatch);
             editTask(dispatch, task);
           }}
         >

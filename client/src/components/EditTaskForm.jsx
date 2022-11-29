@@ -12,8 +12,12 @@ export default function EditTaskForm(props) {
   const [task, setTask] = useState(props.taskToEdit);
   return (
     <Modal.Dialog>
-      <Modal.Header closeButton>
-        <Modal.Title>Modal title</Modal.Title>
+      <Modal.Header closeButton onClick={() => {
+        dispatch({
+          type: CLOSE_EDIT_TASK
+        });
+      }} >
+        <Modal.Title>Edit Task</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
