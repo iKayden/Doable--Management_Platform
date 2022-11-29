@@ -157,6 +157,7 @@ module.exports = (db) => {
   };
 
   const addUsersToProject = (users, projectId) => {
+    console.log("USERS from helpers back end", users);
     const usersValues = users
       .map((user) => {
         return `(${user.value}, ${projectId})`;

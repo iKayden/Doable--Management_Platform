@@ -123,7 +123,7 @@ export default function TaskList() {
       );
     });
 
-  console.log("Tasks from tasks", tasks);
+  // console.log("Tasks from tasks", tasks);
 
   const handleDragEnd = ({ destination, source }) => {
     if (!destination) return;
@@ -205,6 +205,7 @@ export default function TaskList() {
           onDragStart={(e) => setItemId(e.draggableId)}
         >
           {_.map(state, (data, key) => {
+            // console.log("before return", data);
             return (
               <div key={key} className={'dnd-column'}>
                 <h3>{data.title}</h3>
@@ -239,7 +240,8 @@ export default function TaskList() {
                                     <div className="draggable-item__inside">
                                       <img
                                         className='draggable-item__task-avatar'
-                                        src={el.avatar}
+
+                                        src={el.avatar ? el.avatar : "https://cdn.dribbble.com/users/5592443/screenshots/12434328/drbl_mario_q-block_4x.png"}
                                         key={el.name}
                                         alt={el.name}
                                       />
