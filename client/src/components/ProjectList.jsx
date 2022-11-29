@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import axios from "axios";
 import ProjectForm from "./ProjectForm";
-
+import Button from 'react-bootstrap/Button';
 import "./ProjectList.css";
 import {
   useApplicationState,
@@ -43,15 +43,14 @@ export default function ProjectList() {
   });
   return (
     <>
-    {/* <ProjectForm /> */}
     {projectToAdd && <ProjectForm projectToAdd={projectToAdd} />}
-      <button
+      <Button variant="primary"
         onClick={() => {
           dispatch({ type: TO_ADD_PROJ})
         }}
       >
         Add New Project
-      </button>
+      </Button>
 
 
       <table className="table table-light table-striped">

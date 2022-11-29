@@ -5,14 +5,16 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { CLOSE_ADD_PROJ } from "../reducer/data_reducer";
 import { Form } from "react-bootstrap";
+import { useApplicationState } from "../hooks/useApplicationData";
 
 export default function ProjectForm() {
   const dispatch = useApplicationDispatch();
   const [project, setProject] = useState({ name: "", description: "", expected_end_date: "" });
-
+  const { projectToAdd } = useApplicationState();
+  
   return (
-    <Modal.Dialog>
-      <Modal.Header
+    <Modal show={projectToAdd}>
+    <Modal.Header
         closeButton
         onClick={() => {
           dispatch({
@@ -28,6 +30,9 @@ export default function ProjectForm() {
         onSubmit={(e) => {
           e.preventDefault();
           createProject(dispatch, project);
+          dispatch({
+            type: CLOSE_ADD_PROJ,
+          });
         }}
       >
         <Modal.Body>
@@ -64,10 +69,13 @@ export default function ProjectForm() {
               placeholder="Expected End Date"
               value={project.expected_end_date}
               onChange={(event) =>
-                setProject((prev) => ({
+                { console.log("event.target.value", event.target.value)
+                console.log("event.target.value", typeof event.target.value)
+                  setProject((prev) => ({
                   ...prev,
                   expected_end_date: event.target.value,
                 }))
+              }
               }
             />
           </Form.Group>
@@ -94,6 +102,6 @@ export default function ProjectForm() {
           </Button>
         </Modal.Footer>
       </form>
-    </Modal.Dialog>
+    </Modal>
   );
 }
