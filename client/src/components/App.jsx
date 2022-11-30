@@ -49,10 +49,9 @@ const App = () => {
   return (
     <ApplicationContext.Provider value={{ state, dispatch }}>
       <Navbar bg="primary" variant="dark">
-        <Container>
+        <Container className="nav-bar">
           <Navbar.Brand href="/">Doable</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
+          <Nav>
             <Nav.Link href="/projects">Project History</Nav.Link>
             <Nav.Link href="/about">About Us</Nav.Link>
             <Nav.Link href="/ask">Ask Us</Nav.Link>
