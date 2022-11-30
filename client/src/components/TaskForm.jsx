@@ -44,9 +44,16 @@ export default function TaskForm(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createTask(dispatch, newAssignedUser(selectedUser, task));
-    setTask((prev) => ({ ...prev, description: '' }));
-    setTask((prev) => ({ ...prev, name: '' }));
+    createTask(dispatch, newAssignedUser(selectedUser, task))
+      .then(() => {
+        setTask((prev) => ({ ...prev, name: '', description: '' }));
+        dispatch({
+          type: CLOSE_ADD_TASK,
+        });
+      })
+      .catch((err) => {
+        console.log('AXIOS PUT ERROR', err.message);
+      });
   };
 
   return (
