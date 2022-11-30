@@ -8,8 +8,9 @@ import {
 import { TO_ADD_PROJ } from '../reducer/data_reducer';
 import ProjectListItem from './ProjectListItem';
 
-export default function ProjectList() {
-  const { projects, projectToAdd } = useApplicationState();
+export default function ProjectList(props) {
+  const { projects } = props;
+  const { projectToAdd } = useApplicationState();
   const dispatch = useApplicationDispatch();
 
   const projectList = projects.map((project) => {
