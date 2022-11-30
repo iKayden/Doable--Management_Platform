@@ -19,54 +19,14 @@ import "./TaskList.css";
 import { v4 } from 'uuid';
 
 
-// Fake data items
-const item = {
-  id: v4(),
-  name: "Clean the house"
-};
-const item2 = {
-  id: v4(),
-  name: "Clean the car"
-};
-const item3 = {
-  id: v4(),
-  name: "Build the house"
-};
-const item4 = {
-  id: v4(),
-  name: "Wash the cat"
-};
-console.log("ITEMS", item, item2, item3, item4);
-
-
 export default function TaskList() {
   // Faking data
   const [text, setText] = useState("");
-  const [state, setState] = useState({
-    "TO-DO": {
-      title: "Todo",
-      items: [item, item3]
-    },
-    "IN-PROGRESS": {
-      title: "In progress",
-      items: [item2]
-    },
-    "COMPLETED": {
-      title: "Complete",
-      items: [item4]
-    }
-  });
+  const [state, setState] = useState();
 
   const { tasks, taskToEdit, taskToAdd } = useApplicationState();
   const dispatch = useApplicationDispatch();
-
-  // PLACE FOR DND DATA
-  const taskItemList = tasks.map((task) => {
-
-
-  });
   const { id } = useParams();
-
 
   useEffect(() => {
     getTasksForProject(id)
@@ -77,6 +37,39 @@ export default function TaskList() {
         });
       });
   }, [id]);
+
+  useEffect(() => {
+    console.log("TASKS from TASKLIST", tasks);
+    const toDo = tasks.filter((task) => {
+      return task.status === "TO-DO"
+    }).map(({id, name}) => {
+      return {id: String(id), name}
+    })
+    const inProgress = tasks.filter((task) => {
+      return task.status === "IN-PROGRESS"
+    }).map(({id, name}) => {
+      return {id: String(id), name}
+    })
+    const completed = tasks.filter((task) => {
+      return task.status === "COMPLETED"
+    }).map(({id, name}) => {
+      return {id: String(id), name}
+    })
+    setState({
+      "TO-DO": {
+        title: "To-Do",
+        items: toDo
+      },
+      "IN-PROGRESS": {
+        title: "In-Progress",
+        items: inProgress
+      },
+      "COMPLETED": {
+        title: "Complete",
+        items: completed
+      }
+    })
+  }, [tasks])
 
   const taskList = tasks.map((task) => {
     return (
@@ -102,12 +95,8 @@ export default function TaskList() {
       // adding to new items array location
       prev[destination.droppableId].items.splice(destination.index, 0, itemCopy);
 
-
-
       return prev;
     });
-
-
   };
 
   const addItem = () => {
@@ -188,7 +177,7 @@ export default function TaskList() {
         </DragDropContext>
       </div>
 
-      {/* <table className="table table-light table-striped">
+      <table className="table table-light table-striped">
         <thead>
           <tr>
             <th scope="col">Task</th>
@@ -208,7 +197,7 @@ export default function TaskList() {
       {taskToAdd && <TaskForm taskToAdd={taskToAdd} />}
       <Button onClick={() => dispatch({
         type: OPEN_ADD_TASK
-      })}>Add New Task</Button> */}
+      })}>Add New Task</Button>
     </>
   );
 };
