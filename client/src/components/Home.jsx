@@ -12,7 +12,7 @@ const Home = () => {
   const filteredProjects = projects.filter(
     (project) => !project.completion_time
   );
-  console.log(filteredProjects);
+
   if (!user) {
     return <Login setUser={setUser} />;
   }
@@ -22,7 +22,6 @@ const Home = () => {
       <ul>
         <ProjectList projects={filteredProjects} />
       </ul>
-      <h1>Users</h1>
     </div>
   );
 };
