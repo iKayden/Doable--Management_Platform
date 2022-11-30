@@ -13,3 +13,7 @@ export const getUsers = (dispatch) => {
     })
     .catch((err) => console.log(err));
 };
+
+export const getUsersByProjectId = (id) => {
+  return axios.get(`/api/users/?projectId=${id}`).then((result) => result.data);
+};
