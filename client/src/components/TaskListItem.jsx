@@ -1,21 +1,22 @@
-import { deleteTask, editTask } from "../api/task";
-import { useApplicationDispatch } from "../hooks/useApplicationData";
+import { deleteTask, editTask } from '../api/task';
+import { useApplicationDispatch } from '../hooks/useApplicationData';
 import Button from 'react-bootstrap/Button';
-import { OPEN_EDIT_TASK } from "../reducer/data_reducer";
-
+import { OPEN_EDIT_TASK } from '../reducer/data_reducer';
 
 export default function TaskListItem({ task }) {
-  // extract current path (url)
   const dispatch = useApplicationDispatch();
-  // const startDateString = new Date(project.start_date).toDateString()
-  // const endDateString = new Date(task.deadline).toDateString()
+  //only year, date, time
+  const formattedDate = new Date(task.deadline)
+    .toString()
+    .split(' ')
+    .slice(0, 5)
+    .join(' ');
 
   return (
-
     <tr key={task.id}>
       <th>{task.name}</th>
       <th>{task.status}</th>
-      <th>{task.deadline}</th>
+      <th>{formattedDate}</th>
       <th>{task.assigned_user_id}</th>
       <th>{task.project_id}</th>
       <th>{task.description}</th>
@@ -34,7 +35,7 @@ export default function TaskListItem({ task }) {
           onClick={() => {
             dispatch({
               type: OPEN_EDIT_TASK,
-              task
+              task,
             });
           }}
         >
