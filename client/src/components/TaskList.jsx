@@ -15,8 +15,6 @@ import { useState } from "react";
 import _ from 'lodash';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import "./TaskList.css";
-// For fake data purposes, Delete after
-import { v4 } from 'uuid';
 
 
 export default function TaskList() {
@@ -99,29 +97,29 @@ export default function TaskList() {
     });
   };
 
-  const addItem = () => {
-    setState(prev => {
-      return {
-        ...prev,
-        "TO-DO": {
-          title: "title",
-          items: [
-            {
-              id: v4(),
-              name: text
-            },
-            ...prev["TO-DO"].items
-          ]
-        }
-      };
-    });
-    setText("");
-  };
+  // const addItem = () => {
+  //   setState(prev => {
+  //     return {
+  //       ...prev,
+  //       "TO-DO": {
+  //         title: "title",
+  //         items: [
+  //           {
+  //             id: ????,
+  //             name: text
+  //           },
+  //           ...prev["TO-DO"].items
+  //         ]
+  //       }
+  //     };
+  //   });
+  //   setText("");
+  // };
 
 
   return (
     <>
-      <div className="d-block">
+      {/* <div className="d-block">
         <input type={"text"} value={text} onChange={(e) => setText(e.target.value)} />
         <Button
           className="d-inline"
@@ -129,7 +127,7 @@ export default function TaskList() {
         >
           Add
         </Button>
-      </div>
+      </div> */}
       <div className="dnd-wrapper-container">
         <DragDropContext onDragEnd={handleDragEnd}>
           {_.map(state, (data, key) => {
