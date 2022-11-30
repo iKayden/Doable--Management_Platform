@@ -128,6 +128,15 @@ module.exports = (db) => {
     return db.query(query).then((result) => result.rows[0]);
   };
 
+  const getUsersByProjectId = (id) => {
+    const query = {
+      text: `SELECT users.id, users.name, users.email, users.avatar FROM users JOIN project_users ON subscribed_user_id=users.id WHERE project_id = $1`,
+      values: [id],
+    };
+
+    return db.query(query).then((result) => result.rows);
+  };
+
   const addUser = (name, avatar, email, password) => {
     const query = {
       text: `INSERT INTO users (name, avatar, email, password) VALUES ($1, $2, $3, $4) RETURNING *`,
@@ -160,5 +169,6 @@ module.exports = (db) => {
     editTask,
     deleteTask,
     addUsersToProject,
+    getUsersByProjectId,
   };
 };
