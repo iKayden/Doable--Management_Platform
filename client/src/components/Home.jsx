@@ -23,9 +23,6 @@ const Home = () => {
         <ProjectList projects={filteredProjects} />
       </ul>
       <h1>Users</h1>
-      <div className="user--list">
-        <UserList />
-      </div>
     </div>
   );
 };
