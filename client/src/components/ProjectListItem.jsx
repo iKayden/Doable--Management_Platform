@@ -25,7 +25,7 @@ export default function ProjectListItem({
           dispatch({ type: SET_PROJECT, id: project.id });
         }}
       >
-        <Link to={`projects/${project.id}/tasks`}>{project.name}</Link>
+        <Link to={`/projects/${project.id}/tasks`}>{project.name}</Link>
       </th>
       <th>{start_date}</th>
       <th>{expected_end_date}</th>
