@@ -1,23 +1,23 @@
-import { useEffect } from "react";
-import axios from "axios";
-import ProjectForm from "./ProjectForm";
+import { useEffect } from 'react';
+import axios from 'axios';
+import ProjectForm from './ProjectForm';
 import Button from 'react-bootstrap/Button';
-import "./ProjectList.css";
+import './ProjectList.css';
 import {
   useApplicationState,
   useApplicationDispatch,
-} from "../hooks/useApplicationData";
-import { SET_PROJECTS, TO_ADD_PROJ } from "../reducer/data_reducer";
-import ProjectListItem from "./ProjectListItem";
+} from '../hooks/useApplicationData';
+import { SET_PROJECTS, TO_ADD_PROJ } from '../reducer/data_reducer';
+import ProjectListItem from './ProjectListItem';
 
 export default function ProjectList() {
   const { projects, projectToAdd } = useApplicationState();
   const dispatch = useApplicationDispatch();
-
+  const userId = localStorage.getItem('user');
   useEffect(() => {
     axios({
-      method: "GET",
-      url: "/api/projects",
+      method: 'GET',
+      url: `/api/projects/?userId=${userId}`,
     })
       .then(({ data }) => {
         dispatch({
@@ -31,8 +31,8 @@ export default function ProjectList() {
 
   const projectList = projects.map((project) => {
     // converting date to readable date string
-    const startDateString = new Date(project.start_date).toDateString()
-    const endDateString = new Date(project.expected_end_date).toDateString()
+    const startDateString = new Date(project.start_date).toDateString();
+    const endDateString = new Date(project.expected_end_date).toDateString();
 
     return (
       <ProjectListItem
@@ -57,7 +57,6 @@ export default function ProjectList() {
       >
         Add New Project
       </Button>
-
 
       <table className="table table-light table-striped">
         <thead>
