@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -13,6 +15,7 @@ import { ApplicationContext, defaultState } from '../hooks/useApplicationData';
 import { useReducer } from 'react';
 import dataReducer from '../reducer/data_reducer';
 import TaskList from './TaskList';
+import { getProjects } from '../api/project';
 
 const App = () => {
   const [state, dispatch] = useReducer(dataReducer, defaultState);
@@ -35,6 +38,13 @@ const App = () => {
       element: <TaskList projectId={state.projectId} />,
     },
   ]);
+
+  const userId = localStorage.getItem('user');
+  useEffect(() => {
+    if (userId) {
+      getProjects(dispatch, userId);
+    }
+  }, [userId]);
 
   return (
     <ApplicationContext.Provider value={{ state, dispatch }}>

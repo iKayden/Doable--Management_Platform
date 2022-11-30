@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-import axios from 'axios';
 import ProjectForm from './ProjectForm';
 import Button from 'react-bootstrap/Button';
 import './ProjectList.css';
@@ -7,27 +5,12 @@ import {
   useApplicationState,
   useApplicationDispatch,
 } from '../hooks/useApplicationData';
-import { SET_PROJECTS, TO_ADD_PROJ } from '../reducer/data_reducer';
+import { TO_ADD_PROJ } from '../reducer/data_reducer';
 import ProjectListItem from './ProjectListItem';
 
 export default function ProjectList() {
   const { projects, projectToAdd } = useApplicationState();
   const dispatch = useApplicationDispatch();
-  const userId = localStorage.getItem('user');
-  useEffect(() => {
-    axios({
-      method: 'GET',
-      url: `/api/projects/?userId=${userId}`,
-    })
-      .then(({ data }) => {
-        dispatch({
-          type: SET_PROJECTS,
-          //list projects in reverse order so that new project is on the top
-          projects: data.reverse(),
-        });
-      })
-      .catch((err) => console.log(err));
-  }, []);
 
   const projectList = projects.map((project) => {
     // converting date to readable date string
