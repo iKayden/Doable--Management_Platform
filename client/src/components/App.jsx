@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 
 import './App.css';
 import Login from './Login';
-import ProjectList from './ProjectList';
+import AllProjects from './AllProjects';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
@@ -31,7 +31,7 @@ const App = () => {
     },
     {
       path: '/projects',
-      element: <ProjectList />,
+      element: <AllProjects />,
     },
     {
       path: `/projects/:id/tasks`,
