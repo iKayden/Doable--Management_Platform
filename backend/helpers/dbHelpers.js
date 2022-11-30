@@ -9,9 +9,10 @@ module.exports = (db) => {
     return db.query(query).then((result) => result.rows);
   };
 
-  const getProjects = () => {
+  const getProjects = (userId) => {
     const query = {
-      text: 'SELECT * FROM projects',
+      text: 'SELECT projects.id, projects.name, projects.description, projects.start_date, projects.expected_end_date, projects. completion_time FROM projects JOIN project_users ON project_id=projects.id WHERE subscribed_user_id=$1',
+      values: [userId],
     };
 
     return db.query(query).then((result) => result.rows);
@@ -152,6 +153,7 @@ module.exports = (db) => {
         return `(${user.value}, ${projectId})`;
       })
       .join(',');
+    //could change it to $1,$2...
     const query = `INSERT INTO project_users (subscribed_user_id, project_id) VALUES ${usersValues} RETURNING *`;
     return db.query(query);
   };
