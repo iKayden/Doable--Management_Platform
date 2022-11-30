@@ -20,9 +20,6 @@ const Home = () => {
 
   return (
     <div className="App">
-      <Link to="/projects">
-        <h1>Projects</h1>
-      </Link>
       <ul>
         <ProjectList />
       </ul>

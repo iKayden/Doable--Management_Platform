@@ -1,6 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
+// const {
+//   getProjects,
+//   deleteProject,
+//   createProject,
+//   editProject,
+// } = require("../helpers/dbHelpers");
 module.exports = ({
   getProjects,
   deleteProject,
@@ -21,9 +27,16 @@ module.exports = ({
   });
 
   router.post('/', (req, res) => {
-    const { name, description, start_date, expected_end_date, assigned_users } =
-      req.body;
-    createProject(name, description, start_date, expected_end_date)
+    const { name, description, expected_end_date, assigned_users } = req.body;
+
+    // converting date string to expected format
+    const dateString = expected_end_date;
+    const year = dateString.substring(0, 4);
+    const month = dateString.substring(5, 7);
+    const day = dateString.substring(8, 10);
+    const expectedEndDate = new Date(year, month - 1, day);
+
+    createProject(name, description, expectedEndDate)
       .then((project) => {
         res.send({ project });
         addUsersToProject(assigned_users, project.id);
@@ -38,6 +51,7 @@ module.exports = ({
 
   router.put('/:id', (req, res) => {
     const { name, description, start_date, expected_end_date } = req.body;
+    console.log('TEST =========>', req.body);
     editProject(req.params.id, name, description, start_date, expected_end_date)
       .then((project) => {
         res.send({ project });
