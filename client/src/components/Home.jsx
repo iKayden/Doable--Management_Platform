@@ -1,19 +1,18 @@
 import './Home.css';
-import { useReducer, useState } from 'react';
+import { useState } from 'react';
 import Login from './Login';
 import UserList from './UserList';
 import ProjectList from './ProjectList';
-import TaskList from './TaskList';
-import { Link } from 'react-router-dom';
 
-
-import { ApplicationContext, defaultState, useApplicationDispatch, useApplicationState } from '../hooks/useApplicationData';
-import dataReducer from '../reducer/data_reducer';
-import ProjectForm from './ProjectForm';
+import { useApplicationState } from '../hooks/useApplicationData';
 
 const Home = () => {
   const [user, setUser] = useState(localStorage.getItem('user'));
-
+  const { projects } = useApplicationState();
+  const filteredProjects = projects.filter(
+    (project) => !project.completion_time
+  );
+  console.log(filteredProjects);
   if (!user) {
     return <Login setUser={setUser} />;
   }
@@ -21,13 +20,13 @@ const Home = () => {
   return (
     <div className="App">
       <ul>
-        <ProjectList />
+        <ProjectList projects={filteredProjects} />
       </ul>
       <h1>Users</h1>
-      <div className='user--list'>
+      <div className="user--list">
         <UserList />
       </div>
-    </div >
+    </div>
   );
 };
 
