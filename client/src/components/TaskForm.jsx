@@ -29,7 +29,7 @@ export default function TaskForm(props) {
   // Function to display all users for select in Add New Task
   const userList = projectUsers.map((user) => (
     <option value={user.id} key={`${user.id}${user.name}`}>
-      {user.email}
+      {user.name}: {user.email}
     </option>
   ));
 
