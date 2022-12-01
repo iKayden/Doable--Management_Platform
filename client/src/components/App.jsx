@@ -3,12 +3,17 @@ import { useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-
+import { LinkContainer } from 'react-router-bootstrap';
 import './App.css';
 import Login from './Login';
 import AllProjects from './AllProjects';
 
-import { createBrowserRouter, RouterProvider, Link } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Link,
+  Outlet,
+} from 'react-router-dom';
 
 import Home from './Home';
 import { ApplicationContext, defaultState } from '../hooks/useApplicationData';
@@ -22,20 +27,49 @@ const App = () => {
 
   const router = createBrowserRouter([
     {
-      path: '/',
-      element: <Home />,
-    },
-    {
-      path: '/login',
-      element: <Login />,
-    },
-    {
-      path: '/projects',
-      element: <AllProjects />,
-    },
-    {
-      path: `/projects/:id/tasks`,
-      element: <TaskList projectId={state.projectId} />,
+      element: (
+        <>
+          <header>
+            <Navbar bg="primary" variant="dark">
+              <Container className="nav-bar">
+                <LinkContainer to="/">
+                  <Navbar.Brand>Doable</Navbar.Brand>
+                </LinkContainer>
+                <Nav>
+                  <LinkContainer to="/projects">
+                    <Nav.Link>Project History</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to="/about">
+                    <Nav.Link>About Us</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to="/ask">
+                    <Nav.Link>Ask Us</Nav.Link>
+                  </LinkContainer>
+                </Nav>
+              </Container>
+            </Navbar>
+          </header>
+          <Outlet />
+        </>
+      ),
+      children: [
+        {
+          path: '/',
+          element: <Home />,
+        },
+        {
+          path: '/login',
+          element: <Login />,
+        },
+        {
+          path: '/projects',
+          element: <AllProjects />,
+        },
+        {
+          path: `/projects/:id/tasks`,
+          element: <TaskList projectId={state.projectId} />,
+        },
+      ],
     },
   ]);
 
@@ -48,17 +82,7 @@ const App = () => {
 
   return (
     <ApplicationContext.Provider value={{ state, dispatch }}>
-      <Navbar bg="primary" variant="dark">
-        <Container className="nav-bar">
-          <Navbar.Brand href="/">Doable</Navbar.Brand>
-          <Nav>
-            <Link to={'/projects'}>Project History</Link>
-            <Link to={'/about'}>About Us</Link>
-            <Link to={'/ask'}>Ask Us</Link>
-          </Nav>
-        </Container>
-      </Navbar>
-      <RouterProvider router={router} />
+      <RouterProvider router={router}></RouterProvider>
     </ApplicationContext.Provider>
   );
 };
