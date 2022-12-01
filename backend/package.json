@@ -19,7 +19,8 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "pg": "^8.8.0",
-    "pg-native": "^3.0.1"
+    "pg-native": "^3.0.1",
+    "socket.io": "^4.5.4"
   },
   "devDependencies": {
     "dotenv": "^16.0.3",
