@@ -94,7 +94,7 @@ const dataReducer = (state, action) => {
         taskToAdd: undefined,
       };
     case UPDATE_TASK: // This sets the state with the updated task
-      const filteredTasks = state.tasks.filter((task) => task.id !== action.task.id);
+      const filteredTasks = state.tasks.filter((task) => String(task.id) !== String(action.task.id));
       return {
         ...state,
         tasks: [action.task, ...filteredTasks],
@@ -115,7 +115,7 @@ const dataReducer = (state, action) => {
     case REMOVE_TASK:
       return {
         ...state,
-        tasks: state.tasks.filter((task) => task.id !== action.id),
+        tasks: state.tasks.filter((task) => String(task.id) !== String(action.id)),
       };
     case SET_TASKS:
       return {

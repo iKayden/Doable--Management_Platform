@@ -33,6 +33,7 @@ export default function TaskListItem({ task }) {
       <th>
         <Button
           onClick={() => {
+            console.log("TASK FROM TASK LIST ITEM=====", task);
             dispatch({
               type: OPEN_EDIT_TASK,
               task,

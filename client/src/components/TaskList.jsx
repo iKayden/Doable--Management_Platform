@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getTasksForProject, updateTask } from "../api/task";
+import { deleteTask, getTasksForProject, updateTask } from "../api/task";
 import TaskListItem from "./TaskListItem";
 import Button from 'react-bootstrap/Button';
 import {
   useApplicationState,
   useApplicationDispatch,
 } from '../hooks/useApplicationData';
-import { OPEN_ADD_TASK, SET_TASKS } from '../reducer/data_reducer';
+import { OPEN_ADD_TASK, OPEN_EDIT_TASK, SET_TASKS } from '../reducer/data_reducer';
 import TaskForm from "./TaskForm";
 import EditTaskForm from "./EditTaskForm";
 import { useState } from "react";
@@ -38,18 +38,18 @@ export default function TaskList() {
   useEffect(() => {
     const toDo = tasks.filter((task) => {
       return task.status === "TO-DO";
-    }).map(({ id, name }) => {
-      return { id: String(id), name };
+    }).map(({ id, ...task }) => {
+      return { id: String(id), ...task };
     });
     const inProgress = tasks.filter((task) => {
       return task.status === "IN-PROGRESS";
-    }).map(({ id, name }) => {
-      return { id: String(id), name };
+    }).map(({ id, ...task }) => {
+      return { id: String(id), ...task };
     });
     const completed = tasks.filter((task) => {
       return task.status === "COMPLETED";
-    }).map(({ id, name }) => {
-      return { id: String(id), name };
+    }).map(({ id, ...task }) => {
+      return { id: String(id), ...task };
     });
     setState({
       "TO-DO": {
@@ -70,7 +70,7 @@ export default function TaskList() {
   const taskList = tasks.map((task) => {
     return (
       <TaskListItem
-        key={task.id}
+        key={`TaskListItem${task.id}`}
         task={task}
       />
     );
@@ -133,6 +133,7 @@ export default function TaskList() {
       <div className="dnd-wrapper-container">
         <DragDropContext onDragEnd={handleDragEnd} onDragStart={(e) => setItemId(e.draggableId)}>
           {_.map(state, (data, key) => {
+            console.log("DATA FROM DND", data);
             return (
               <div key={key} className={"dnd-column"}>
                 <h3>{data.title}</h3>
@@ -160,9 +161,27 @@ export default function TaskList() {
                                     {...provided.dragHandleProps}
                                   >
                                     <div className="draggable-item__inside">
-                                      {el.name}
+                                      {/* Task name goes here */}
+                                      <div className="draggable-item__text">
+                                        {el.name}
+                                      </div>
                                       <div className="draggable-item__icons">
-                                        <i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i>
+                                        {/* Edit Button */}
+                                        <i
+                                          className="fa-solid fa-pen-to-square"
+                                          onClick={() => {
+                                            dispatch({
+                                              type: OPEN_EDIT_TASK,
+                                              task: el
+                                            });
+                                          }}
+                                        ></i>
+                                        {/* Delete Button */}
+                                        <i
+                                          onClick={() => {
+                                            deleteTask(dispatch, el.id);
+                                          }}
+                                          className="fa-solid fa-trash-can"></i>
                                       </div>
                                     </div>
                                   </div>
@@ -181,8 +200,8 @@ export default function TaskList() {
           })}
         </DragDropContext>
       </div>
-      {/*
-      <table className="table table-light table-striped">
+
+      {/* <table className="table table-light table-striped">
         <thead>
           <tr>
             <th scope="col">Task</th>
