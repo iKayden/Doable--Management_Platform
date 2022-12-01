@@ -8,7 +8,7 @@ import './App.css';
 import Login from './Login';
 import AllProjects from './AllProjects';
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Link } from 'react-router-dom';
 
 import Home from './Home';
 import { ApplicationContext, defaultState } from '../hooks/useApplicationData';
@@ -52,9 +52,9 @@ const App = () => {
         <Container className="nav-bar">
           <Navbar.Brand href="/">Doable</Navbar.Brand>
           <Nav>
-            <Nav.Link href="/projects">Project History</Nav.Link>
-            <Nav.Link href="/about">About Us</Nav.Link>
-            <Nav.Link href="/ask">Ask Us</Nav.Link>
+            <Link to={'/projects'}>Project History</Link>
+            <Link to={'/about'}>About Us</Link>
+            <Link to={'/ask'}>Ask Us</Link>
           </Nav>
         </Container>
       </Navbar>
