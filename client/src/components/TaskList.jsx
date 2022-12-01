@@ -159,7 +159,12 @@ export default function TaskList() {
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
                                   >
-                                    {el.name}
+                                    <div className="draggable-item__inside">
+                                      {el.name}
+                                      <div className="draggable-item__icons">
+                                        <i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i>
+                                      </div>
+                                    </div>
                                   </div>
                                 );
                               }}
@@ -195,9 +200,11 @@ export default function TaskList() {
 
       {taskToEdit && <EditTaskForm taskToEdit={taskToEdit} />}
       {taskToAdd && <TaskForm taskToAdd={taskToAdd} />}
-      <Button onClick={() => dispatch({
-        type: OPEN_ADD_TASK
-      })}>Add New Task</Button>
+      <Button
+        className="add-new-task__button"
+        onClick={() => dispatch({
+          type: OPEN_ADD_TASK
+        })}>Add New Task</Button>
     </>
   );
 };
