@@ -17,6 +17,7 @@ export default function ProjectForm() {
   const [project, setProject] = useState({
     name: '',
     description: '',
+    start_date: '',
     expected_end_date: '',
     assigned_users: [],
   });
@@ -83,7 +84,21 @@ export default function ProjectForm() {
               }
             />
           </div>
-
+          <Form.Group controlId="dob">
+            <Form.Label>Start Date</Form.Label>
+            <Form.Control
+              type="date"
+              name="start_date"
+              placeholder="Start Date"
+              value={project.start_date}
+              onChange={(event) => {
+                setProject((prev) => ({
+                  ...prev,
+                  start_date: event.target.value,
+                }));
+              }}
+            />
+          </Form.Group>
           <Form.Group controlId="dob">
             <Form.Label>Expected Completion Date</Form.Label>
             <Form.Control
