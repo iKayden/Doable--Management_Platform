@@ -62,3 +62,12 @@
 .add-new-task__button {
   margin: 15px 10px 10px 15px;
 }
+
+.task-list__projectName {
+  text-align: center;
+  margin-top: 15px;
+  border-top: 2px solid cornflowerblue;
+  border-bottom: 2px solid cornflowerblue;
+  padding: 15px;
+  cursor: default;
+}
