@@ -128,7 +128,7 @@ export default function TaskForm(props) {
               type="datetime-local"
               name="start_date"
               placeholder="Start Date"
-              value={moment(task.deadline).format('YYYY-MM-DDThh:mm')}
+              value={moment(task.deadline).format('YYYY-MM-DDTHH:mm')}
               onChange={(event) => {
                 setTask((prev) => ({
                   ...prev,
