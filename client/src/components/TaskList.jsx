@@ -111,6 +111,13 @@ export default function TaskList() {
         className="task-list__projectName">
         {/* After we got current project name, we display its name */}
         Project: {currentProject.name}
+        <Button
+          variant="primary"
+          size="lg"
+          className="add-new-task__button"
+          onClick={() => dispatch({
+            type: OPEN_ADD_TASK
+          })}><i className="fa-solid fa-plus"></i> New Task </Button>
       </h1>
       <div className="dnd-wrapper-container">
         <DragDropContext onDragEnd={handleDragEnd} onDragStart={(e) => setItemId(e.draggableId)}>
@@ -184,11 +191,7 @@ export default function TaskList() {
       {/* Logic for modal pop ups */}
       {taskToEdit && <EditTaskForm taskToEdit={taskToEdit} />}
       {taskToAdd && <TaskForm taskToAdd={taskToAdd} />}
-      <Button
-        className="add-new-task__button"
-        onClick={() => dispatch({
-          type: OPEN_ADD_TASK
-        })}><i className="fa-solid fa-plus"></i> New Task </Button>
+
     </>
   );
 };
