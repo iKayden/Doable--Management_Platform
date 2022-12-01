@@ -1,5 +1,10 @@
 import { useState } from 'react';
-import { useApplicationDispatch, useApplicationState } from '../hooks/useApplicationData';
+import moment from 'moment';
+
+import {
+  useApplicationDispatch,
+  useApplicationState,
+} from '../hooks/useApplicationData';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
@@ -13,11 +18,14 @@ export default function EditProjectForm() {
 
   return (
     <Modal show={projectToEdit}>
-      <Modal.Header closeButton onClick={() => {
-        dispatch({
-          type: CLOSE_UPDATE_PROJECT
-        });
-      }} >
+      <Modal.Header
+        closeButton
+        onClick={() => {
+          dispatch({
+            type: CLOSE_UPDATE_PROJECT,
+          });
+        }}
+      >
         <Modal.Title>Edit Project</Modal.Title>
       </Modal.Header>
 
@@ -49,7 +57,10 @@ export default function EditProjectForm() {
               value={project.description}
               required
               onChange={(event) =>
-                setProject((prev) => ({ ...prev, description: event.target.value }))
+                setProject((prev) => ({
+                  ...prev,
+                  description: event.target.value,
+                }))
               }
             />
           </Form.Group>
@@ -59,11 +70,11 @@ export default function EditProjectForm() {
               type="date"
               name="start_date"
               placeholder="Start Date"
-              value={project.start_date}
+              value={moment(project.start_date).format('YYYY-MM-DD')}
               onChange={(event) => {
                 setProject((prev) => ({
                   ...prev,
-                  start_date: event.target.value,
+                  start_date: moment(event.target.value).toISOString(),
                 }));
               }}
             />
@@ -74,27 +85,33 @@ export default function EditProjectForm() {
               type="date"
               name="expected_end_date"
               placeholder="Expected End Date"
-              value={project.expected_end_date}
+              value={moment(project.expected_end_date).format('YYYY-MM-DD')}
               onChange={(event) => {
                 setProject((prev) => ({
                   ...prev,
-                  expected_end_date: event.target.value,
+                  expected_end_date: moment(event.target.value).toISOString(),
                 }));
               }}
             />
-            </Form.Group>
+          </Form.Group>
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => {
-            dispatch({
-              type: CLOSE_UPDATE_PROJECT
-            });
-          }}>Close</Button>
-          <Button variant="primary" type="submit">Save changes</Button>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              dispatch({
+                type: CLOSE_UPDATE_PROJECT,
+              });
+            }}
+          >
+            Close
+          </Button>
+          <Button variant="primary" type="submit">
+            Save changes
+          </Button>
         </Modal.Footer>
       </Form>
-    </Modal >
+    </Modal>
   );
 }
-

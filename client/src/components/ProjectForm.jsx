@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import moment from 'moment';
 import { createProject } from '../api/project';
-import { useApplicationDispatch, useApplicationState } from '../hooks/useApplicationData';
+import {
+  useApplicationDispatch,
+  useApplicationState,
+} from '../hooks/useApplicationData';
 import { CLOSE_ADD_PROJ } from '../reducer/data_reducer';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -23,7 +27,6 @@ export default function ProjectForm() {
   useEffect(() => {
     getUsers(dispatch);
   }, [dispatch]);
-
 
   const animatedComponents = makeAnimated();
 
@@ -86,11 +89,11 @@ export default function ProjectForm() {
               type="date"
               name="start_date"
               placeholder="Start Date"
-              value={project.start_date}
+              value={moment(project.start_date).format('YYYY-MM-DD')}
               onChange={(event) => {
                 setProject((prev) => ({
                   ...prev,
-                  start_date: event.target.value,
+                  start_date: moment(event.target.value).toISOString(),
                 }));
               }}
             />
@@ -101,11 +104,11 @@ export default function ProjectForm() {
               type="date"
               name="expected_end_date"
               placeholder="Expected End Date"
-              value={project.expected_end_date}
+              value={moment(project.expected_end_date).format('YYYY-MM-DD')}
               onChange={(event) => {
                 setProject((prev) => ({
                   ...prev,
-                  expected_end_date: event.target.value,
+                  expected_end_date: moment(event.target.value).toISOString(),
                 }));
               }}
             />

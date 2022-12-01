@@ -27,17 +27,26 @@ module.exports = ({
   });
 
   router.post('/', (req, res) => {
-    const { name, description, start_date, expected_end_date, assigned_users } = req.body;
+    const { name, description, start_date, expected_end_date, assigned_users } =
+      req.body;
 
-    // converting date string to expected format
-    const startDate = start_date.split('-')
-    const formattedStartDate = new Date(startDate[0], startDate[1]-1, startDate[2])
+    // // converting date string to expected format
+    // const startDate = start_date.split('-');
+    // const formattedStartDate = new Date(
+    //   startDate[0],
+    //   startDate[1] - 1,
+    //   startDate[2]
+    // );
 
-    // converting date string to expected format
-    const expectedEndDate = expected_end_date.split('-')
-    const formattedEndDate = new Date(expectedEndDate[0], expectedEndDate[1]-1, expectedEndDate[2])
+    // // converting date string to expected format
+    // const expectedEndDate = expected_end_date.split('-');
+    // const formattedEndDate = new Date(
+    //   expectedEndDate[0],
+    //   expectedEndDate[1] - 1,
+    //   expectedEndDate[2]
+    // );
 
-    createProject(name, description, formattedStartDate, formattedEndDate)
+    createProject(name, description, start_date, expected_end_date)
       .then((project) => {
         res.send({ project });
         addUsersToProject(assigned_users, project.id);
@@ -52,15 +61,15 @@ module.exports = ({
 
   router.put('/:id', (req, res) => {
     const { name, description, start_date, expected_end_date } = req.body;
-        // converting date string to expected format
-        const startDate = start_date.split('-')
-        const formattedStartDate = new Date(startDate[0], startDate[1]-1, startDate[2])
-    
-        // converting date string to expected format
-        const expectedEndDate = expected_end_date.split('-')
-        const formattedEndDate = new Date(expectedEndDate[0], expectedEndDate[1]-1, expectedEndDate[2])
-    
-    editProject(req.params.id, name, description, formattedStartDate, formattedEndDate)
+    // // converting date string to expected format
+    // const startDate = start_date.split('-')
+    // const formattedStartDate = new Date(startDate[0], startDate[1]-1, startDate[2])
+
+    // // converting date string to expected format
+    // const expectedEndDate = expected_end_date.split('-')
+    // const formattedEndDate = new Date(expectedEndDate[0], expectedEndDate[1]-1, expectedEndDate[2])
+
+    editProject(req.params.id, name, description, start_date, expected_end_date)
       .then((project) => {
         res.send({ project });
       })
