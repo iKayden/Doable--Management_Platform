@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
@@ -20,6 +22,7 @@ export default function TaskForm(props) {
     description: '',
     assigned_user_id: null,
     project_id: id,
+    deadline: '',
   });
   const [selectedUser, setSelectedUser] = useState({});
   const [projectUsers, setProjectUsers] = useState([]);
@@ -46,7 +49,12 @@ export default function TaskForm(props) {
     event.preventDefault();
     createTask(dispatch, newAssignedUser(selectedUser, task))
       .then(() => {
-        setTask((prev) => ({ ...prev, name: '', description: '' }));
+        setTask((prev) => ({
+          ...prev,
+          name: '',
+          description: '',
+          deadline: '',
+        }));
         dispatch({
           type: CLOSE_ADD_TASK,
         });
@@ -112,6 +120,22 @@ export default function TaskForm(props) {
               <option value="">--Please assign a user--</option>
               {userList}
             </Form.Select>
+          </Form.Group>
+
+          <Form.Group controlId="dob">
+            <Form.Label>Deadline</Form.Label>
+            <Form.Control
+              type="datetime-local"
+              name="start_date"
+              placeholder="Start Date"
+              value={moment(task.deadline).format('YYYY-MM-DDThh:mm')}
+              onChange={(event) => {
+                setTask((prev) => ({
+                  ...prev,
+                  deadline: moment(event.target.value).toISOString(),
+                }));
+              }}
+            />
           </Form.Group>
         </Modal.Body>
 
