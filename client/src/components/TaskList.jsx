@@ -223,7 +223,7 @@ export default function TaskList() {
         className="add-new-task__button"
         onClick={() => dispatch({
           type: OPEN_ADD_TASK
-        })}>Add New Task</Button>
+        })}><i class="fa-solid fa-plus"></i> New Task </Button>
     </>
   );
 };
