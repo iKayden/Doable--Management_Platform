@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
-
 import { createProject } from '../api/project';
-import { useApplicationDispatch } from '../hooks/useApplicationData';
+import { useApplicationDispatch, useApplicationState } from '../hooks/useApplicationData';
+import { CLOSE_ADD_PROJ } from '../reducer/data_reducer';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { CLOSE_ADD_PROJ } from '../reducer/data_reducer';
-import { Form } from 'react-bootstrap';
-import { useApplicationState } from '../hooks/useApplicationData';
+import Form from 'react-bootstrap/Form';
 import { getUsers } from '../api/user';
-
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 
 export default function ProjectForm() {
   const dispatch = useApplicationDispatch();
+  const { projectToAdd, users } = useApplicationState();
   const [project, setProject] = useState({
     name: '',
     description: '',
@@ -21,13 +19,11 @@ export default function ProjectForm() {
     expected_end_date: '',
     assigned_users: [],
   });
-  const { projectToAdd } = useApplicationState();
 
   useEffect(() => {
     getUsers(dispatch);
   }, [dispatch]);
 
-  const { users } = useApplicationState();
 
   const animatedComponents = makeAnimated();
 
@@ -49,7 +45,7 @@ export default function ProjectForm() {
         <Modal.Title>Add a New Project</Modal.Title>
       </Modal.Header>
 
-      <form
+      <Form
         autoComplete="off"
         onSubmit={(e) => {
           e.preventDefault();
@@ -155,7 +151,7 @@ export default function ProjectForm() {
             Save
           </Button>
         </Modal.Footer>
-      </form>
+      </Form>
     </Modal>
   );
 }
