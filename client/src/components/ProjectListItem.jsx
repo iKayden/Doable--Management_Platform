@@ -1,14 +1,11 @@
-import {
-  useApplicationDispatch,
-  useApplicationState,
-} from '../hooks/useApplicationData';
-import { deleteProject, updateProject } from '../api/project';
-import { OPEN_UPDATE_PROJECT, SET_PROJECT } from '../reducer/data_reducer';
 import React from 'react';
+import { useApplicationDispatch, useApplicationState } from '../hooks/useApplicationData';
+import { deleteProject } from '../api/project';
+import { OPEN_UPDATE_PROJECT, SET_PROJECT } from '../reducer/data_reducer';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import EditProjectForm from './EditProjectForm';
-// useParams
+
 export default function ProjectListItem({
   project,
   expected_end_date,

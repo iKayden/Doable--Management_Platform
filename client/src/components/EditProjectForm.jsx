@@ -42,7 +42,6 @@ export default function EditProjectForm() {
             />
           </Form.Group>
           <Form.Group>
-
             <Form.Control
               as="textarea"
               name="description"
@@ -54,6 +53,36 @@ export default function EditProjectForm() {
               }
             />
           </Form.Group>
+          <Form.Group controlId="dob">
+            <Form.Label>Start Date</Form.Label>
+            <Form.Control
+              type="date"
+              name="start_date"
+              placeholder="Start Date"
+              value={project.start_date}
+              onChange={(event) => {
+                setProject((prev) => ({
+                  ...prev,
+                  start_date: event.target.value,
+                }));
+              }}
+            />
+          </Form.Group>
+          <Form.Group controlId="dob">
+            <Form.Label>Expected Completion Date</Form.Label>
+            <Form.Control
+              type="date"
+              name="expected_end_date"
+              placeholder="Expected End Date"
+              value={project.expected_end_date}
+              onChange={(event) => {
+                setProject((prev) => ({
+                  ...prev,
+                  expected_end_date: event.target.value,
+                }));
+              }}
+            />
+            </Form.Group>
         </Modal.Body>
 
         <Modal.Footer>
