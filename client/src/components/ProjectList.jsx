@@ -46,6 +46,7 @@ export default function ProjectList(props) {
         <thead>
           <tr>
             <th scope="col">Project</th>
+            <th scope="col">Progress</th>
             <th scope="col">Start Date</th>
             <th scope="col">Expected End Date</th>
             <th scope="col">Description</th>
