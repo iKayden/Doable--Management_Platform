@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { editTask, getTasksForProject } from "../api/task";
+import { getTasksForProject, updateTask } from "../api/task";
 import TaskListItem from "./TaskListItem";
 import Button from 'react-bootstrap/Button';
 import {
@@ -10,7 +10,6 @@ import {
 import { OPEN_ADD_TASK, SET_TASKS } from '../reducer/data_reducer';
 import TaskForm from "./TaskForm";
 import EditTaskForm from "./EditTaskForm";
-import Column from "./Column";
 import { useState } from "react";
 import _ from 'lodash';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
@@ -19,9 +18,9 @@ import "./TaskList.css";
 
 export default function TaskList() {
   // Faking data
-  const [text, setText] = useState("");
+  // const [text, setText] = useState("");
   const [state, setState] = useState();
-
+  const [itemId, setItemId] = useState();
   const { tasks, taskToEdit, taskToAdd } = useApplicationState();
   const dispatch = useApplicationDispatch();
   const { id } = useParams();
@@ -37,7 +36,6 @@ export default function TaskList() {
   }, [id]);
 
   useEffect(() => {
-    console.log("TASKS from TASKLIST", tasks);
     const toDo = tasks.filter((task) => {
       return task.status === "TO-DO"
     }).map(({id, name}) => {
@@ -79,13 +77,17 @@ export default function TaskList() {
   });
 
   const handleDragEnd = ({ destination, source }) => {
-
     if (!destination) return;
 
     if (destination.index === source.index && destination.droppableId === source.droppableId) return;
 
     //creating a copy of item before removing it from state
     const itemCopy = { ...state[source.droppableId].items[source.index] };
+
+    const draggedTask = tasks.find((task) => task.id == itemId)
+    draggedTask.status = destination.droppableId
+    updateTask(dispatch, draggedTask);
+
     setState(prev => {
       prev = { ...prev };
       //remove from prev item array
@@ -129,7 +131,7 @@ export default function TaskList() {
         </Button>
       </div> */}
       <div className="dnd-wrapper-container">
-        <DragDropContext onDragEnd={handleDragEnd}>
+        <DragDropContext onDragEnd={handleDragEnd} onDragStart={(e) => setItemId(e.draggableId)}>
           {_.map(state, (data, key) => {
             return (
               <div key={key} className={"dnd-column"}>
