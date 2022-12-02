@@ -75,7 +75,6 @@ export default function TaskList() {
   const currentProject = getCurrentProjectId(projects, id);
   // const usersOfThisProject =
   // console.log("currentProject", currentProject);
-  console.log('projectUsers', projectUsers);
 
   // Filters to reassign status of the draggable item in DB for DnD
   useEffect(() => {
