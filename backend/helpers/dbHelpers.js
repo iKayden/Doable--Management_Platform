@@ -33,15 +33,23 @@ module.exports = (db) => {
     name,
     description,
     start_date,
-    expected_end_date
+    expected_end_date,
+    completion_time
   ) => {
     const query = {
       text: `
       UPDATE projects
-      SET name = $2, description = $3, start_date = $4, expected_end_date = $5
+      SET name = $2, description = $3, start_date = $4, expected_end_date = $5, completion_time=$6
       WHERE id = $1
       RETURNING *`,
-      values: [id, name, description, start_date, expected_end_date],
+      values: [
+        id,
+        name,
+        description,
+        start_date,
+        expected_end_date,
+        completion_time,
+      ],
     };
     return db.query(query);
   };
@@ -118,7 +126,10 @@ module.exports = (db) => {
   const getTasksByProjectId = (id) => {
     const query = {
       text: `
-      SELECT projects.name AS project_name, projects.id AS project_id, tasks.id, tasks.name, tasks.description, tasks.status, tasks.deadline, tasks.completion_time, tasks.assigned_user_id FROM projects JOIN tasks ON project_id=projects.id
+      SELECT projects.name AS project_name, projects.id AS project_id, tasks.id, tasks.name, tasks.description, tasks.status, tasks.deadline, tasks.completion_time, tasks.assigned_user_id, users.name AS user_name
+      FROM projects 
+      JOIN tasks ON projects.id=tasks.project_id 
+      JOIN users ON tasks.assigned_user_id=users.id
       WHERE projects.id = $1
       `,
       values: [id],

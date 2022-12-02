@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { deleteTask, getTasksForProject, updateTask } from "../api/task";
-import TaskListItem from "./TaskListItem";
-import Button from "react-bootstrap/Button";
+import React, { useState, useEffect } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
+import { useParams, useNavigate } from 'react-router-dom';
+import { deleteTask, getTasksForProject, updateTask } from '../api/task';
+import TaskListItem from './TaskListItem';
 import {
   useApplicationState,
   useApplicationDispatch,
@@ -11,23 +13,48 @@ import {
   OPEN_ADD_TASK,
   OPEN_EDIT_TASK,
   SET_TASKS,
-} from "../reducer/data_reducer";
-import TaskForm from "./TaskForm";
-import EditTaskForm from "./EditTaskForm";
-import _ from "lodash";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import "./TaskList.css";
+  SET_USERS,
+} from '../reducer/data_reducer';
+import TaskForm from './TaskForm';
+import EditTaskForm from './EditTaskForm';
+import _ from 'lodash';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import './TaskList.css';
+import { getUsers, getUsersByProjectId } from '../api/user';
 import DeleteConfirmation from "./DeleteConfirmation";
 
 export default function TaskList() {
   const [state, setState] = useState();
   const [itemId, setItemId] = useState();
-  const { tasks, taskToEdit, taskToAdd, projects } = useApplicationState();
+  const { users, tasks, taskToEdit, taskToAdd, projects } =
+    useApplicationState();
   const dispatch = useApplicationDispatch();
   const { id } = useParams(); //Current Project ID(from URL)
   const [showDelete, setShowDelete] = useState(false);
   const [taskId, setTaskId] = useState(0);
   const [status, setStatus] = useState("");
+  const [projectUsers, setProjectUsers] = useState([]);
+  const [modalTask, setModalTask] = useState({
+    name: '',
+    status: '',
+    assigned_user_id: '',
+    deadline: '',
+    description: '',
+  });
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  // getting users
+  useEffect(() => {
+    getUsers(dispatch);
+  }, [dispatch]);
+
+  useEffect(() => {
+    getUsers(dispatch);
+  }, [dispatch]);
 
   useEffect(() => {
     getTasksForProject(id).then((data) => {
@@ -38,12 +65,20 @@ export default function TaskList() {
     });
   }, [id]);
 
+  useEffect(() => {
+    getUsersByProjectId(id).then((users) => {
+      setProjectUsers(users);
+    });
+  }, [id]);
+
   //Gets the project object of this task.
   const getCurrentProjectId = (objectArr, projId) => {
     return objectArr.find((project) => String(project.id) === String(projId));
   };
   // we already have 'projects' from useApplicationState and 'id' from useParams
   const currentProject = getCurrentProjectId(projects, id);
+  // const usersOfThisProject =
+  // console.log("currentProject", currentProject);
 
   // Filters to reassign status of the draggable item in DB for DnD
   useEffect(() => {
@@ -83,6 +118,19 @@ export default function TaskList() {
       },
     });
   }, [tasks]);
+
+  const userAvatars = projectUsers
+    // .filter(user => user === )
+    .map((user) => {
+      return (
+        <img
+          key={user.id}
+          src={user.avatar}
+          alt={user.name}
+          className={'task-list__assigned-users__avatars'}
+        />
+      );
+    });
 
   const taskList = tasks.map((task) => {
     return <TaskListItem key={`TaskListItem${task.id}`} task={task} />;
@@ -134,8 +182,21 @@ export default function TaskList() {
 
   return (
     <>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{modalTask.name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <TaskListItem task={modalTask} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <h1 className="task-list__projectName">
-        {/* After we got current project name, we display its name */}
+        {/* After we got current project name, we display its name. If refresh page, error of undefined could show up because context doesn't have it for now. ? tells web page it could be undefined, so it won't has error */}
         Project: {currentProject?.name}
         <Button
           variant="primary"
@@ -152,6 +213,10 @@ export default function TaskList() {
           Chat Now! <i className="fa-solid fa-message"></i>
         </Button>
       </h1>
+      <div className="task-list__project-users">
+        Assigned Employees:
+        <div className="task-list__avatars-wrapper">{userAvatars}</div>
+      </div>
       <div className="dnd-wrapper-container">
         <DragDropContext
           onDragEnd={handleDragEnd}
@@ -185,6 +250,10 @@ export default function TaskList() {
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
+                                    onClick={() => {
+                                      setModalTask(el);
+                                      handleShow();
+                                    }}
                                   >
                                     <div className="draggable-item__inside">
                                       {/* Task name goes here */}
@@ -195,7 +264,8 @@ export default function TaskList() {
                                         {/* Edit Button */}
                                         <i
                                           className="fa-solid fa-pen-to-square"
-                                          onClick={() => {
+                                          onClick={(e) => {
+                                            e.stopPropagation();
                                             dispatch({
                                               type: OPEN_EDIT_TASK,
                                               task: el,
@@ -204,7 +274,8 @@ export default function TaskList() {
                                         ></i>
                                         {/* Delete Button */}
                                         <i
-                                          onClick={() => {
+                                          onClick={(e) => {
+                                            e.stopPropagation();
                                             setStatus(el.status);
                                             setTaskId(el.id);
                                             setShowDelete(true);

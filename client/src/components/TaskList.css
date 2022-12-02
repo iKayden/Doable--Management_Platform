@@ -73,3 +73,29 @@
   cursor: default;
   box-shadow: 5px 5px 0px 0px rgba(67, 106, 247, 0.293);
 }
+
+.task-list__assigned-users__avatars {
+  width: 50px;
+  height: 50px;
+  line-height: 75px;
+  margin: 10px 10px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.task-list__assigned-users__avatars:hover {
+  border: 5px solid #00aced;
+}
+
+.task-list__avatars-wrapper {
+  border-radius: 25%;
+  width: fit-content;
+}
+
+.task-list__project-users {
+  margin-left: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
