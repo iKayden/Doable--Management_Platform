@@ -5,7 +5,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const cors = require('cors'); // Installed To solve BUG
+const cors = require('cors');
+const app = express();
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -13,8 +14,6 @@ const projectRouter = require('./routes/projects');
 const tasksRouter = require('./routes/tasks');
 
 const db = require('./db');
-
-const app = express();
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -43,7 +42,7 @@ const dbHelpers = require('./helpers/dbHelpers')(db);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(cors()); // Installed To solve BUG
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import './Login.css';
 
-export default function Login(props) {
+export default function Login(props, { socket }) {
   const url = '/';
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [userName, setUserName] = useState('');
   const [error, setError] = useState();
 
-  const handleSubmit = function (event) {
+  const handleSubmit = function(event) {
     event.preventDefault();
     fetch('/login', {
       method: 'POST',
@@ -26,14 +27,17 @@ export default function Login(props) {
       })
       .then((data) => {
         localStorage.setItem('user', data.id);
-        props.setUser(data.id);
+        localStorage.setItem('userName', data.name);
+        props.setUser(data.name);
         setError('');
       })
       .catch((err) => {
         if (err) {
-          err.json().then((json) => {
-            setError(json.message);
-          });
+          console.log(err);
+          err.json()
+            .then((json) => {
+              setError(json.message);
+            });
         }
       });
   };

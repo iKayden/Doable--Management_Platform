@@ -4,22 +4,66 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('backend:server');
-var http = require('http');
+const app = require('../app');
+const debug = require('debug')('backend:server');
+const http = require('http');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3001');
+const port = normalizePort(process.env.PORT || '3001');
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
+// Websockets for Chat
+const { Server } = require("socket.io");
+const server = http.createServer(app);
+const socketIO = new Server(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+  }
+});
 
-var server = http.createServer(app);
+let activeChatUsers = [];
+
+socketIO.on("connection", (socket) => {
+  console.log(`⚡: ${socket.id} user just connected!`);
+
+  socket.on('message', (data) => {
+    socketIO.emit('messageResponse', data);
+  });
+
+  socket.on('typing', (data) => socket.broadcast.emit('typingResponse', data));
+
+  //Listens when a new user joins the server
+  socket.on('newUser', (data) => {
+    //Adds the new user to the list of users
+    if (!activeChatUsers.find((user) => user.socketID === socket.id)) {
+      activeChatUsers.push({ ...data, socketID: socket.id });
+    } else {
+      activeChatUsers = activeChatUsers.map((user) => {
+        if (user.socketID === socket.id) {
+          user.userName = data.userName;
+        }
+
+        return user;
+      });
+    }
+    // console.log(activeChatUsers);
+    //Sends the list of activeChatUsers to the client
+    socketIO.emit('newUserResponse', activeChatUsers);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('🔥: A user disconnected');
+    //Updates the list of users when a user disconnects from the server
+    activeChatUsers = activeChatUsers.filter((user) => user.socketID !== socket.id);
+    //Sends the list of users to the client
+    socketIO.emit('newUserResponse', activeChatUsers);
+    socket.disconnect();
+  });
+});
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -34,7 +78,7 @@ server.on('listening', onListening);
  */
 
 function normalizePort(val) {
-  var port = parseInt(val, 10);
+  const port = parseInt(val, 10);
 
   if (isNaN(port)) {
     // named pipe
@@ -58,7 +102,7 @@ function onError(error) {
     throw error;
   }
 
-  var bind = typeof port === 'string'
+  const bind = typeof port === 'string'
     ? 'Pipe ' + port
     : 'Port ' + port;
 
@@ -82,8 +126,8 @@ function onError(error) {
  */
 
 function onListening() {
-  var addr = server.address();
-  var bind = typeof addr === 'string'
+  const addr = server.address();
+  const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
