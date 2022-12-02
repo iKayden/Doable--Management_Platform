@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   useApplicationDispatch,
   useApplicationState,
-} from '../hooks/useApplicationData';
-import ProgressBar from 'react-bootstrap/ProgressBar';
-import { OPEN_UPDATE_PROJECT, SET_PROJECT } from '../reducer/data_reducer';
-import { Link } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
-import EditProjectForm from './EditProjectForm';
-import DeleteConfirmation from './DeleteConfirmation';
+} from "../hooks/useApplicationData";
+import ProgressBar from "react-bootstrap/ProgressBar";
+import { OPEN_UPDATE_PROJECT, SET_PROJECT } from "../reducer/data_reducer";
+import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import EditProjectForm from "./EditProjectForm";
+import DeleteConfirmation from "./DeleteConfirmation";
+import { deleteProject } from "../api/project";
 
 export default function ProjectListItem({
   project,
@@ -20,8 +21,9 @@ export default function ProjectListItem({
   const dispatch = useApplicationDispatch();
   const { projectToEdit } = useApplicationState();
 
-  const [show, setShow] = useState(false);
-  const handleShow = () => setShow(true);
+  // To display delete confirmation message
+  const [showDelete, setShowDelete] = useState(false);
+  const handleShow = () => setShowDelete(true);
 
   return (
     <tr key={project.id}>
@@ -34,7 +36,7 @@ export default function ProjectListItem({
       </th>
       <th>
         <ProgressBar
-          variant={`${progress === 100 ? 'success' : ''}`}
+          variant={`${progress === 100 ? "success" : ""}`}
           now={progress}
           label={`${progress}%`}
         />
@@ -60,11 +62,21 @@ export default function ProjectListItem({
       <th>
         <Button
           variant="danger"
-          onClick={() => {handleShow()}}
+          onClick={() => {
+            handleShow();
+          }}
         >
           Delete
         </Button>
-        {show && <DeleteConfirmation show={show} setShow={setShow} project={project} />}
+        {showDelete && (
+          <DeleteConfirmation
+            showDelete={showDelete}
+            setShowDelete={setShowDelete}
+            handleDelete={() => {
+              deleteProject(dispatch, project.id);
+            }}
+          />
+        )}
       </th>
     </tr>
   );

@@ -17,6 +17,7 @@ import EditTaskForm from "./EditTaskForm";
 import _ from "lodash";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "./TaskList.css";
+import DeleteConfirmation from "./DeleteConfirmation";
 
 export default function TaskList() {
   const [state, setState] = useState();
@@ -24,6 +25,9 @@ export default function TaskList() {
   const { tasks, taskToEdit, taskToAdd, projects } = useApplicationState();
   const dispatch = useApplicationDispatch();
   const { id } = useParams(); //Current Project ID(from URL)
+  const [showDelete, setShowDelete] = useState(false);
+  const [taskId, setTaskId] = useState(0);
+  const [status, setStatus] = useState("");
 
   useEffect(() => {
     getTasksForProject(id).then((data) => {
@@ -132,7 +136,7 @@ export default function TaskList() {
     <>
       <h1 className="task-list__projectName">
         {/* After we got current project name, we display its name */}
-        Project: {currentProject.name}
+        Project: {currentProject?.name}
         <Button
           variant="primary"
           className="add-new-task__button"
@@ -144,10 +148,7 @@ export default function TaskList() {
         >
           <i className="fa-solid fa-plus"></i> New Task{" "}
         </Button>
-        <Button
-          variant="primary"
-          onClick={chatRoute}
-        > 
+        <Button variant="primary" onClick={chatRoute}>
           Chat Now! <i className="fa-solid fa-message"></i>
         </Button>
       </h1>
@@ -188,7 +189,7 @@ export default function TaskList() {
                                     <div className="draggable-item__inside">
                                       {/* Task name goes here */}
                                       <div className="draggable-item__text">
-                                        {el.name}
+                                        {el.id}
                                       </div>
                                       <div className="draggable-item__icons">
                                         {/* Edit Button */}
@@ -204,11 +205,9 @@ export default function TaskList() {
                                         {/* Delete Button */}
                                         <i
                                           onClick={() => {
-                                            deleteTask(
-                                              dispatch,
-                                              el.id,
-                                              el.status
-                                            );
+                                            setStatus(el.status);
+                                            setTaskId(el.id);
+                                            setShowDelete(true);
                                           }}
                                           className="fa-solid fa-trash-can"
                                         ></i>
@@ -220,6 +219,16 @@ export default function TaskList() {
                             </Draggable>
                           );
                         })}
+                        {showDelete && (
+                          <DeleteConfirmation
+                            showDelete={showDelete}
+                            setShowDelete={setShowDelete}
+                            handleDelete={() => {
+                              deleteTask(dispatch, taskId, status);
+                              setShowDelete(false);
+                            }}
+                          />
+                        )}
                         {provided.placeholder}
                       </div>
                     );
