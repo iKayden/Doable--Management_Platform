@@ -15,6 +15,7 @@ export default function ProjectListItem({
   project,
   expected_end_date,
   start_date,
+  progress,
 }) {
   // extract current path (url)
   const dispatch = useApplicationDispatch();
@@ -30,7 +31,7 @@ export default function ProjectListItem({
         <Link to={`/projects/${project.id}/tasks`}>{project.name}</Link>
       </th>
       <th>
-        <ProgressBar now={70} label={`70%`} />
+        <ProgressBar now={progress} label={`${progress}%`} />
       </th>
       <th>{start_date}</th>
       <th>{expected_end_date}</th>
