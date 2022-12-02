@@ -17,13 +17,11 @@ import "./TaskList.css";
 
 
 export default function TaskList() {
-  // Faking data
-  // const [text, setText] = useState("");
   const [state, setState] = useState();
   const [itemId, setItemId] = useState();
-  const { tasks, taskToEdit, taskToAdd } = useApplicationState();
+  const { tasks, taskToEdit, taskToAdd, projects } = useApplicationState();
   const dispatch = useApplicationDispatch();
-  const { id } = useParams();
+  const { id } = useParams(); //Current Project ID(from URL)
 
   useEffect(() => {
     getTasksForProject(id)
@@ -35,6 +33,14 @@ export default function TaskList() {
       });
   }, [id]);
 
+  //Gets the project object of this task.
+  const getCurrentProjectId = (objectArr, projId) => {
+    return objectArr.find((project) => String(project.id) === String(projId));
+  };
+  // we already have 'projects' from useApplicationState and 'id' from useParams
+  const currentProject = getCurrentProjectId(projects, id);
+
+  // Filters to reassign status of the draggable item in DB for DnD
   useEffect(() => {
     const toDo = tasks.filter((task) => {
       return task.status === "TO-DO";
@@ -99,9 +105,20 @@ export default function TaskList() {
     });
   };
 
-
   return (
     <>
+      <h1
+        className="task-list__projectName">
+        {/* After we got current project name, we display its name */}
+        Project: {currentProject.name}
+        <Button
+          variant="primary"
+          size="lg"
+          className="add-new-task__button"
+          onClick={() => dispatch({
+            type: OPEN_ADD_TASK
+          })}><i className="fa-solid fa-plus"></i> New Task </Button>
+      </h1>
       <div className="dnd-wrapper-container">
         <DragDropContext onDragEnd={handleDragEnd} onDragStart={(e) => setItemId(e.draggableId)}>
           {_.map(state, (data, key) => {
@@ -171,13 +188,10 @@ export default function TaskList() {
           })}
         </DragDropContext>
       </div>
+      {/* Logic for modal pop ups */}
       {taskToEdit && <EditTaskForm taskToEdit={taskToEdit} />}
       {taskToAdd && <TaskForm taskToAdd={taskToAdd} />}
-      <Button
-        className="add-new-task__button"
-        onClick={() => dispatch({
-          type: OPEN_ADD_TASK
-        })}>Add New Task</Button>
+
     </>
   );
 };

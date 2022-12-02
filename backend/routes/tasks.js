@@ -5,14 +5,14 @@ const {
   deleteTask,
   getTasksByProjectId,
   createTask,
-  editTask
+  editTask,
 } = require('../helpers/dbHelpers');
 
 module.exports = ({
   deleteTask,
   getTasksByProjectId,
   createTask,
-  editTask
+  editTask,
 }) => {
   router.get('/', (req, res) => {
     getTasksByProjectId(req.query.projectId)
@@ -27,8 +27,25 @@ module.exports = ({
   });
 
   router.put('/:id', (req, res) => {
-    const { name, description, status, deadline, completion_time, assigned_user_id, project_id } = req.body;
-    editTask(req.params.id, name, description, status, deadline, completion_time, assigned_user_id, project_id)
+    const {
+      name,
+      description,
+      status,
+      deadline,
+      completion_time,
+      assigned_user_id,
+      project_id,
+    } = req.body;
+    editTask(
+      req.params.id,
+      name,
+      description,
+      status,
+      deadline,
+      completion_time,
+      assigned_user_id,
+      project_id
+    )
       .then((task) => {
         res.send({ task });
       })
@@ -41,8 +58,9 @@ module.exports = ({
   });
 
   router.post('/', (req, res) => {
-    const { name, description, assigned_user_id, project_id } = req.body;
-    createTask(name, description, assigned_user_id, project_id)
+    const { name, description, assigned_user_id, deadline, project_id } =
+      req.body;
+    createTask(name, description, assigned_user_id, deadline, project_id)
       .then((task) => {
         res.send({ task });
       })
