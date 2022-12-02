@@ -33,15 +33,23 @@ module.exports = (db) => {
     name,
     description,
     start_date,
-    expected_end_date
+    expected_end_date,
+    completion_time
   ) => {
     const query = {
       text: `
       UPDATE projects
-      SET name = $2, description = $3, start_date = $4, expected_end_date = $5
+      SET name = $2, description = $3, start_date = $4, expected_end_date = $5, completion_time=$6
       WHERE id = $1
       RETURNING *`,
-      values: [id, name, description, start_date, expected_end_date],
+      values: [
+        id,
+        name,
+        description,
+        start_date,
+        expected_end_date,
+        completion_time,
+      ],
     };
     return db.query(query);
   };
