@@ -9,6 +9,7 @@ import './ChatPage.css';
 export default function ChatPage({ socket }) {
   const [messages, setMessages] = useState([]);
   const [user, setUser] = useState(localStorage.getItem("userName"));
+  const [avatar, setAvatar] = useState(localStorage.getItem("userAvatar"));
   const [typingStatus, setTypingStatus] = useState('');
   const lastMessageRef = useRef(null);
 
@@ -21,7 +22,7 @@ export default function ChatPage({ socket }) {
   }, []);
 
   useEffect(() => {
-    socket.emit('newUser', { userName: user, socketID: socket.id });
+    socket.emit('newUser', { userName: user, socketID: socket.id, avatar: avatar });
   }, [user]);
 
   useEffect(() => {

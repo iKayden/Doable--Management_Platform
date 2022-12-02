@@ -14,7 +14,7 @@ import {
 } from '../hooks/useApplicationData';
 import { CLOSE_ADD_TASK } from '../reducer/data_reducer';
 
-export default function TaskForm(props) {
+export default function TaskForm() {
   const { id } = useParams();
   const dispatch = useApplicationDispatch();
   const [task, setTask] = useState({

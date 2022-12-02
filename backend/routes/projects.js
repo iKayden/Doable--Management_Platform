@@ -26,8 +26,9 @@ module.exports = ({
 
     createProject(name, description, start_date, expected_end_date)
       .then((project) => {
-        res.send({ project });
+        console.log("FROM CREATE PROJECT");
         addUsersToProject(assigned_users, project.id);
+        res.send({ project });
       })
       .catch((err) => {
         console.log('err from post', err.message);

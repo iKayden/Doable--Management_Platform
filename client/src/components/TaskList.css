@@ -99,3 +99,10 @@
   flex-direction: row;
   align-items: center;
 }
+
+.draggable-item__task-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid whitesmoke;
+}
