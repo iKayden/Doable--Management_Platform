@@ -258,7 +258,7 @@ export default function TaskList() {
                                     <div className="draggable-item__inside">
                                       {/* Task name goes here */}
                                       <div className="draggable-item__text">
-                                        {el.id}
+                                        {el.name}
                                       </div>
                                       <div className="draggable-item__icons">
                                         {/* Edit Button */}
