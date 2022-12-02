@@ -148,7 +148,7 @@ export default function TaskList() {
           variant="primary"
           onClick={chatRoute}
         > 
-          Chat Now! <i class="fa-solid fa-message"></i>
+          Chat Now! <i className="fa-solid fa-message"></i>
         </Button>
       </h1>
       <div className="dnd-wrapper-container">

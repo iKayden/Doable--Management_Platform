@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   useApplicationDispatch,
   useApplicationState,
 } from '../hooks/useApplicationData';
 import ProgressBar from 'react-bootstrap/ProgressBar';
-
-import { deleteProject } from '../api/project';
 import { OPEN_UPDATE_PROJECT, SET_PROJECT } from '../reducer/data_reducer';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import EditProjectForm from './EditProjectForm';
+import DeleteConfirmation from './DeleteConfirmation';
 
 export default function ProjectListItem({
   project,
@@ -20,6 +19,9 @@ export default function ProjectListItem({
   // extract current path (url)
   const dispatch = useApplicationDispatch();
   const { projectToEdit } = useApplicationState();
+
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
 
   return (
     <tr key={project.id}>
@@ -58,12 +60,11 @@ export default function ProjectListItem({
       <th>
         <Button
           variant="danger"
-          onClick={() => {
-            deleteProject(dispatch, project.id);
-          }}
+          onClick={() => {handleShow()}}
         >
           Delete
         </Button>
+        {show && <DeleteConfirmation show={show} setShow={setShow} project={project} />}
       </th>
     </tr>
   );
