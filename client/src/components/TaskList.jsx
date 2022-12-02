@@ -11,6 +11,7 @@ import {
   OPEN_ADD_TASK,
   OPEN_EDIT_TASK,
   SET_TASKS,
+  SET_USERS,
 } from '../reducer/data_reducer';
 import TaskForm from './TaskForm';
 import EditTaskForm from './EditTaskForm';
@@ -18,21 +19,40 @@ import { useState } from 'react';
 import _ from 'lodash';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import './TaskList.css';
+import { getUsers, getUsersByProjectId } from '../api/user';
 
 export default function TaskList() {
   const [state, setState] = useState();
   const [itemId, setItemId] = useState();
-  const { tasks, taskToEdit, taskToAdd, projects } = useApplicationState();
+  const { users, tasks, taskToEdit, taskToAdd, projects } = useApplicationState();
   const dispatch = useApplicationDispatch();
   const { id } = useParams(); //Current Project ID(from URL)
+  const [projectUsers, setProjectUsers] = useState([]);
+
+  // getting users
+  useEffect(() => {
+    getUsers(dispatch);
+  }, [dispatch]);
 
   useEffect(() => {
-    getTasksForProject(id).then((data) => {
-      dispatch({
-        type: SET_TASKS,
-        tasks: data,
+    getUsers(dispatch);
+  }, [dispatch]);
+
+  useEffect(() => {
+    getTasksForProject(id)
+      .then((data) => {
+        dispatch({
+          type: SET_TASKS,
+          tasks: data,
+        });
       });
-    });
+  }, [id]);
+
+  useEffect(() => {
+    getUsersByProjectId(id)
+      .then((users) => {
+        setProjectUsers(users);
+      });
   }, [id]);
 
   //Gets the project object of this task.
@@ -41,6 +61,9 @@ export default function TaskList() {
   };
   // we already have 'projects' from useApplicationState and 'id' from useParams
   const currentProject = getCurrentProjectId(projects, id);
+  // const usersOfThisProject =
+  // console.log("currentProject", currentProject);
+  console.log("projectUsers", projectUsers);
 
   // Filters to reassign status of the draggable item in DB for DnD
   useEffect(() => {
@@ -80,6 +103,15 @@ export default function TaskList() {
       },
     });
   }, [tasks]);
+
+  const userAvatars = projectUsers
+    // .filter(user => user === )
+    .map((user) => {
+      return <img
+        src={user.avatar}
+        alt={user.name}
+        className={"task-list__assigned-users__avatars"} />;
+    });
 
   const taskList = tasks.map((task) => {
     return <TaskListItem key={`TaskListItem${task.id}`} task={task} />;
@@ -142,6 +174,12 @@ export default function TaskList() {
           <i className="fa-solid fa-plus"></i> New Task{' '}
         </Button>
       </h1>
+      <div className="task-list__project-users">
+        Assigned Employees:
+        <div className="task-list__avatars-wrapper">
+          {userAvatars}
+        </div>
+      </div>
       <div className="dnd-wrapper-container">
         <DragDropContext
           onDragEnd={handleDragEnd}
@@ -169,9 +207,8 @@ export default function TaskList() {
                               {(provided, snapshot) => {
                                 return (
                                   <div
-                                    className={`draggable-item ${
-                                      snapshot.isDragging && 'dragging'
-                                    }`}
+                                    className={`draggable-item ${snapshot.isDragging && 'dragging'
+                                      }`}
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
