@@ -83,6 +83,15 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         tasks: [action.task, ...state.tasks],
+        projects: state.projects.map((project) => {
+          if (project.id === action.task.project_id) {
+            return {
+              ...project,
+              total_tasks: parseInt(project.total_tasks) + 1,
+            };
+          }
+          return project;
+        }),
       };
     case OPEN_ADD_TASK:
       return {
