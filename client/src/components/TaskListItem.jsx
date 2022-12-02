@@ -1,3 +1,4 @@
+import './TaskListItem.css';
 import { deleteTask } from '../api/task';
 import { useApplicationDispatch } from '../hooks/useApplicationData';
 import Button from 'react-bootstrap/Button';
@@ -13,35 +14,45 @@ export default function TaskListItem({ task }) {
     .join(' ');
 
   return (
-    <tr key={task.id}>
-      <th>{task.name}</th>
-      <th>{task.status}</th>
-      <th>{formattedDate}</th>
-      <th>{task.assigned_user_id}</th>
-      <th>{task.project_id}</th>
-      <th>{task.description}</th>
-      <th>
-        <Button
-          variant="danger"
-          onClick={() => {
-            deleteTask(dispatch, task.id);
-          }}
-        >
-          Delete
-        </Button>
-      </th>
-      <th>
-        <Button
-          onClick={() => {
-            dispatch({
-              type: OPEN_EDIT_TASK,
-              task,
-            });
-          }}
-        >
-          Edit
-        </Button>
-      </th>
-    </tr>
+    <table>
+      <tr>
+        <th>Task Status:</th>
+        <td>{task.status}</td>
+      </tr>
+      <tr>
+        <th>Deadline:</th>
+        <td>{formattedDate}</td>
+      </tr>
+      <tr>
+        <th>Assignee:</th>
+        <td>{task.assigned_user_id}</td>
+      </tr>
+      <tr>
+        <th>Description:</th>
+        <td>{task.description}</td>
+        {/* <th>
+          <Button
+            variant="danger"
+            onClick={() => {
+              deleteTask(dispatch, task.id);
+            }}
+          >
+            Delete
+          </Button>
+        </th>
+        <th>
+          <Button
+            onClick={() => {
+              dispatch({
+                type: OPEN_EDIT_TASK,
+                task,
+              });
+            }}
+          >
+            Edit
+          </Button>
+        </th> */}
+      </tr>
+    </table>
   );
 }
