@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import moment from 'moment';
 import {
   useApplicationDispatch,
@@ -15,6 +15,7 @@ import {
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import EditProjectForm from './EditProjectForm';
+import DeleteConfirmation from "./DeleteConfirmation";
 
 export default function ProjectListItem({
   project,
@@ -25,6 +26,10 @@ export default function ProjectListItem({
   // extract current path (url)
   const dispatch = useApplicationDispatch();
   const { projectToEdit } = useApplicationState();
+
+  // To display delete confirmation message
+  const [showDelete, setShowDelete] = useState(false);
+  const handleShow = () => setShowDelete(true);
 
   return (
     <tr key={project.id}>
@@ -37,7 +42,7 @@ export default function ProjectListItem({
       </th>
       <th>
         <ProgressBar
-          variant={`${progress === 100 ? 'success' : ''}`}
+          variant={`${progress === 100 ? "success" : ""}`}
           now={progress}
           label={`${progress}%`}
         />
@@ -81,11 +86,20 @@ export default function ProjectListItem({
         <Button
           variant="danger"
           onClick={() => {
-            deleteProject(dispatch, project.id);
+            handleShow();
           }}
         >
           Delete
         </Button>
+        {showDelete && (
+          <DeleteConfirmation
+            showDelete={showDelete}
+            setShowDelete={setShowDelete}
+            handleDelete={() => {
+              deleteProject(dispatch, project.id);
+            }}
+          />
+        )}
       </th>
     </tr>
   );
