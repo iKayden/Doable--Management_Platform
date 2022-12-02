@@ -34,6 +34,9 @@ export default function ChatPage({ socket }) {
   useEffect(() => {
     socket.on('typingResponse', (data) => {
       setTypingStatus(data);
+      setTimeout(() => {
+        setTypingStatus('');
+      }, 2000)
     });
   }, [socket]);
   ///////////////////////////////////////
@@ -53,12 +56,9 @@ export default function ChatPage({ socket }) {
           messages={messages}
           lastMessageRef={lastMessageRef}
           typingStatus={typingStatus}
-          setTypingStatus={setTypingStatus}
         />
         <ChatFooter
           socket={socket}
-          typingStatus={typingStatus}
-          setTypingStatus={setTypingStatus}
         />
       </div>
     </div>
