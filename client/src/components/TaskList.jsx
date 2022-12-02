@@ -253,7 +253,8 @@ export default function TaskList() {
                                         {/* Edit Button */}
                                         <i
                                           className="fa-solid fa-pen-to-square"
-                                          onClick={() => {
+                                          onClick={(e) => {
+                                            e.stopPropagation();
                                             dispatch({
                                               type: OPEN_EDIT_TASK,
                                               task: el,
@@ -262,7 +263,8 @@ export default function TaskList() {
                                         ></i>
                                         {/* Delete Button */}
                                         <i
-                                          onClick={() => {
+                                          onClick={(e) => {
+                                            e.stopPropagation();
                                             deleteTask(
                                               dispatch,
                                               el.id,
