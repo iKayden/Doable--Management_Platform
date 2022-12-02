@@ -7,7 +7,6 @@ import './ChatPage.css';
 
 
 export default function ChatPage({ socket }) {
-
   const [messages, setMessages] = useState([]);
   const [user, setUser] = useState(localStorage.getItem("userName"));
   const [typingStatus, setTypingStatus] = useState('');
@@ -30,8 +29,8 @@ export default function ChatPage({ socket }) {
     lastMessageRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // Probable culprit //////////////
   useEffect(() => {
+    // Changes typing status to empty string after two seconds
     socket.on('typingResponse', (data) => {
       setTypingStatus(data);
       setTimeout(() => {
@@ -39,7 +38,7 @@ export default function ChatPage({ socket }) {
       }, 2000)
     });
   }, [socket]);
-  ///////////////////////////////////////
+  
   const loginHandler = (userName) => {
     setUser(userName);
   };
