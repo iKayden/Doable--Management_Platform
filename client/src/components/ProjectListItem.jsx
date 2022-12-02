@@ -31,7 +31,11 @@ export default function ProjectListItem({
         <Link to={`/projects/${project.id}/tasks`}>{project.name}</Link>
       </th>
       <th>
-        <ProgressBar now={progress} label={`${progress}%`} />
+        <ProgressBar
+          variant={`${progress === 100 ? 'success' : ''}`}
+          now={progress}
+          label={`${progress}%`}
+        />
       </th>
       <th>{start_date}</th>
       <th>{expected_end_date}</th>
