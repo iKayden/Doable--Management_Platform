@@ -1,12 +1,17 @@
 import React from 'react';
+import moment from 'moment';
 import {
   useApplicationDispatch,
   useApplicationState,
 } from '../hooks/useApplicationData';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 
-import { deleteProject } from '../api/project';
-import { OPEN_UPDATE_PROJECT, SET_PROJECT } from '../reducer/data_reducer';
+import { updateProject, deleteProject } from '../api/project';
+import {
+  OPEN_UPDATE_PROJECT,
+  SET_PROJECT,
+  UPDATE_PROJECT,
+} from '../reducer/data_reducer';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import EditProjectForm from './EditProjectForm';
@@ -40,6 +45,19 @@ export default function ProjectListItem({
       <th>{start_date}</th>
       <th>{expected_end_date}</th>
       <th>{project.description}</th>
+      <th>
+        <Button
+          variant="success"
+          onClick={() => {
+            updateProject(dispatch, {
+              ...project,
+              completion_time: moment(Date.now()).toISOString(),
+            });
+          }}
+        >
+          Complete
+        </Button>
+      </th>
       <th>
         <Button
           variant="warning"
