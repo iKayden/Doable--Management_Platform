@@ -195,7 +195,11 @@ export default function TaskList() {
                                         {/* Delete Button */}
                                         <i
                                           onClick={() => {
-                                            deleteTask(dispatch, el.id);
+                                            deleteTask(
+                                              dispatch,
+                                              el.id,
+                                              el.status
+                                            );
                                           }}
                                           className="fa-solid fa-trash-can"
                                         ></i>

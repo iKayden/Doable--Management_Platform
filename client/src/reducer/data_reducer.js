@@ -136,11 +136,33 @@ const dataReducer = (state, action) => {
         // will populate/get state props aw well.
       };
     case REMOVE_TASK:
+      const task = state.tasks.find((task) => {
+        return String(task.id) === String(action.id);
+      });
+      const projectId = task.project_id;
       return {
         ...state,
         tasks: state.tasks.filter(
           (task) => String(task.id) !== String(action.id)
         ),
+        projects: state.projects.map((project) => {
+          if (project.id === projectId && action.status === 'COMPLETED') {
+            return {
+              ...project,
+              total_tasks: parseInt(project.total_tasks) - 1,
+              completed_tasks: parseInt(project.completed_tasks) - 1,
+            };
+          } else if (
+            project.id === projectId &&
+            action.status !== 'COMPLETED'
+          ) {
+            return {
+              ...project,
+              total_tasks: parseInt(project.total_tasks) - 1,
+            };
+          }
+          return project;
+        }),
       };
     case SET_TASKS:
       return {
