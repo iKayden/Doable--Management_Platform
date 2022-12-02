@@ -46,17 +46,21 @@ export default function ProjectListItem({
       <th>{expected_end_date}</th>
       <th>{project.description}</th>
       <th>
-        <Button
-          variant="success"
-          onClick={() => {
-            updateProject(dispatch, {
-              ...project,
-              completion_time: moment(Date.now()).toISOString(),
-            });
-          }}
-        >
-          Complete
-        </Button>
+        {project.completion_time ? (
+          <h6>Completed</h6>
+        ) : (
+          <Button
+            variant="success"
+            onClick={() => {
+              updateProject(dispatch, {
+                ...project,
+                completion_time: moment(Date.now()).toISOString(),
+              });
+            }}
+          >
+            Complete
+          </Button>
+        )}
       </th>
       <th>
         <Button
