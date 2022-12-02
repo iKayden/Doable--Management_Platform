@@ -25,7 +25,7 @@ export default function TaskListItem({ task }) {
       </tr>
       <tr>
         <th>Assignee:</th>
-        <td>{task.assigned_user_id}</td>
+        <td>{task.user_name}</td>
       </tr>
       <tr>
         <th>Description:</th>
