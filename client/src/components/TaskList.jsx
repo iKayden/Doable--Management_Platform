@@ -1,8 +1,10 @@
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
 import { useParams } from 'react-router-dom';
 import { deleteTask, getTasksForProject, updateTask } from '../api/task';
 import TaskListItem from './TaskListItem';
-import Button from 'react-bootstrap/Button';
 import {
   useApplicationState,
   useApplicationDispatch,
@@ -15,7 +17,6 @@ import {
 } from '../reducer/data_reducer';
 import TaskForm from './TaskForm';
 import EditTaskForm from './EditTaskForm';
-import { useState } from 'react';
 import _ from 'lodash';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import './TaskList.css';
@@ -24,10 +25,23 @@ import { getUsers, getUsersByProjectId } from '../api/user';
 export default function TaskList() {
   const [state, setState] = useState();
   const [itemId, setItemId] = useState();
-  const { users, tasks, taskToEdit, taskToAdd, projects } = useApplicationState();
+  const { users, tasks, taskToEdit, taskToAdd, projects } =
+    useApplicationState();
   const dispatch = useApplicationDispatch();
   const { id } = useParams(); //Current Project ID(from URL)
   const [projectUsers, setProjectUsers] = useState([]);
+  const [modalTask, setModalTask] = useState({
+    name: '',
+    status: '',
+    assigned_user_id: '',
+    deadline: '',
+    description: '',
+  });
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   // getting users
   useEffect(() => {
@@ -39,20 +53,18 @@ export default function TaskList() {
   }, [dispatch]);
 
   useEffect(() => {
-    getTasksForProject(id)
-      .then((data) => {
-        dispatch({
-          type: SET_TASKS,
-          tasks: data,
-        });
+    getTasksForProject(id).then((data) => {
+      dispatch({
+        type: SET_TASKS,
+        tasks: data,
       });
+    });
   }, [id]);
 
   useEffect(() => {
-    getUsersByProjectId(id)
-      .then((users) => {
-        setProjectUsers(users);
-      });
+    getUsersByProjectId(id).then((users) => {
+      setProjectUsers(users);
+    });
   }, [id]);
 
   //Gets the project object of this task.
@@ -63,7 +75,7 @@ export default function TaskList() {
   const currentProject = getCurrentProjectId(projects, id);
   // const usersOfThisProject =
   // console.log("currentProject", currentProject);
-  console.log("projectUsers", projectUsers);
+  console.log('projectUsers', projectUsers);
 
   // Filters to reassign status of the draggable item in DB for DnD
   useEffect(() => {
@@ -107,10 +119,14 @@ export default function TaskList() {
   const userAvatars = projectUsers
     // .filter(user => user === )
     .map((user) => {
-      return <img
-        src={user.avatar}
-        alt={user.name}
-        className={"task-list__assigned-users__avatars"} />;
+      return (
+        <img
+          key={user.id}
+          src={user.avatar}
+          alt={user.name}
+          className={'task-list__assigned-users__avatars'}
+        />
+      );
     });
 
   const taskList = tasks.map((task) => {
@@ -158,9 +174,22 @@ export default function TaskList() {
 
   return (
     <>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{modalTask.name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <TaskListItem task={modalTask} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <h1 className="task-list__projectName">
-        {/* After we got current project name, we display its name */}
-        Project: {currentProject.name}
+        {/* After we got current project name, we display its name. If refresh page, error of undefined could show up because context doesn't have it for now. ? tells web page it could be undefined, so it won't has error */}
+        Project: {currentProject?.name}
         <Button
           variant="primary"
           size="lg"
@@ -176,9 +205,7 @@ export default function TaskList() {
       </h1>
       <div className="task-list__project-users">
         Assigned Employees:
-        <div className="task-list__avatars-wrapper">
-          {userAvatars}
-        </div>
+        <div className="task-list__avatars-wrapper">{userAvatars}</div>
       </div>
       <div className="dnd-wrapper-container">
         <DragDropContext
@@ -207,11 +234,16 @@ export default function TaskList() {
                               {(provided, snapshot) => {
                                 return (
                                   <div
-                                    className={`draggable-item ${snapshot.isDragging && 'dragging'
-                                      }`}
+                                    className={`draggable-item ${
+                                      snapshot.isDragging && 'dragging'
+                                    }`}
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
+                                    onClick={() => {
+                                      setModalTask(el);
+                                      handleShow();
+                                    }}
                                   >
                                     <div className="draggable-item__inside">
                                       {/* Task name goes here */}
