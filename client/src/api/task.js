@@ -6,9 +6,15 @@ export const getTasksForProject = (id) => {
   return axios.get(`/api/tasks/?projectId=${id}`).then((result) => result.data);
 };
 
-export const createTask = (dispatch, task) => {
-  return axios.post('/api/tasks', task).then((response) => {
+// const getAvatarForUser = (id) => {
+//   return axios.post(`/api/generate_avatar`, { id });
+//   // end point would return avatar
+// };
+export const createTask = async (dispatch, task) => {
+  return axios.post('/api/tasks', task).then(async (response) => {
     const { data } = response;
+    // data.avatar = await getAvatarForUser(data.id);
+    console.log("DATA from createTask", data);
     dispatch({
       type: ADD_TASK,
       task: data.task,

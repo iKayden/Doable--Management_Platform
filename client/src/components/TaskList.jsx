@@ -53,23 +53,19 @@ export default function TaskList() {
   }, [dispatch]);
 
   useEffect(() => {
-    getUsers(dispatch);
-  }, [dispatch]);
-
-  useEffect(() => {
-    getTasksForProject(id).then((data) => {
-      dispatch({
-        type: SET_TASKS,
-        tasks: data,
+    getTasksForProject(id)
+      .then((data) => {
+        dispatch({
+          type: SET_TASKS,
+          tasks: data,
+        });
       });
-    });
+    getUsersByProjectId(id)
+      .then((users) => {
+        setProjectUsers(users);
+      });
   }, [id]);
 
-  useEffect(() => {
-    getUsersByProjectId(id).then((users) => {
-      setProjectUsers(users);
-    });
-  }, [id]);
 
   //Gets the project object of this task.
   const getCurrentProjectId = (objectArr, projId) => {
@@ -120,7 +116,6 @@ export default function TaskList() {
   }, [tasks]);
 
   const userAvatars = projectUsers
-    // .filter(user => user === )
     .map((user) => {
       return (
         <img
@@ -132,9 +127,7 @@ export default function TaskList() {
       );
     });
 
-  const taskList = tasks.map((task) => {
-    return <TaskListItem key={`TaskListItem${task.id}`} task={task} />;
-  });
+  // console.log("Tasks from tasks", tasks);
 
   const handleDragEnd = ({ destination, source }) => {
     if (!destination) return;
@@ -214,7 +207,7 @@ export default function TaskList() {
         </Button>
       </h1>
       <div className="task-list__project-users">
-        Assigned Employees:
+        Assigned Members:
         <div className="task-list__avatars-wrapper">{userAvatars}</div>
       </div>
       <div className="dnd-wrapper-container">
@@ -223,6 +216,7 @@ export default function TaskList() {
           onDragStart={(e) => setItemId(e.draggableId)}
         >
           {_.map(state, (data, key) => {
+            // console.log("before return", data);
             return (
               <div key={key} className={"dnd-column"}>
                 <h3>{data.title}</h3>
@@ -244,9 +238,8 @@ export default function TaskList() {
                               {(provided, snapshot) => {
                                 return (
                                   <div
-                                    className={`draggable-item ${
-                                      snapshot.isDragging && "dragging"
-                                    }`}
+                                    className={`draggable-item ${snapshot.isDragging && "dragging"
+                                      }`}
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
@@ -256,6 +249,13 @@ export default function TaskList() {
                                     }}
                                   >
                                     <div className="draggable-item__inside">
+                                      <img
+                                        className='draggable-item__task-avatar'
+
+                                        src={el.avatar ? el.avatar : "https://cdn.dribbble.com/users/5592443/screenshots/12434328/drbl_mario_q-block_4x.png"}
+                                        key={el.name}
+                                        alt={el.name}
+                                      />
                                       {/* Task name goes here */}
                                       <div className="draggable-item__text">
                                         {el.name}

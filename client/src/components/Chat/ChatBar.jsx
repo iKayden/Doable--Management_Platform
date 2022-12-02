@@ -1,10 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import { getUsers } from '../../api/user';
+import { useApplicationDispatch, useApplicationState } from '../../hooks/useApplicationData';
+import './ChatBar.css';
 
 const ChatBar = ({ socket }) => {
-  const [users, setUsers] = useState([]);
+  const { users } = useApplicationState();
+  const dispatch = useApplicationDispatch();
+  const [activeUsers, setActiveUsers] = useState([]);
+
   useEffect(() => {
-    socket.on('newUserResponse', (data) => setUsers(data));
-  }, [socket, users]);
+    getUsers(dispatch);
+  }, [dispatch]);
+
+  useEffect(() => {
+    socket.on('newUserResponse', (data) => setActiveUsers(data));
+  }, [socket, activeUsers]);
+
 
   return (
     <div className="chat__sidebar">
@@ -13,8 +24,15 @@ const ChatBar = ({ socket }) => {
       <div>
         <h4 className="chat__header">ACTIVE USERS</h4>
         <div className="chat__users">
-          {users.map((user) => (
-            <p key={user.socketID}>{user.userName}</p>
+          {activeUsers.map((user) => (
+            <div className='chat__active-user'>
+              <img
+                className='active-users__avatar'
+                src={user.avatar}
+                key={user.socketID}
+                alt={user.userName} />
+              <p key={user.socketID}>{user.userName}</p>
+            </div>
           ))}
         </div>
       </div>
