@@ -1,16 +1,16 @@
-export const SET_USERS = "SET_USERS";
-export const SET_PROJECTS = "SET_PROJECTS";
-export const REMOVE_PROJECT = "REMOVE_PROJECT";
-export const ADD_PROJECT = "ADD_PROJECT";
-export const SET_PROJECT = "SET_PROJECT";
-export const ADD_TASK = "ADD_TASK";
-export const REMOVE_TASK = "REMOVE_TASK";
-export const SET_TASKS = "SET_TASKS";
-export const EDIT_TASK = "EDIT_TASK";
-export const UPDATE_TASK = "UPDATE_TASK";
-export const CLOSE_EDIT_TASK = "CLOSE_EDIT_TASK";
-export const TO_ADD_PROJ = "TO_ADD_PROJ";
-export const CLOSE_ADD_PROJ = "CLOSE_ADD_PROJ";
+export const SET_USERS = 'SET_USERS';
+export const SET_PROJECTS = 'SET_PROJECTS';
+export const REMOVE_PROJECT = 'REMOVE_PROJECT';
+export const ADD_PROJECT = 'ADD_PROJECT';
+export const SET_PROJECT = 'SET_PROJECT';
+export const ADD_TASK = 'ADD_TASK';
+export const REMOVE_TASK = 'REMOVE_TASK';
+export const SET_TASKS = 'SET_TASKS';
+export const EDIT_TASK = 'EDIT_TASK';
+export const UPDATE_TASK = 'UPDATE_TASK';
+export const CLOSE_EDIT_TASK = 'CLOSE_EDIT_TASK';
+export const TO_ADD_PROJ = 'TO_ADD_PROJ';
+export const CLOSE_ADD_PROJ = 'CLOSE_ADD_PROJ';
 export const CLOSE_ADD_TASK = 'CLOSE_ADD_TASK';
 export const OPEN_ADD_TASK = 'OPEN_ADD_TASK';
 export const OPEN_EDIT_TASK = 'OPEN_EDIT_TASK';
@@ -45,19 +45,21 @@ const dataReducer = (state, action) => {
     case OPEN_UPDATE_PROJECT:
       return {
         ...state,
-        projectToEdit: action.project
+        projectToEdit: action.project,
       };
     case UPDATE_PROJECT:
-      const filteredProjects = state.projects.filter((project) => project.id !== action.project.id);
+      const filteredProjects = state.projects.filter(
+        (project) => project.id !== action.project.id
+      );
       return {
         ...state,
         projects: [action.project, ...filteredProjects],
-        projectToEdit: undefined
+        projectToEdit: undefined,
       };
     case CLOSE_UPDATE_PROJECT:
       return {
         ...state,
-        projectToEdit: undefined
+        projectToEdit: undefined,
       };
     case SET_PROJECT:
       return {
@@ -81,12 +83,20 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         tasks: [action.task, ...state.tasks],
+        projects: state.projects.map((project) => {
+          if (project.id === action.task.project_id) {
+            return {
+              ...project,
+              total_tasks: parseInt(project.total_tasks) + 1,
+            };
+          }
+          return project;
+        }),
       };
     case OPEN_ADD_TASK:
       return {
         ...state,
-        taskToAdd: true
-
+        taskToAdd: true,
       };
     case CLOSE_ADD_TASK:
       return {
@@ -94,10 +104,23 @@ const dataReducer = (state, action) => {
         taskToAdd: undefined,
       };
     case UPDATE_TASK: // This sets the state with the updated task
-      const filteredTasks = state.tasks.filter((task) => String(task.id) !== String(action.task.id));
+      const filteredTasks = state.tasks.filter(
+        (task) => String(task.id) !== String(action.task.id)
+      );
       return {
         ...state,
         tasks: [action.task, ...filteredTasks],
+        projects: state.projects.map((project) => {
+          if (project.id === action.task.project_id) {
+            return {
+              ...project,
+              completed_tasks:
+                parseInt(project.completed_tasks) +
+                action.task.taskStatusChange,
+            };
+          }
+          return project;
+        }),
         taskToEdit: undefined,
       };
     case CLOSE_EDIT_TASK:
@@ -108,14 +131,38 @@ const dataReducer = (state, action) => {
     case OPEN_EDIT_TASK:
       return {
         ...state,
-        taskToEdit: action.task
+        taskToEdit: action.task,
         //Points to the state that exists. Model will have full object access(truthy ref)
         // will populate/get state props aw well.
       };
     case REMOVE_TASK:
+      const task = state.tasks.find((task) => {
+        return String(task.id) === String(action.id);
+      });
+      const projectId = task.project_id;
       return {
         ...state,
-        tasks: state.tasks.filter((task) => String(task.id) !== String(action.id)),
+        tasks: state.tasks.filter(
+          (task) => String(task.id) !== String(action.id)
+        ),
+        projects: state.projects.map((project) => {
+          if (project.id === projectId && action.status === 'COMPLETED') {
+            return {
+              ...project,
+              total_tasks: parseInt(project.total_tasks) - 1,
+              completed_tasks: parseInt(project.completed_tasks) - 1,
+            };
+          } else if (
+            project.id === projectId &&
+            action.status !== 'COMPLETED'
+          ) {
+            return {
+              ...project,
+              total_tasks: parseInt(project.total_tasks) - 1,
+            };
+          }
+          return project;
+        }),
       };
     case SET_TASKS:
       return {

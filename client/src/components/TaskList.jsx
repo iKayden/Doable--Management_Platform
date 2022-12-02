@@ -1,20 +1,23 @@
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { deleteTask, getTasksForProject, updateTask } from "../api/task";
-import TaskListItem from "./TaskListItem";
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { deleteTask, getTasksForProject, updateTask } from '../api/task';
+import TaskListItem from './TaskListItem';
 import Button from 'react-bootstrap/Button';
 import {
   useApplicationState,
   useApplicationDispatch,
 } from '../hooks/useApplicationData';
-import { OPEN_ADD_TASK, OPEN_EDIT_TASK, SET_TASKS } from '../reducer/data_reducer';
-import TaskForm from "./TaskForm";
-import EditTaskForm from "./EditTaskForm";
-import { useState } from "react";
+import {
+  OPEN_ADD_TASK,
+  OPEN_EDIT_TASK,
+  SET_TASKS,
+} from '../reducer/data_reducer';
+import TaskForm from './TaskForm';
+import EditTaskForm from './EditTaskForm';
+import { useState } from 'react';
 import _ from 'lodash';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import "./TaskList.css";
-
+import './TaskList.css';
 
 export default function TaskList() {
   const [state, setState] = useState();
@@ -24,13 +27,12 @@ export default function TaskList() {
   const { id } = useParams(); //Current Project ID(from URL)
 
   useEffect(() => {
-    getTasksForProject(id)
-      .then((data) => {
-        dispatch({
-          type: SET_TASKS,
-          tasks: data,
-        });
+    getTasksForProject(id).then((data) => {
+      dispatch({
+        type: SET_TASKS,
+        tasks: data,
       });
+    });
   }, [id]);
 
   //Gets the project object of this task.
@@ -42,64 +44,81 @@ export default function TaskList() {
 
   // Filters to reassign status of the draggable item in DB for DnD
   useEffect(() => {
-    const toDo = tasks.filter((task) => {
-      return task.status === "TO-DO";
-    }).map(({ id, ...task }) => {
-      return { id: String(id), ...task };
-    });
-    const inProgress = tasks.filter((task) => {
-      return task.status === "IN-PROGRESS";
-    }).map(({ id, ...task }) => {
-      return { id: String(id), ...task };
-    });
-    const completed = tasks.filter((task) => {
-      return task.status === "COMPLETED";
-    }).map(({ id, ...task }) => {
-      return { id: String(id), ...task };
-    });
+    const toDo = tasks
+      .filter((task) => {
+        return task.status === 'TO-DO';
+      })
+      .map(({ id, ...task }) => {
+        return { id: String(id), ...task };
+      });
+    const inProgress = tasks
+      .filter((task) => {
+        return task.status === 'IN-PROGRESS';
+      })
+      .map(({ id, ...task }) => {
+        return { id: String(id), ...task };
+      });
+    const completed = tasks
+      .filter((task) => {
+        return task.status === 'COMPLETED';
+      })
+      .map(({ id, ...task }) => {
+        return { id: String(id), ...task };
+      });
     setState({
-      "TO-DO": {
-        title: "To-Do",
-        items: toDo
+      'TO-DO': {
+        title: 'To-Do',
+        items: toDo,
       },
-      "IN-PROGRESS": {
-        title: "In-Progress",
-        items: inProgress
+      'IN-PROGRESS': {
+        title: 'In-Progress',
+        items: inProgress,
       },
-      "COMPLETED": {
-        title: "Complete",
-        items: completed
-      }
+      COMPLETED: {
+        title: 'Complete',
+        items: completed,
+      },
     });
   }, [tasks]);
 
   const taskList = tasks.map((task) => {
-    return (
-      <TaskListItem
-        key={`TaskListItem${task.id}`}
-        task={task}
-      />
-    );
+    return <TaskListItem key={`TaskListItem${task.id}`} task={task} />;
   });
 
   const handleDragEnd = ({ destination, source }) => {
     if (!destination) return;
 
-    if (destination.index === source.index && destination.droppableId === source.droppableId) return;
+    if (
+      destination.index === source.index &&
+      destination.droppableId === source.droppableId
+    )
+      return;
 
     //creating a copy of item before removing it from state
     const itemCopy = { ...state[source.droppableId].items[source.index] };
 
     const draggedTask = tasks.find((task) => task.id == itemId);
     draggedTask.status = destination.droppableId;
+
+    //for changing the number of completed tasks
+    if (source.droppableId === 'COMPLETED') {
+      draggedTask.taskStatusChange = -1;
+    } else if (destination.droppableId === 'COMPLETED') {
+      draggedTask.taskStatusChange = 1;
+    } else draggedTask.taskStatusChange = 0;
+
     updateTask(dispatch, draggedTask);
 
-    setState(prev => {
+    setState((prev) => {
       prev = { ...prev };
       //remove from prev item array
       prev[source.droppableId].items.splice(source.index, 1);
       // adding to new items array location
-      prev[destination.droppableId].items.splice(destination.index, 0, itemCopy);
+      prev[destination.droppableId].items.splice(
+        destination.index,
+        0,
+        itemCopy
+      );
 
       return prev;
     });
@@ -107,23 +126,30 @@ export default function TaskList() {
 
   return (
     <>
-      <h1
-        className="task-list__projectName">
+      <h1 className="task-list__projectName">
         {/* After we got current project name, we display its name */}
         Project: {currentProject.name}
         <Button
           variant="primary"
           size="lg"
           className="add-new-task__button"
-          onClick={() => dispatch({
-            type: OPEN_ADD_TASK
-          })}><i className="fa-solid fa-plus"></i> New Task </Button>
+          onClick={() =>
+            dispatch({
+              type: OPEN_ADD_TASK,
+            })
+          }
+        >
+          <i className="fa-solid fa-plus"></i> New Task{' '}
+        </Button>
       </h1>
       <div className="dnd-wrapper-container">
-        <DragDropContext onDragEnd={handleDragEnd} onDragStart={(e) => setItemId(e.draggableId)}>
+        <DragDropContext
+          onDragEnd={handleDragEnd}
+          onDragStart={(e) => setItemId(e.draggableId)}
+        >
           {_.map(state, (data, key) => {
             return (
-              <div key={key} className={"dnd-column"}>
+              <div key={key} className={'dnd-column'}>
                 <h3>{data.title}</h3>
                 <Droppable droppableId={key}>
                   {(provided) => {
@@ -131,7 +157,7 @@ export default function TaskList() {
                       <div
                         ref={provided.innerRef}
                         {...provided.droppableProps}
-                        className={"droppable-col"}
+                        className={'droppable-col'}
                       >
                         {data.items.map((el, index) => {
                           return (
@@ -143,7 +169,9 @@ export default function TaskList() {
                               {(provided, snapshot) => {
                                 return (
                                   <div
-                                    className={`draggable-item ${snapshot.isDragging && "dragging"}`}
+                                    className={`draggable-item ${
+                                      snapshot.isDragging && 'dragging'
+                                    }`}
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
@@ -160,16 +188,21 @@ export default function TaskList() {
                                           onClick={() => {
                                             dispatch({
                                               type: OPEN_EDIT_TASK,
-                                              task: el
+                                              task: el,
                                             });
                                           }}
                                         ></i>
                                         {/* Delete Button */}
                                         <i
                                           onClick={() => {
-                                            deleteTask(dispatch, el.id);
+                                            deleteTask(
+                                              dispatch,
+                                              el.id,
+                                              el.status
+                                            );
                                           }}
-                                          className="fa-solid fa-trash-can"></i>
+                                          className="fa-solid fa-trash-can"
+                                        ></i>
                                       </div>
                                     </div>
                                   </div>
@@ -191,7 +224,6 @@ export default function TaskList() {
       {/* Logic for modal pop ups */}
       {taskToEdit && <EditTaskForm taskToEdit={taskToEdit} />}
       {taskToAdd && <TaskForm taskToAdd={taskToAdd} />}
-
     </>
   );
-};
+}

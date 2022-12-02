@@ -11,7 +11,7 @@ module.exports = (db) => {
 
   const getProjects = (userId) => {
     const query = {
-      text: 'SELECT projects.id, projects.name, projects.description, projects.start_date, projects.expected_end_date, projects. completion_time FROM projects JOIN project_users ON project_id=projects.id WHERE subscribed_user_id=$1',
+      text: `SELECT projects.id, projects.name, projects.description, projects.start_date, projects.expected_end_date, projects. completion_time, COUNT(tasks.id) AS total_tasks, (SELECT COUNT(tasks.status) FROM tasks WHERE tasks.status='COMPLETED' AND tasks.project_id=projects.id) AS completed_tasks FROM projects JOIN tasks ON projects.id=tasks.project_id JOIN project_users ON project_users.project_id=projects.id WHERE subscribed_user_id=$1 GROUP BY projects.id`,
       values: [userId],
     };
 
@@ -111,6 +111,7 @@ module.exports = (db) => {
         project_id,
       ],
     };
+
     return db.query(query);
   };
 
