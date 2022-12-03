@@ -38,7 +38,7 @@ export default function TaskForm(props) {
   const userList = projectUsers.map((user) => (
     <option value={user.id} key={`${user.id}${user.name}`} avatar={user.avatar}>
       {user.name}: {user.email}
-    </option >
+    </option>
   ));
 
   const newAssignedUser = (selectedUser, task) => {
@@ -53,7 +53,7 @@ export default function TaskForm(props) {
           ...prev,
           name: '',
           description: '',
-          deadline: ''
+          deadline: '',
         }));
         props.doneEdit();
         dispatch({
@@ -81,7 +81,8 @@ export default function TaskForm(props) {
       <Form
         autoComplete="off"
         //Form submit handler
-        onSubmit={handleSubmit}>
+        onSubmit={handleSubmit}
+      >
         <Modal.Body>
           <Form.Group controlId="dob">
             <Form.Label>Task name</Form.Label>
@@ -155,7 +156,16 @@ export default function TaskForm(props) {
             Close
           </Button>
           {/* disable is used to disable submit button if name is missing. */}
-          <Button variant="primary" type="submit" disabled={task.name === ''}>
+          <Button
+            variant="primary"
+            type="submit"
+            disabled={
+              task.name === '' ||
+              selectedUser.length === 0 ||
+              task.deadline === '' ||
+              task.description === ''
+            }
+          >
             Save
           </Button>
         </Modal.Footer>

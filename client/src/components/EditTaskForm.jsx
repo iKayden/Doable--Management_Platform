@@ -92,7 +92,11 @@ export default function EditTaskForm(props) {
           >
             Close
           </Button>
-          <Button variant="primary" type="submit">
+          <Button
+            variant="primary"
+            type="submit"
+            disabled={!task.name || !task.deadline || !task.description}
+          >
             Save changes
           </Button>
         </Modal.Footer>
