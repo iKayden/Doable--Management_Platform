@@ -59,18 +59,22 @@ export default function ProjectForm() {
         }}
       >
         <Modal.Body>
-          <input
-            type="text"
-            name="name"
-            placeholder="Enter Project Name"
-            value={project.name}
-            onChange={(event) =>
-              setProject((prev) => ({ ...prev, name: event.target.value }))
-            }
-          />
+          <Form.Group controlId="dob">
+            <Form.Label>Project Name</Form.Label>
+            <Form.Control
+              type="text"
+              name="name"
+              placeholder="Enter Project Name"
+              value={project.name}
+              onChange={(event) =>
+                setProject((prev) => ({ ...prev, name: event.target.value }))
+              }
+            />
+          </Form.Group>
 
-          <div>
-            <input
+          <Form.Group controlId="dob">
+            <Form.Label>Project Description</Form.Label>
+            <Form.Control
               type="text"
               name="description"
               placeholder="Enter Project Description"
@@ -82,7 +86,7 @@ export default function ProjectForm() {
                 }))
               }
             />
-          </div>
+          </Form.Group>
           <Form.Group controlId="dob">
             <Form.Label>Start Date</Form.Label>
             <Form.Control

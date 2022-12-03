@@ -37,6 +37,7 @@ export default function EditProjectForm() {
       >
         <Modal.Body>
           <Form.Group>
+            <Form.Label>Project Name</Form.Label>
             <Form.Control
               type="text"
               name="name"
@@ -49,6 +50,7 @@ export default function EditProjectForm() {
             />
           </Form.Group>
           <Form.Group>
+            <Form.Label>Project Description</Form.Label>
             <Form.Control
               as="textarea"
               name="description"
