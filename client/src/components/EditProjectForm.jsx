@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import moment from 'moment';
-
+import './EditProject.css';
 import {
   useApplicationDispatch,
   useApplicationState,

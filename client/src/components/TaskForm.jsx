@@ -6,6 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { Form } from 'react-bootstrap';
 
+import './TaskForm.css';
 import { createTask } from '../api/task';
 import { getUsersByProjectId } from '../api/user';
 import {

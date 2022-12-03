@@ -5,6 +5,7 @@ import {
   useApplicationDispatch,
   useApplicationState,
 } from '../hooks/useApplicationData';
+import './ProjectForm.css';
 import { CLOSE_ADD_PROJ } from '../reducer/data_reducer';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
