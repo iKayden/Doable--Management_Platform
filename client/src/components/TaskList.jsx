@@ -13,7 +13,6 @@ import {
   OPEN_ADD_TASK,
   OPEN_EDIT_TASK,
   SET_TASKS,
-  SET_USERS,
 } from '../reducer/data_reducer';
 import TaskForm from './TaskForm';
 import EditTaskForm from './EditTaskForm';
@@ -26,7 +25,7 @@ import DeleteConfirmation from "./DeleteConfirmation";
 export default function TaskList() {
   const [state, setState] = useState();
   const [itemId, setItemId] = useState();
-  const { users, tasks, taskToEdit, taskToAdd, projects } =
+  const { tasks, taskToEdit, taskToAdd, projects } =
     useApplicationState();
   const dispatch = useApplicationDispatch();
   const { id } = useParams(); //Current Project ID(from URL)
@@ -43,7 +42,6 @@ export default function TaskList() {
   });
 
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -193,6 +191,9 @@ export default function TaskList() {
           </Button>
         </Modal.Footer>
       </Modal>
+        <div className="task-list__dashboard"><h1>
+          Task Dashboard
+          </h1></div>
       <h1 className="task-list__projectName">
         {/* After we got current project name, we display its name. If refresh page, error of undefined could show up because context doesn't have it for now. ? tells web page it could be undefined, so it won't has error */}
         Project: {currentProject?.name}
@@ -207,7 +208,7 @@ export default function TaskList() {
         >
           <i className="fa-solid fa-plus"></i> New Task{" "}
         </Button>
-        <Button variant="primary" onClick={chatRoute}>
+        <Button variant="primary" className="chat__button" onClick={chatRoute}>
           Chat Now! <i className="fa-solid fa-message"></i>
         </Button>
       </h1>
