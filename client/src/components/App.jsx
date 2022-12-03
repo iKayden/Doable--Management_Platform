@@ -39,7 +39,14 @@ const App = () => {
             <Navbar variant="dark">
               <Container className="nav-bar">
                 <LinkContainer to="/">
-                  <Navbar.Brand>Doable</Navbar.Brand>
+                  <Navbar.Brand>
+                    <img
+                      className="logo"
+                      src="/doable_logo_new.png"
+                      alt="logo"
+                    />
+                    Doable
+                  </Navbar.Brand>
                 </LinkContainer>
                 <Nav>
                   <LinkContainer to="/projects">

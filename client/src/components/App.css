@@ -40,6 +40,11 @@ header {
   width: 100px;
 }
 
+.logo {
+  height: 20px;
+  margin-right: 8px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
