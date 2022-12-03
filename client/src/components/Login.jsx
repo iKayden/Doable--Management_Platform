@@ -31,7 +31,7 @@ export default function Login(props) {
         localStorage.setItem('userName', data.name);
         localStorage.setItem('userAvatar', data.avatar);
         props.setUser(data.name);
-        navigate("/projects");
+        navigate("/");
         setError('');
       })
       .catch((err) => {

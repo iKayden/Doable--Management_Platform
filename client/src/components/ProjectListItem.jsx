@@ -5,7 +5,6 @@ import {
   useApplicationState,
 } from '../hooks/useApplicationData';
 import ProgressBar from 'react-bootstrap/ProgressBar';
-
 import { updateProject, deleteProject } from '../api/project';
 import {
   OPEN_UPDATE_PROJECT,
