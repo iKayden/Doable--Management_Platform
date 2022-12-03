@@ -66,7 +66,7 @@ const App = () => {
             </Navbar>
           </header>
           <Outlet />
-          <Footer />
+          {/* <Footer /> */}
         </>
       ),
       children: [
