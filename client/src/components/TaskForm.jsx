@@ -14,7 +14,7 @@ import {
 } from '../hooks/useApplicationData';
 import { CLOSE_ADD_TASK } from '../reducer/data_reducer';
 
-export default function TaskForm() {
+export default function TaskForm(props) {
   const { id } = useParams();
   const dispatch = useApplicationDispatch();
   const [task, setTask] = useState({
@@ -36,9 +36,9 @@ export default function TaskForm() {
   const { taskToAdd } = useApplicationState();
   // Function to display all users for select in Add New Task
   const userList = projectUsers.map((user) => (
-    <option value={user.id} key={`${user.id}${user.name}`}>
+    <option value={user.id} key={`${user.id}${user.name}`} avatar={user.avatar}>
       {user.name}: {user.email}
-    </option>
+    </option >
   ));
 
   const newAssignedUser = (selectedUser, task) => {
@@ -53,8 +53,9 @@ export default function TaskForm() {
           ...prev,
           name: '',
           description: '',
-          deadline: '',
+          deadline: ''
         }));
+        props.doneEdit();
         dispatch({
           type: CLOSE_ADD_TASK,
         });
@@ -77,7 +78,10 @@ export default function TaskForm() {
         <Modal.Title>Add a New Task</Modal.Title>
       </Modal.Header>
 
-      <form autoComplete="off" onSubmit={handleSubmit}>
+      <Form
+        autoComplete="off"
+        //Form submit handler
+        onSubmit={handleSubmit}>
         <Modal.Body>
           <Form.Group controlId="dob">
             <Form.Label>Task name</Form.Label>
@@ -155,7 +159,7 @@ export default function TaskForm() {
             Save
           </Button>
         </Modal.Footer>
-      </form>
+      </Form>
     </Modal>
   );
 }
