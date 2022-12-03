@@ -16,9 +16,9 @@ export default function Footer() {
             <h5 className='text-uppercase'>Footer Content</h5>
 
             <p>
-              Our project will strive to make it easy for your team
-              to get work done. No matter the project, workflow,
-              or type of team, It will help keep things organized.
+              We strive to make it easy for you and your team
+              to get work done. No matter what project, workflow,
+              or type of team, it will help keep things organized.
 
             </p>
           </MDBCol>
@@ -28,7 +28,7 @@ export default function Footer() {
 
             <ul className='list-unstyled mb-0'>
               <li>
-                <a href='#!' className='text-white'>
+                <a href='aboutus' className='text-white'>
                   About Us
                 </a>
               </li>
@@ -51,7 +51,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href='#!' className='text-white'>
+                <a href='/login' className='text-white'>
                   Sign In
                 </a>
               </li>
