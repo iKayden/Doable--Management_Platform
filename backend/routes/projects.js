@@ -11,6 +11,15 @@ module.exports = ({
   router.get('/', (req, res) => {
     getProjects(req.query.userId)
       .then((projects) => {
+        projects.map((project) => {
+          if (typeof project.total_tasks === 'undefined') {
+            project.total_tasks = 0;
+          }
+          if (typeof project.completed_tasks === 'undefined') {
+            project.completed_tasks = 0;
+          }
+          return project;
+        });
         res.json(projects);
       })
       .catch((err) =>
@@ -26,7 +35,6 @@ module.exports = ({
 
     createProject(name, description, start_date, expected_end_date)
       .then((project) => {
-        console.log("FROM CREATE PROJECT");
         addUsersToProject(assigned_users, project.id);
         res.send({ project });
       })
