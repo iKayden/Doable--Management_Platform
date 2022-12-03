@@ -11,12 +11,12 @@ module.exports = (db) => {
 
   const getProjects = (userId) => {
     const query = {
-      text: `SELECT projects.id, projects.name, projects.description, projects.start_date, projects.expected_end_date, projects.completion_time, 
-      COUNT(tasks.id) AS total_tasks, (SELECT COUNT(tasks.status) FROM tasks WHERE tasks.status='COMPLETED' AND tasks.project_id=projects.id) AS completed_tasks 
-      FROM projects 
-      JOIN tasks ON projects.id=tasks.project_id 
-      JOIN project_users ON project_users.project_id=projects.id 
-      WHERE subscribed_user_id=$1 
+      text: `SELECT projects.id, projects.name, projects.description, projects.start_date, projects.expected_end_date, projects.completion_time,
+      COUNT(tasks.id) AS total_tasks, (SELECT COUNT(tasks.status) FROM tasks WHERE tasks.status='COMPLETED' AND tasks.project_id=projects.id) AS completed_tasks
+      FROM projects
+      JOIN tasks ON projects.id=tasks.project_id
+      JOIN project_users ON project_users.project_id=projects.id
+      WHERE subscribed_user_id=$1
       GROUP BY projects.id`,
       values: [userId],
     };
@@ -28,10 +28,10 @@ module.exports = (db) => {
       WHERE subscribed_user_id=$1 AND
       projects.id NOT IN (
         SELECT projects.id
-        FROM projects 
-        JOIN tasks ON projects.id=tasks.project_id 
-        JOIN project_users ON project_users.project_id=projects.id 
-        WHERE subscribed_user_id=$1 
+        FROM projects
+        JOIN tasks ON projects.id=tasks.project_id
+        JOIN project_users ON project_users.project_id=projects.id
+        WHERE subscribed_user_id=$1
          );`,
       values: [userId],
     };
@@ -94,7 +94,6 @@ module.exports = (db) => {
     VALUES ($1, $2, $3, $4, $5) RETURNING *`,
       values: [name, description, assigned_user_id, deadline, project_id],
     };
-
     return db.query(query).then((result) => result.rows[0]);
   };
 
