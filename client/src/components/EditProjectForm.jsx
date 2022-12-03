@@ -15,7 +15,6 @@ export default function EditProjectForm() {
   const dispatch = useApplicationDispatch();
   const { projectToEdit } = useApplicationState();
   const [project, setProject] = useState(projectToEdit || null);
-
   return (
     <Modal show={projectToEdit}>
       <Modal.Header
@@ -107,7 +106,16 @@ export default function EditProjectForm() {
           >
             Close
           </Button>
-          <Button variant="primary" type="submit">
+          <Button
+            variant="primary"
+            type="submit"
+            disabled={
+              !project.name ||
+              !project.expected_end_date ||
+              !project.start_date ||
+              !project.description
+            }
+          >
             Save changes
           </Button>
         </Modal.Footer>
