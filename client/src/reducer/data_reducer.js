@@ -81,7 +81,6 @@ const dataReducer = (state, action) => {
 
     // ======= TASK ACTIONS ===================
     case ADD_TASK:
-      console.log("ADD TASK", action.task);
       return {
         ...state,
         tasks: [action.task, ...state.tasks],
