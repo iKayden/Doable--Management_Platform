@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import moment from 'moment';
 import {
   useApplicationDispatch,
@@ -15,7 +15,7 @@ import {
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import EditProjectForm from './EditProjectForm';
-import DeleteConfirmation from "./DeleteConfirmation";
+import DeleteConfirmation from './DeleteConfirmation';
 
 export default function ProjectListItem({
   project,
@@ -42,9 +42,9 @@ export default function ProjectListItem({
       </th>
       <th>
         <ProgressBar
-          variant={`${progress === 100 ? "success" : ""}`}
-          now={progress}
-          label={`${progress}%`}
+          variant={`${progress === 100 ? 'success' : ''}`}
+          now={progress ? progress : 0}
+          label={`${progress ? progress : 0}%`}
         />
       </th>
       <th>{start_date}</th>
