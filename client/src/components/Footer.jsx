@@ -4,15 +4,17 @@ import {
   MDBContainer,
   MDBCol,
   MDBRow,
+  MDBIcon,
+  MDBBtn,
 } from 'mdb-react-ui-kit';
 import './Footer.css';
 
 export default function Footer() {
   return (
-    <MDBFooter className='bg-secondary text-white text-center text-md-start main__footer'>
-      <MDBContainer className='p-4'>
+    <MDBFooter className='text-white text-center text-md-start main__footer'>
+      <MDBContainer className='p-2'>
         <MDBRow>
-          <MDBCol lg="6" md="12" className='mb-4 mb-md-0'>
+          <MDBCol lg="6" md="12" className='mb-2 mb-md-0'>
             <h5 className='text-uppercase'>Footer Content</h5>
 
             <p>
@@ -23,7 +25,7 @@ export default function Footer() {
             </p>
           </MDBCol>
 
-          <MDBCol lg="3" md="6" className='mb-4 mb-md-0'>
+          <MDBCol lg="3" md="6" className='mb-2 mb-md-0'>
             <h5 className='text-uppercase'>Links</h5>
 
             <ul className='list-unstyled mb-0'>
@@ -41,10 +43,10 @@ export default function Footer() {
             </ul>
           </MDBCol>
 
-          <MDBCol lg="3" md="6" className='mb-4 mb-md-0'>
+          <MDBCol lg="3" md="6" className='mb-2 mb-md-0'>
             <h5 className='text-uppercase mb-0'>Links</h5>
 
-            <ul className='list-unstyled'>
+            <ul className='list-unstyled footer__links'>
               <li>
                 <a href='#!' className='text-white'>
                   FAQ
@@ -63,16 +65,94 @@ export default function Footer() {
             </ul>
           </MDBCol>
           <span className='footer__copyright'>
-            © 2022 Copyright:  <a className='text-white' href='/'>
-              Doable.com
-            </a>
+            <MDBContainer className='pt-2 footer__bottom'>
+              <section className='mb-2 flex-child'>
+                <span>
+                  © 2022 Copyright:  <a className='text-white' href='/'>
+                    Doable.com
+                  </a>
+                </span>
+              </section>
+              <section className='flex-child'>
+                <div className='all__icons'>
+                  <MDBBtn
+                    rippleColor="dark"
+                    color='link'
+                    floating
+                    size="lg"
+                    className='text-dark m-1'
+                    href='#!'
+                    role='button'
+                  >
+                    <MDBIcon fab className='fab fa-facebook-f' />
+                  </MDBBtn>
+
+                  <MDBBtn
+                    rippleColor="dark"
+                    color='link'
+                    floating
+                    size="lg"
+                    className='text-dark m-1'
+                    href='#!'
+                    role='button'
+                  >
+                    <MDBIcon fab className='fa-twitter' />
+                  </MDBBtn>
+
+                  <MDBBtn
+                    rippleColor="dark"
+                    color='link'
+                    floating
+                    size="lg"
+                    className='text-dark m-1'
+                    href='#!'
+                    role='button'
+                  >
+                    <MDBIcon fab className='fa-google' />
+                  </MDBBtn>
+
+                  <MDBBtn
+                    rippleColor="dark"
+                    color='link'
+                    floating
+                    size="lg"
+                    className='text-dark m-1'
+                    href='#!'
+                    role='button'
+                  >
+                    <MDBIcon fab className='fa-instagram' />
+                  </MDBBtn>
+
+                  <MDBBtn
+                    rippleColor="dark"
+                    color='link'
+                    floating
+                    size="lg"
+                    className='text-dark m-1'
+                    href='#!'
+                    role='button'
+                  >
+                    <MDBIcon fab className='fa-linkedin' />
+                  </MDBBtn>
+
+                  <MDBBtn
+                    rippleColor="dark"
+                    color='link'
+                    floating
+                    size="lg"
+                    className='text-dark m-1'
+                    href='#!'
+                    role='button'
+                  >
+                    <MDBIcon fab className='fa-github' />
+                  </MDBBtn>
+                </div>
+              </section>
+            </MDBContainer>
+
           </span>
         </MDBRow>
       </MDBContainer>
-
-
-
-
     </MDBFooter>
   );
 };
