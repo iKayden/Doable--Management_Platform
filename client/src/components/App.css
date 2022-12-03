@@ -15,6 +15,11 @@ header {
   justify-content: space-between;
 }
 
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -41,8 +46,19 @@ header {
 }
 
 .logo {
-  height: 20px;
+  height: 24px;
   margin-right: 8px;
+}
+
+.avatar {
+  height: 24px;
+  border-radius: 50%;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  color: black;
+  background-color: white;
 }
 
 @keyframes App-logo-spin {
