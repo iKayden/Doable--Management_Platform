@@ -28,12 +28,12 @@ export default function Footer() {
 
             <ul className='list-unstyled mb-0'>
               <li>
-                <a href='aboutus' className='text-white'>
+                <a href='/about' className='text-white'>
                   About Us
                 </a>
               </li>
               <li>
-                <a href='#!' className='text-white'>
+                <a href='/contact' className='text-white'>
                   Contact Us
                 </a>
               </li>
@@ -51,7 +51,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href='/login' className='text-white'>
+                <a href='#!' className='text-white'>
                   Sign In
                 </a>
               </li>
@@ -62,17 +62,17 @@ export default function Footer() {
               </li>
             </ul>
           </MDBCol>
+          <span className='footer__copyright'>
+            © 2022 Copyright:  <a className='text-white' href='/'>
+              Doable.com
+            </a>
+          </span>
         </MDBRow>
       </MDBContainer>
 
-      <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
-        <span>
-          © 2022 Copyright:  <a className='text-white' href='/'>
-            Doable.com
-          </a>
-        </span>
 
-      </div>
+
+
     </MDBFooter>
   );
 };

@@ -14,7 +14,6 @@ import dataReducer from '../reducer/data_reducer';
 import TaskList from './TaskList';
 import io from 'socket.io-client';
 import { redirect } from 'react-router-dom';
-import Footer from './Footer';
 
 const socket = io.connect('http://localhost:3001');
 
@@ -66,7 +65,7 @@ const App = () => {
             </Navbar>
           </header>
           <Outlet />
-          <Footer />
+
         </>
       ),
       children: [
@@ -83,15 +82,23 @@ const App = () => {
           element: <AllProjects />,
         },
         {
-          path: `/projects/:id/tasks`,
+          path: '/projects/:id/tasks',
           element: <TaskList projectId={state.projectId} />,
         },
         {
-          path: `/chat`,
+          path: '/chat',
           element: <ChatPage socket={socket} />,
         },
         {
-          path: `/logout`,
+          path: '/logout',
+        },
+        {
+          path: '/about',
+          element: <h1>Placeholder page for about us page</h1>
+        },
+        {
+          path: '/contact',
+          element: <h1>Placeholder page for contact us page</h1>
         },
       ],
     },
