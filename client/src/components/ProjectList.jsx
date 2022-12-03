@@ -7,6 +7,7 @@ import {
 } from '../hooks/useApplicationData';
 import { TO_ADD_PROJ } from '../reducer/data_reducer';
 import ProjectListItem from './ProjectListItem';
+import Footer from './Footer';
 
 export default function ProjectList(props) {
   const { projects } = props;
@@ -62,6 +63,7 @@ export default function ProjectList(props) {
         </thead>
         <tbody>{projectList}</tbody>
       </table>
+      <Footer />
     </>
   );
 }

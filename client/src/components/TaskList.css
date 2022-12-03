@@ -12,8 +12,8 @@
 .droppable-col {
   width: 100%;
   height: 150px;
-  background-color: grey;
-  padding: 10px 10px 0 10px;
+  background-color: rgb(230, 230, 230);
+  padding: 10px 10px 10px 10px;
   border-radius: 7px;
   display: flex;
   flex-direction: column;
@@ -22,20 +22,20 @@
 }
 
 .draggable-item {
-  margin: 10px 0 10px 10px;
-  border: 2px solid white;
+  margin: 10px 10px 10px 10px;
+  border: 2px solid rgb(237, 236, 236);
   border-radius: 7px;
   padding: 5px;
-  color: aliceblue;
-  background-color: grey;
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
 }
 
 .draggable-item:hover {
-  background-color: rgb(111, 111, 111);
-  box-shadow: 5px 5px 0px 0px rgba(67, 106, 247, 0.293);
+  background-color: rgb(255, 255, 255);
+  box-shadow: 5px 5px 0px 0px rgb(62, 172, 191);
 }
 .draggable-item.dragging {
-  background-color: dodgerblue;
+  background-color: rgb(137, 228, 255);
 }
 
 .draggable-item__inside {
@@ -47,7 +47,9 @@
   margin-left: 15px;
   margin-right: 5px;
 }
+
 .draggable-item__icons {
+  /* display: none; */
   cursor: pointer;
 }
 
@@ -60,18 +62,29 @@
 }
 
 .add-new-task__button {
+  background-color: rgb(137, 228, 255);
   margin: 15px 10px 10px 40%;
+  box-shadow: 5px 5px 0px 0px rgba(67, 106, 247, 0.293);
+}
+
+.chat__button {
   box-shadow: 5px 5px 0px 0px rgba(67, 106, 247, 0.293);
 }
 
 .task-list__projectName {
   text-align: center;
-  margin-top: 15px;
-  border-top: 2px solid cornflowerblue;
-  border-bottom: 2px solid cornflowerblue;
-  padding: 15px;
+  margin: 5px 5px 5px 5px;
+  /* border-top: 2px solid cornflowerblue;
+  border-bottom: 2px solid cornflowerblue; */
+  /* padding: 15px; */
   cursor: default;
-  box-shadow: 5px 5px 0px 0px rgba(67, 106, 247, 0.293);
+  /* box-shadow: 5px 5px 0px 0px rgba(67, 106, 247, 0.293); */
+}
+
+.task-list__dashboard {
+  text-align: center;
+  margin-top: 15px;
+  padding: 15px;
 }
 
 .task-list__assigned-users__avatars {
