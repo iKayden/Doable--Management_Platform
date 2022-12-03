@@ -7,6 +7,9 @@
   pointer-events: none;
 }
 
+header {
+  background-color: #3c6e71;
+}
 .nav-bar {
   display: flex;
   justify-content: space-between;
