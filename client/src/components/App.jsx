@@ -13,21 +13,22 @@ import { useReducer } from "react";
 import dataReducer from "../reducer/data_reducer";
 import TaskList from "./TaskList";
 import io from "socket.io-client";
-import { useNavigate } from 'react-router-dom';
+import { redirect } from "react-router-dom";
 
 const socket = io.connect("http://localhost:3001");
 
 const App = () => {
   const [state, dispatch] = useReducer(dataReducer, defaultState);
-
-    // const navigate = useNavigate();
-    // const handleLogout = () => {
-    //   localStorage.removeItem('userName');
-    //   localStorage.removeItem('userAvatar');
-    //   localStorage.removeItem('user');
-    //   navigate('/');
-    //   window.location.reload();
-    // };
+  const user = localStorage.getItem("user");
+  const userName = localStorage.getItem("userName");
+  
+  const handleLogout = () => {
+    localStorage.removeItem('userName');
+    localStorage.removeItem('userAvatar');
+    localStorage.removeItem('user');
+    window.location.reload();
+    return redirect("/login");
+  };
   
   const router = createBrowserRouter([
     {
@@ -49,9 +50,13 @@ const App = () => {
                   <LinkContainer to="/ask">
                     <Nav.Link>Ask Us</Nav.Link>
                   </LinkContainer>
-                  <Navbar.Text>
-                    {/* <a href="" onClick={handleLogout}>Log out</a> */}
-                  </Navbar.Text>
+                  { user ? 
+                            <><Navbar.Text>
+                            Signed in as: {userName}
+                          </Navbar.Text>
+                          <LinkContainer to="/logout">
+                    <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                  </LinkContainer></> : ""}
                 </Nav>
               </Container>
             </Navbar>
@@ -79,6 +84,9 @@ const App = () => {
         {
           path: `/chat`,
           element: <ChatPage socket={socket} />,
+        },
+        {
+          path: `/logout`,
         },
       ],
     },
