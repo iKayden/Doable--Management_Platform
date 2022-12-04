@@ -35,35 +35,37 @@ export default function ProjectList(props) {
   });
   return (
     <>
-      {projectToAdd && <ProjectForm projectToAdd={projectToAdd} />}
-      <div className="projects__header">
-        <h1 className="d-inline">Projects</h1>
-      </div>
+      <div className="project-list">
+        {projectToAdd && <ProjectForm projectToAdd={projectToAdd} />}
+        <div className="projects__header">
+          <h1 className="d-inline">Projects</h1>
+        </div>
 
-      <table className="table table-hover projects__table">
-        <thead>
-          <tr>
-            <th scope="col">Project</th>
-            <th scope="col">Progress</th>
-            <th scope="col">Start Date</th>
-            <th scope="col">Expected End Date</th>
-            <th scope="col">Description</th>
-            <th scope="col">Completion</th>
-            <th scope="col" colSpan="2">
-              <Button
-                variant="primary"
-                className="d-inline-block add--newProject__button"
-                onClick={() => {
-                  dispatch({ type: TO_ADD_PROJ });
-                }}
-              >
-                <i className="fa-solid fa-plus"></i> Add New Project
-              </Button>
-            </th>
-          </tr>
-        </thead>
-        <tbody>{projectList}</tbody>
-      </table>
+        <table className="table table-hover projects__table">
+          <thead>
+            <tr>
+              <th scope="col">Project</th>
+              <th scope="col">Progress</th>
+              <th scope="col">Start Date</th>
+              <th scope="col">Expected End Date</th>
+              <th scope="col">Description</th>
+              <th scope="col">Completion</th>
+              <th scope="col" colSpan="2">
+                <Button
+                  variant="primary"
+                  className="d-inline-block add--newProject__button"
+                  onClick={() => {
+                    dispatch({ type: TO_ADD_PROJ });
+                  }}
+                >
+                  <i className="fa-solid fa-plus"></i> Add New Project
+                </Button>
+              </th>
+            </tr>
+          </thead>
+          <tbody>{projectList}</tbody>
+        </table>
+      </div>
       <Footer />
     </>
   );

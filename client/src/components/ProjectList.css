@@ -12,6 +12,10 @@
   margin: 15px 10px;
 }
 
+.project-list {
+  flex: 1;
+  padding: 16px;
+}
 /* .projects__table {
   border: 2px solid rgba(33, 37, 41, 0.816);
 } */
@@ -31,4 +35,9 @@
 
 .projects__table tbody tr:last-of-type {
   border-bottom: 2px solid #00987ab8;
+}
+
+.footer {
+  display: flex;
+  flex-shrink: 0;
 }
