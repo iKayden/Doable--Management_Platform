@@ -36,8 +36,9 @@ export default function ProjectList(props) {
   return (
     <>
       {projectToAdd && <ProjectForm projectToAdd={projectToAdd} />}
-
-      <h1 className="d-inline projects__header">Projects</h1>
+      <div className="projects__header">
+        <h1 className="d-inline">Projects</h1>
+      </div>
 
       <table className="table table-hover projects__table">
         <thead>
