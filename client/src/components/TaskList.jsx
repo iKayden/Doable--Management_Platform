@@ -12,7 +12,7 @@ import {
 import {
   OPEN_EDIT_TASK,
   SET_TASKS,
-  OPEN_ADD_TASK
+  OPEN_ADD_TASK,
 } from "../reducer/data_reducer";
 import TaskForm from "./TaskForm";
 import EditTaskForm from "./EditTaskForm";
@@ -164,9 +164,10 @@ export default function TaskList() {
         </Modal.Footer>
       </Modal>
       <div className="task-list__dashboard">
-        <h1>Task Dashboard</h1>
-                        {/* New Task Button */}
-                        <Button
+        <h1>Task Dashboard
+          {/* New Task Button */}
+          <span id="tasklist__buttons">
+            <Button
             variant="primary"
             className="add-new-task__button"
             onClick={() =>
@@ -177,17 +178,18 @@ export default function TaskList() {
           >
             <i className="fa-solid fa-plus"></i> New Task{" "}
           </Button>
-                    {/* Chat Now Button */}
-                    <Button
+          {/* Chat Now Button */}
+          <Button
             variant="primary"
             className="chat__button"
             onClick={chatRoute}
           >
             Chat Now! <i className="fa-solid fa-message"></i>
           </Button>
-      </div>
+          </span>
+          </h1></div>
       <section className="dashboard_info">
-      <TaskTabs />
+        <TaskTabs />
       </section>
       <div className="dnd-wrapper-container">
         <DragDropContext

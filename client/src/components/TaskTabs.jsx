@@ -19,14 +19,14 @@ export default function TaskTabs() {
   const users = projectUsers.map((user) => {
     return (
       <>
-      <div>
+      <p>
       <img
       key={user.id}
       src={user.avatar}
       alt={user.name}
       className={"task-list__assigned-users__avatars"}
       /> {user.name}, {user.email}
-      </div>
+      </p>
     </>
     );
   });
@@ -45,17 +45,18 @@ export default function TaskTabs() {
       className="mb-3"
     >
       <Tab eventKey="details" title="Project Details">
-        <h3 className="task-list__projectName">
+        <p><h3 className="task-list__projectName">
           {/* After we got current project name, we display its name. If refresh page, error of undefined could show up because context doesn't have it for now. ? tells web page it could be undefined, so it won't has error */}
           Current Project: {currentProject?.name}
-        </h3>
-        Start Date: {currentProject.start_date}
-        <div>Deadline: {currentProject.expected_end_date}</div>
+        </h3></p>
+        <p>Description: {currentProject.description}</p>
+        <p>Start Date: {new Date(currentProject.start_date).toDateString()}</p>
+        <p>Deadline: {new Date(currentProject.expected_end_date).toDateString()}</p>
       </Tab>
       <Tab eventKey="members" title="Members">
-        <div className="task-list__project-users">
+        <p className="task-list__project-users">
           Members in this project:
-        </div>
+        </p>
           <div className="task-list__avatars-wrapper">{users}</div>
 
       </Tab>

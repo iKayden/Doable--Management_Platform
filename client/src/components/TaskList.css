@@ -1,5 +1,5 @@
 .dnd-wrapper-container {
-  margin-top: 50px;
+  margin-top: 20px;
   display: flex;
   width: 100%;
   justify-content: space-around;
@@ -75,8 +75,12 @@
 
 .add-new-task__button {
   background-color: #4a878a;
-  margin: 15px 5px 10px 20%;
+  margin: 15px 5px 10px 10%;
   /* box-shadow: 5px 5px 0px 0px #7ed4d8; */
+}
+
+.add-new-task__button:hover {
+  color: #6dccd1;
 }
 
 .chat__button {
@@ -84,22 +88,22 @@
   margin: 15px 10px 10px 5px;
 }
 
+.chat__button:hover {
+  color: #6dccd1;
+}
+
 .task-list__projectName {
-  /* text-align: center; */
   margin: 5px 5px 5px 5px;
-  /* border-top: 2px solid cornflowerblue;
-  border-bottom: 2px solid cornflowerblue; */
   cursor: default;
   justify-content: space-between;
-
-  /* box-shadow: 5px 5px 0px 0px rgba(67, 106, 247, 0.293); */
 }
 
 .task-list__dashboard {
-  text-align: center;
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* text-align: center; */
   margin-top: 15px;
   padding: 15px;
-  flex-direction: row;
 }
 
 .task-list__assigned-users__avatars {
@@ -113,7 +117,7 @@
 }
 
 .task-list__assigned-users__avatars:hover {
-  border: 5px solid #00aced;
+  border: 5px solid #42b393;
 }
 
 .task-list__avatars-wrapper {
@@ -142,8 +146,13 @@
 }
 
 .dashboard_info {
-  margin: 10px 50px 10px 50px;
+  margin: 10px 40px 10px 40px;
   padding: 10px 10px 10px 10px;
   background-color: rgb(234, 232, 232);
   border-radius: 7px;
 }
+
+/* #tasklist__buttons { */
+  /* display: flex; */
+  /* justify-content: end; */
+/* } */
