@@ -6,8 +6,11 @@
 }
 
 .dnd-column {
-  margin: 10px 10px 10px 10px;
+  /* margin: 10px 10px 10px 10px; */
   width: 30%;
+  margin: 10px 10px 10px 10px;
+  padding: 10px 10px 10px 10px;
+  text-align: center;
 }
 
 .btn-primary, .btn-primary:active, .btn-primary:visited {
@@ -47,6 +50,7 @@
 .draggable-item__inside {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .fa-solid.fa-trash-can {
@@ -95,6 +99,7 @@
   text-align: center;
   margin-top: 15px;
   padding: 15px;
+  flex-direction: row;
 }
 
 .task-list__assigned-users__avatars {
@@ -138,7 +143,7 @@
 
 .dashboard_info {
   margin: 10px 50px 10px 50px;
-  background-color: rgb(234, 232, 232);
   padding: 10px 10px 10px 10px;
+  background-color: rgb(234, 232, 232);
   border-radius: 7px;
 }

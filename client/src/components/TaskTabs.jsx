@@ -7,7 +7,7 @@ import {
   useApplicationDispatch,
 } from "../hooks/useApplicationData";
 import { OPEN_ADD_TASK } from "../reducer/data_reducer";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import { getUsersByProjectId } from "../api/user";
 
 export default function TaskTabs() {
@@ -15,6 +15,8 @@ export default function TaskTabs() {
   const { projects } = useApplicationState();
   const [projectUsers, setProjectUsers] = useState([]);
   const dispatch = useApplicationDispatch();
+
+  console.log("projects", projects);
 
   useEffect(() => {
     getUsersByProjectId(id).then((users) => {
@@ -40,10 +42,6 @@ export default function TaskTabs() {
   // we already have 'projects' from useApplicationState and 'id' from useParams
   const currentProject = getCurrentProjectId(projects, id);
 
-  const navigate = useNavigate();
-  const chatRoute = () => {
-    navigate(`/chat`);
-  };
 
   return (
     <Tabs
@@ -55,27 +53,9 @@ export default function TaskTabs() {
         <h3 className="task-list__projectName">
           {/* After we got current project name, we display its name. If refresh page, error of undefined could show up because context doesn't have it for now. ? tells web page it could be undefined, so it won't has error */}
           Current Project: {currentProject?.name}
-          {/* New Task Button */}
-          <Button
-            variant="primary"
-            className="add-new-task__button"
-            onClick={() =>
-              dispatch({
-                type: OPEN_ADD_TASK,
-              })
-            }
-          >
-            <i className="fa-solid fa-plus"></i> New Task{" "}
-          </Button>
-          {/* Chat Now Button */}
-          <Button
-            variant="primary"
-            className="chat__button"
-            onClick={chatRoute}
-          >
-            Chat Now! <i className="fa-solid fa-message"></i>
-          </Button>
         </h3>
+          Start Date: { currentProject.start_date }
+          <div>Deadline: { currentProject.expected_end_date }</div>
       </Tab>
       <Tab eventKey="members" title="Members">
         <div className="task-list__project-users">
@@ -90,6 +70,18 @@ export default function TaskTabs() {
       <Tab eventKey="secret" title="Secret" disabled>
         {/* <Sonnet /> */}
       </Tab>
+                      {/* New Task Button */}
+                      <Button
+            variant="primary"
+            className="add-new-task__button"
+            onClick={() =>
+              dispatch({
+                type: OPEN_ADD_TASK,
+              })
+            }
+          >
+            <i className="fa-solid fa-plus"></i> New Task{" "}
+          </Button>
     </Tabs>
   );
 }

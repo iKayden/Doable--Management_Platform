@@ -12,6 +12,7 @@ import {
 import {
   OPEN_EDIT_TASK,
   SET_TASKS,
+  OPEN_ADD_TASK
 } from "../reducer/data_reducer";
 import TaskForm from "./TaskForm";
 import EditTaskForm from "./EditTaskForm";
@@ -20,6 +21,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "./TaskList.css";
 import { getUsers } from "../api/user";
 import DeleteConfirmation from "./DeleteConfirmation";
+import { useNavigate } from "react-router-dom";
 
 export default function TaskList() {
   const [state, setState] = useState();
@@ -142,6 +144,12 @@ export default function TaskList() {
     });
   };
 
+  const navigate = useNavigate();
+  const chatRoute = () => {
+    navigate(`/chat`);
+  };
+
+
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -159,6 +167,26 @@ export default function TaskList() {
       </Modal>
       <div className="task-list__dashboard">
         <h1>Task Dashboard</h1>
+                        {/* New Task Button */}
+                        <Button
+            variant="primary"
+            className="add-new-task__button"
+            onClick={() =>
+              dispatch({
+                type: OPEN_ADD_TASK,
+              })
+            }
+          >
+            <i className="fa-solid fa-plus"></i> New Task{" "}
+          </Button>
+                    {/* Chat Now Button */}
+                    <Button
+            variant="primary"
+            className="chat__button"
+            onClick={chatRoute}
+          >
+            Chat Now! <i className="fa-solid fa-message"></i>
+          </Button>
       </div>
       <section className="dashboard_info">
       <TaskTabs />
