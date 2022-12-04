@@ -99,11 +99,11 @@
 }
 
 .task-list__dashboard {
-  /* display: flex; */
-  /* flex-direction: row; */
-  /* text-align: center; */
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
   margin-top: 15px;
-  padding: 15px;
+  padding-top: 15px;
 }
 
 .task-list__assigned-users__avatars {
@@ -132,6 +132,25 @@
   align-items: center;
 }
 
+#task-list__dates {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#tasklist__buttons {
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+}
+
+.tasklist_tabs {
+  color: #4a878a
+}
+
+.tasklist_tabs:hover {
+  color: #42b393
+}
+
 .draggable-item__task-avatar {
   margin: 5px;
   width: 30px;
@@ -151,8 +170,3 @@
   background-color: rgb(234, 232, 232);
   border-radius: 7px;
 }
-
-/* #tasklist__buttons { */
-  /* display: flex; */
-  /* justify-content: end; */
-/* } */
