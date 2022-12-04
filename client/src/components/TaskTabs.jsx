@@ -17,13 +17,15 @@ export default function TaskTabs() {
     });
   }, [id]);
 
+  console.log(projectUsers);
+
   const users = projectUsers.map((user) => {
     return (
       <>
         <Link
           to="#"
           onClick={(e) => {
-            window.location.href = "mailto:bowser@doable.com";
+            window.location.href = `mailto:${user.email}`;
             e.preventDefault();
           }}
         >
