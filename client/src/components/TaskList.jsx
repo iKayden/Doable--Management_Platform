@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import TaskTabs from "./TaskTabs";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { deleteTask, getTasksForProject, updateTask } from "../api/task";
 import TaskListItem from "./TaskListItem";
 import {
@@ -10,28 +10,28 @@ import {
   useApplicationDispatch,
 } from "../hooks/useApplicationData";
 import {
-  OPEN_ADD_TASK,
   OPEN_EDIT_TASK,
   SET_TASKS,
+  OPEN_ADD_TASK
 } from "../reducer/data_reducer";
 import TaskForm from "./TaskForm";
 import EditTaskForm from "./EditTaskForm";
 import _ from "lodash";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "./TaskList.css";
-import { getUsers, getUsersByProjectId } from "../api/user";
+import { getUsers } from "../api/user";
 import DeleteConfirmation from "./DeleteConfirmation";
+import { useNavigate } from "react-router-dom";
 
 export default function TaskList() {
   const [state, setState] = useState();
   const [itemId, setItemId] = useState();
-  const { tasks, taskToEdit, taskToAdd, projects } = useApplicationState();
+  const { tasks, taskToEdit, taskToAdd } = useApplicationState();
   const dispatch = useApplicationDispatch();
   const { id } = useParams(); //Current Project ID(from URL)
   const [showDelete, setShowDelete] = useState(false);
   const [taskId, setTaskId] = useState(0);
   const [status, setStatus] = useState("");
-  const [projectUsers, setProjectUsers] = useState([]);
   const [modalTask, setModalTask] = useState({
     name: "",
     status: "",
@@ -56,17 +56,7 @@ export default function TaskList() {
         tasks: data,
       });
     });
-    getUsersByProjectId(id).then((users) => {
-      setProjectUsers(users);
-    });
   }, [id]);
-
-  //Gets the project object of this task.
-  const getCurrentProjectId = (objectArr, projId) => {
-    return objectArr.find((project) => String(project.id) === String(projId));
-  };
-  // we already have 'projects' from useApplicationState and 'id' from useParams
-  const currentProject = getCurrentProjectId(projects, id);
 
   // Filters to reassign status of the draggable item in DB for DnD
   useEffect(() => {
@@ -106,17 +96,6 @@ export default function TaskList() {
       },
     });
   }, [tasks]);
-
-  const userAvatars = projectUsers.map((user) => {
-    return (
-      <img
-        key={user.id}
-        src={user.avatar}
-        alt={user.name}
-        className={"task-list__assigned-users__avatars"}
-      />
-    );
-  });
 
   const doneEdit = () => {
     getTasksForProject(id).then((data) => {
@@ -170,6 +149,7 @@ export default function TaskList() {
     navigate(`/chat`);
   };
 
+
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -187,14 +167,29 @@ export default function TaskList() {
       </Modal>
       <div className="task-list__dashboard">
         <h1>Task Dashboard</h1>
+                        {/* New Task Button */}
+                        <Button
+            variant="primary"
+            className="add-new-task__button"
+            onClick={() =>
+              dispatch({
+                type: OPEN_ADD_TASK,
+              })
+            }
+          >
+            <i className="fa-solid fa-plus"></i> New Task{" "}
+          </Button>
+                    {/* Chat Now Button */}
+                    <Button
+            variant="primary"
+            className="chat__button"
+            onClick={chatRoute}
+          >
+            Chat Now! <i className="fa-solid fa-message"></i>
+          </Button>
       </div>
       <section className="dashboard_info">
-      <TaskTabs>
-
-
-
-
-      </TaskTabs>
+      <TaskTabs />
       </section>
       <div className="dnd-wrapper-container">
         <DragDropContext
