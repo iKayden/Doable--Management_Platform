@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import { useApplicationState } from "../hooks/useApplicationData";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { getUsersByProjectId } from "../api/user";
 
 export default function TaskTabs() {
@@ -20,13 +20,21 @@ export default function TaskTabs() {
   const users = projectUsers.map((user) => {
     return (
       <>
+        <Link
+          to="#"
+          onClick={(e) => {
+            window.location.href ="mailto:bowser@doable.com";
+            e.preventDefault();
+          }}
+        >
           <img
             key={user.id}
             src={user.avatar}
             alt={user.name}
             className={"task-list__assigned-users__avatars"}
-          />{" "}
-          {user.name}
+          />
+        </Link>
+        {" "}{user.name}
       </>
     );
   });
