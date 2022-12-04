@@ -52,7 +52,7 @@ header {
 }
 
 .avatar {
-  height: 24px;
+  height: 30px;
   border-radius: 50%;
 }
 
@@ -63,7 +63,7 @@ header {
 }
 
 .nav-bar__doable {
-  font-family: 'Kanit';
+  font-family: "Kanit";
 }
 
 .logo {
