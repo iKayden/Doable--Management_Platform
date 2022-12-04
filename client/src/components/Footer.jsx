@@ -15,7 +15,7 @@ export default function Footer() {
       <MDBContainer className='p-2'>
         <MDBRow>
           <MDBCol lg="6" md="12" className='mb-2 mb-md-0'>
-            <h5 className='text-uppercase'>Footer Content</h5>
+            <h5 className='text-uppercase'>About DOABLE</h5>
 
             <p>
               We strive to make it easy for you and your team
