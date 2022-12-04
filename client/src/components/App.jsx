@@ -54,6 +54,7 @@ const App = () => {
                 {user ? (
                   <Nav>
                      <i className="fa fa-search"></i>
+                     <i className="fa-regular fa-bell"></i>
                     <Tooltip title={`This is me! A ${userName}!`} arrow>
                       <img src={userAvatar} alt={userName} className="avatar" />
                     </Tooltip>
