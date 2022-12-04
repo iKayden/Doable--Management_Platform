@@ -94,7 +94,11 @@ const App = () => {
         },
         {
           path: '/projects/:id/tasks',
-          element: <TaskList projectId={state.projectId} />,
+          element: (
+            <div className="App">
+              <TaskList projectId={state.projectId} />
+            </div>
+          ),
         },
         {
           path: '/chat',
