@@ -1,13 +1,17 @@
+.project-list__link-table-head {
+  text-align: left;
+}
 .project-list__link {
-  color: rgb(43, 89, 175);
-  font-family: "Lato";
+  color: rgb(2, 10, 25);
   text-decoration: none;
   font-size: 22px;
   margin: 0 10px 0 5px;
   position: relative;
+  text-transform: capitalize;
 }
-.project-list__link-table-head {
-  text-align: left;
+
+.project-list__link:hover {
+  transform: none;
 }
 .project-list__link:before {
   position: absolute;
@@ -26,4 +30,8 @@
 .project-list__link:hover:before {
   -webkit-transform: translateY(0);
   opacity: 1;
+}
+
+.edit-button {
+  color: #ffc107;
 }
