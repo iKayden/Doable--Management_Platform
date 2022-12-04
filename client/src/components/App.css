@@ -69,3 +69,11 @@ header {
     transform: rotate(360deg);
   }
 }
+
+.nav-bar__doable {
+  font-family: "Kanit";
+}
+
+.logo {
+  margin-bottom: 3px;
+}
