@@ -81,3 +81,8 @@
   display: flex;
   flex-direction: column;
 }
+
+.fa-search {
+  padding: 10px;
+  color: white;
+}

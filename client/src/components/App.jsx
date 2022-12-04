@@ -53,6 +53,7 @@ const App = () => {
                 </LinkContainer>
                 {user ? (
                   <Nav>
+                     <i className="fa fa-search"></i>
                     <Tooltip title={`This is me! A ${userName}!`} arrow>
                       <img src={userAvatar} alt={userName} className="avatar" />
                     </Tooltip>
