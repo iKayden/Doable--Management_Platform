@@ -1,5 +1,7 @@
-import { observer } from './AboutUsScript.js';
+
 import './AboutUsPage.css';
+import { useMemo, useRef, useState } from 'react';
+import { useEffect } from 'react';
 
 
 export default function AboutUsPage() {
@@ -10,12 +12,12 @@ export default function AboutUsPage() {
       <script defer src="./AboutUsScript.js"></script>
       <div className='inside-about-us__wrapper'>
 
-        <section className='hidden'>
+        <section className=''>
           <h1>Hello everyone!</h1>
           <p>This is our website</p>
           <p>We hope you enjoyed our project and presentation!</p>
         </section>
-        <section className='section__images hidden'>
+        <section className="section__images">
           <h2>This is the dev stack we've used to develop it</h2>
           <img
             src='https://github.com/iKayden/doable/blob/kayden/about-ut-page/client/public/express_js.png?raw=true'

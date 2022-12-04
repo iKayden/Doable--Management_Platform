@@ -49,7 +49,7 @@ const App = () => {
                       src="/doable_logo_new.png"
                       alt="logo"
                     />
-                    <text className="nav-bar__doable">DOABLE</text>
+                    <span className="nav-bar__doable">DOABLE</span>
                   </Navbar.Brand>
                 </LinkContainer>
                 {user ? (
