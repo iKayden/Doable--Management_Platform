@@ -72,6 +72,7 @@ export default function ProjectListItem({
       </th>
       <th>
         <Button
+          className='edit-button'
           variant="warning"
           onClick={() => {
             dispatch({
