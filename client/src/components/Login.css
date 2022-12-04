@@ -3,3 +3,9 @@
   flex-direction: column;
   align-items: center;
 }
+
+.logo-login {
+  height: 240px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
