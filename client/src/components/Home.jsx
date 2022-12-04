@@ -31,11 +31,7 @@ const Home = () => {
     return <Login setUser={setUser} />;
   }
 
-  return (
-    <div className="App">
-      <ProjectList projects={filteredProjects} />
-    </div>
-  );
+  return <ProjectList projects={filteredProjects} />;
 };
 
 export default Home;

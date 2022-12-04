@@ -86,7 +86,11 @@ const App = () => {
       children: [
         {
           path: '/',
-          element: <Home />,
+          element: (
+            <div className="App">
+              <Home />
+            </div>
+          ),
         },
         {
           path: '/login',
