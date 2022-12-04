@@ -67,7 +67,7 @@ export default function Login(props) {
         <Form.Group controlId="dob">
           <Form.Label>Password</Form.Label>
           <Form.Control
-            type="text"
+            type="password"
             name="password"
             placeholder="Enter password"
             value={password}
