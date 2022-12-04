@@ -16,6 +16,7 @@ import dataReducer from '../reducer/data_reducer';
 import TaskList from './TaskList';
 import io from 'socket.io-client';
 import { redirect } from 'react-router-dom';
+import Tooltip from '@mui/material/Tooltip';
 
 
 const socket = io.connect('http://localhost:3001');
@@ -54,13 +55,13 @@ const App = () => {
                 {user ? (
 
                   <Nav>
-                    {/* <Tooltip title={`This is me, a ${userName}`}> */}
-                    <img
-                      src={userAvatar}
-                      alt={userName}
-                      className="avatar"
-                    />
-                    {/* </Tooltip> */}
+                    <Tooltip title={`This is me! A ${userName}!`} arrow>
+                      <img
+                        src={userAvatar}
+                        alt={userName}
+                        className="avatar"
+                      />
+                    </Tooltip>
                     <NavDropdown title={userName} id="basic-nav-dropdown">
                       <NavDropdown.Item>Profile</NavDropdown.Item>
                       <LinkContainer to="/projects">
