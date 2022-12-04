@@ -58,7 +58,6 @@ export default function ProjectList(props) {
               >
                 <i className="fa-solid fa-plus"></i> Add New Project
               </Button>
-
             </th>
           </tr>
         </thead>
