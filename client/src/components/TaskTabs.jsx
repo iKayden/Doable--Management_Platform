@@ -1,22 +1,15 @@
+import "./TaskList.css";
 import { useEffect, useState } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import { Button } from "react-bootstrap";
-import {
-  useApplicationState,
-  useApplicationDispatch,
-} from "../hooks/useApplicationData";
-import { OPEN_ADD_TASK } from "../reducer/data_reducer";
-import { useParams} from "react-router-dom";
+import { useApplicationState } from "../hooks/useApplicationData";
+import { useParams } from "react-router-dom";
 import { getUsersByProjectId } from "../api/user";
 
 export default function TaskTabs() {
   const { id } = useParams(); //Current Project ID(from URL)
   const { projects } = useApplicationState();
   const [projectUsers, setProjectUsers] = useState([]);
-  const dispatch = useApplicationDispatch();
-
-  console.log("projects", projects);
 
   useEffect(() => {
     getUsersByProjectId(id).then((users) => {
@@ -24,14 +17,17 @@ export default function TaskTabs() {
     });
   }, [id]);
 
-  const userAvatars = projectUsers.map((user) => {
+  const users = projectUsers.map((user) => {
     return (
-      <img
-        key={user.id}
-        src={user.avatar}
-        alt={user.name}
-        className={"task-list__assigned-users__avatars"}
-      />
+      <>
+          <img
+            key={user.id}
+            src={user.avatar}
+            alt={user.name}
+            className={"task-list__assigned-users__avatars"}
+          />{" "}
+          {user.name}
+      </>
     );
   });
 
@@ -42,46 +38,42 @@ export default function TaskTabs() {
   // we already have 'projects' from useApplicationState and 'id' from useParams
   const currentProject = getCurrentProjectId(projects, id);
 
-
   return (
     <Tabs
       defaultActiveKey="details"
       id="uncontrolled-tab-example"
       className="mb-3"
     >
-      <Tab eventKey="details" title="Project Details">
-        <h3 className="task-list__projectName">
-          {/* After we got current project name, we display its name. If refresh page, error of undefined could show up because context doesn't have it for now. ? tells web page it could be undefined, so it won't has error */}
-          Current Project: {currentProject?.name}
-        </h3>
-          Start Date: { currentProject.start_date }
-          <div>Deadline: { currentProject.expected_end_date }</div>
+      <Tab
+        tabClassName="tasklist_tabs"
+        eventKey="details"
+        title="Project Details"
+      >
+        <p>
+          <h3 className="task-list__projectName">
+            {/* After we got current project name, we display its name. If refresh page, error of undefined could show up because context doesn't have it for now. ? tells web page it could be undefined, so it won't has error */}
+            <b>Name:</b> {currentProject?.name}
+          </h3>
+        </p>
+        <p>
+          <b>Description:</b> {currentProject.description}
+        </p>
+        <p id="task-list__dates">
+          <b>
+            Start Date: {new Date(currentProject.start_date).toDateString()}{" "}
+          </b>
+          <b>
+            Deadline:{" "}
+            {new Date(currentProject.expected_end_date).toDateString()}{" "}
+          </b>
+        </p>
       </Tab>
-      <Tab eventKey="members" title="Members">
-        <div className="task-list__project-users">
-          Assigned Members:
-          <div className="task-list__avatars-wrapper">{userAvatars}</div>
-        </div>
-        
+      <Tab tabClassName="tasklist_tabs" eventKey="members" title="Members">
+        <p className="task-list__project-users">Members in this project:</p>
+        <div className="task-list__avatars-wrapper">{users}</div>
       </Tab>
-      <Tab eventKey="files" title="Files">
-        {/* <Sonnet /> */}
-      </Tab>
-      <Tab eventKey="secret" title="Secret" disabled>
-        {/* <Sonnet /> */}
-      </Tab>
-                      {/* New Task Button */}
-                      <Button
-            variant="primary"
-            className="add-new-task__button"
-            onClick={() =>
-              dispatch({
-                type: OPEN_ADD_TASK,
-              })
-            }
-          >
-            <i className="fa-solid fa-plus"></i> New Task{" "}
-          </Button>
+      <Tab tabClassName="tasklist_tabs" eventKey="files" title="Files"></Tab>
+      <Tab eventKey="secret" title="Secrets" disabled></Tab>
     </Tabs>
   );
 }
