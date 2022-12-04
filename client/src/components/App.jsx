@@ -98,7 +98,11 @@ const App = () => {
         },
         {
           path: '/projects',
-          element: <AllProjects />,
+          element: (
+            <div className="App">
+              <AllProjects />
+            </div>
+          ),
         },
         {
           path: '/projects/:id/tasks',
