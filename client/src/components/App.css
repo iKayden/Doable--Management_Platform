@@ -81,3 +81,12 @@
   display: flex;
   flex-direction: column;
 }
+
+.me-2 {
+  background-color: #ffffff;
+  width: 160px;
+}
+
+.search {
+  margin-right: 8px;
+}
