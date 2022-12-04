@@ -67,7 +67,7 @@ const App = () => {
                       <LinkContainer to="/projects">
                         <NavDropdown.Item>Project History</NavDropdown.Item>
                       </LinkContainer>
-                      <NavDropdown.Item>Setting</NavDropdown.Item>
+                      <NavDropdown.Item>Settings</NavDropdown.Item>
                       <NavDropdown.Divider />
                       <LinkContainer to="/logout">
                         <NavDropdown.Item onClick={handleLogout}>
