@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
 import './Login.css';
 
 export default function Login(props) {
@@ -49,7 +51,8 @@ export default function Login(props) {
     <div className="login">
       <img className="logo-login" src="/doable_logo_new.png" alt="logo" />
       <h3>Welcome Back!</h3>
-      <div>{error}</div>
+      {error ? <Alert variant={'danger'}>{error}</Alert> : ''}
+
       <form onSubmit={handleSubmit}>
         <Form.Group controlId="dob">
           <Form.Label>Email</Form.Label>
@@ -71,10 +74,13 @@ export default function Login(props) {
             onChange={(event) => setPassword(event.target.value)}
           />
         </Form.Group>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
+        <Button className="login-button" variant="primary" type="submit">
+          Login
+        </Button>
       </form>
+      <div>
+        Need an account?<a href={url}>Sign up</a>
+      </div>
     </div>
   );
 }
