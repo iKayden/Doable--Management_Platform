@@ -139,7 +139,6 @@ export default function TaskList() {
         0,
         itemCopy
       );
-
       return prev;
     });
   };
@@ -148,7 +147,6 @@ export default function TaskList() {
   const chatRoute = () => {
     navigate(`/chat`);
   };
-
 
   return (
     <>
