@@ -16,7 +16,7 @@ const ChatBody = ({ messages, lastMessageRef, typingStatus }) => {
   return (
     <>
       <header className="chat__mainHeader">
-        <p>Hangout with Members</p>
+        <div>Hangout with Members</div>
         <button className="leaveChat__btn" onClick={handleLeaveChat}>
           LEAVE CHAT
         </button>
@@ -41,16 +41,14 @@ const ChatBody = ({ messages, lastMessageRef, typingStatus }) => {
           )
         )}
 
-        <div
-          className="message__status">
+        <div className="message__status">
           <p>{typingStatus}</p>
         </div>
-        <div ref={lastMessageRef} />{/* Auto-scroll feature */}
+        <div ref={lastMessageRef} />
+        {/* Auto-scroll feature */}
       </div>
-
     </>
   );
-
 };
 
 export default ChatBody;

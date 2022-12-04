@@ -18,7 +18,6 @@ import io from 'socket.io-client';
 import { redirect } from 'react-router-dom';
 import Tooltip from '@mui/material/Tooltip';
 
-
 const socket = io.connect('http://localhost:3001');
 
 const App = () => {
@@ -39,7 +38,7 @@ const App = () => {
     {
       element: (
         <>
-          <header>
+          <header className="header">
             <Navbar variant="dark">
               <Container className="nav-bar">
                 <LinkContainer to="/">
@@ -49,18 +48,13 @@ const App = () => {
                       src="/doable_logo_new.png"
                       alt="logo"
                     />
-                    <text className='nav-bar__doable'>DOABLE</text>
+                    <text className="nav-bar__doable">DOABLE</text>
                   </Navbar.Brand>
                 </LinkContainer>
                 {user ? (
-
                   <Nav>
                     <Tooltip title={`This is me! A ${userName}!`} arrow>
-                      <img
-                        src={userAvatar}
-                        alt={userName}
-                        className="avatar"
-                      />
+                      <img src={userAvatar} alt={userName} className="avatar" />
                     </Tooltip>
                     <NavDropdown title={userName} id="basic-nav-dropdown">
                       <NavDropdown.Item>Profile</NavDropdown.Item>
@@ -83,7 +77,6 @@ const App = () => {
             </Navbar>
           </header>
           <Outlet />
-
         </>
       ),
       children: [
@@ -101,7 +94,11 @@ const App = () => {
         },
         {
           path: '/projects/:id/tasks',
-          element: <TaskList projectId={state.projectId} />,
+          element: (
+            <div className="App">
+              <TaskList projectId={state.projectId} />
+            </div>
+          ),
         },
         {
           path: '/chat',
@@ -112,11 +109,11 @@ const App = () => {
         },
         {
           path: '/about',
-          element: <h1>Placeholder page for about us page</h1>
+          element: <h1>Placeholder page for about us page</h1>,
         },
         {
           path: '/contact',
-          element: <h1>Placeholder page for contact us page</h1>
+          element: <h1>Placeholder page for contact us page</h1>,
         },
       ],
     },

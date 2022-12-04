@@ -8,6 +8,7 @@
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
+  padding-top: 56px;
 }
 .chat__active-user {
   display: flex;
