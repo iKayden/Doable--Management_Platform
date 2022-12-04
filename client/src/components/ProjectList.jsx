@@ -37,18 +37,9 @@ export default function ProjectList(props) {
     <>
       {projectToAdd && <ProjectForm projectToAdd={projectToAdd} />}
 
-      <h1 className="d-inline">Projects</h1>
-      <Button
-        variant="primary"
-        className="d-inline-block add--newProject__button"
-        onClick={() => {
-          dispatch({ type: TO_ADD_PROJ });
-        }}
-      >
-        Add New Project
-      </Button>
+      <h1 className="d-inline projects__header">Projects</h1>
 
-      <table className="table table-light">
+      <table className="table table-light table-hover projects__table">
         <thead>
           <tr>
             <th scope="col">Project</th>
@@ -57,8 +48,18 @@ export default function ProjectList(props) {
             <th scope="col">Expected End Date</th>
             <th scope="col">Description</th>
             <th scope="col">Completion</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
+            <th scope="col" colSpan="2">
+              <Button
+                variant="primary"
+                className="d-inline-block add--newProject__button"
+                onClick={() => {
+                  dispatch({ type: TO_ADD_PROJ });
+                }}
+              >
+                <i className="fa-solid fa-plus"></i> Add New Project
+              </Button>
+
+            </th>
           </tr>
         </thead>
         <tbody>{projectList}</tbody>

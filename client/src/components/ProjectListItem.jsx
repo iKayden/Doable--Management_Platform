@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import EditProjectForm from './EditProjectForm';
 import DeleteConfirmation from './DeleteConfirmation';
+import './ProjectListItem.css';
 
 export default function ProjectListItem({
   project,
@@ -30,6 +31,7 @@ export default function ProjectListItem({
   const [showDelete, setShowDelete] = useState(false);
   const handleShow = () => setShowDelete(true);
 
+
   return (
     <tr key={project.id}>
       <th
@@ -37,7 +39,7 @@ export default function ProjectListItem({
           dispatch({ type: SET_PROJECT, id: project.id });
         }}
       >
-        <Link to={`/projects/${project.id}/tasks`}>{project.name}</Link>
+        <Link className='project-list__link' to={`/projects/${project.id}/tasks`}>{project.name}</Link>
       </th>
       <th>
         <ProgressBar
@@ -54,6 +56,7 @@ export default function ProjectListItem({
           <h6>Completed</h6>
         ) : (
           <Button
+            className='project-list__complete-btn'
             variant="success"
             onClick={() => {
               updateProject(dispatch, {
