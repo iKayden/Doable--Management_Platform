@@ -18,6 +18,9 @@
 .project-list {
   flex: 1;
   padding: 16px;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
 }
 /* .projects__table {
   border: 2px solid rgba(33, 37, 41, 0.816);
