@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  padding: 16px;
 }
 
 .App-logo {
@@ -51,7 +52,7 @@ header {
 }
 
 .avatar {
-  height: 24px;
+  height: 30px;
   border-radius: 50%;
 }
 

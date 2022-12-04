@@ -1,13 +1,18 @@
-.project-list__link {
-  color: rgb(43, 89, 175);
-  font-family: "Lato";
-  text-decoration: none;
-  font-size: 22px;
-  margin: 0 10px 0 5px;
-  position: relative;
-}
 .project-list__link-table-head {
   text-align: left;
+}
+.project-list__link {
+  color: rgb(2, 10, 25);
+  text-decoration: none;
+  font-size: 19px;
+  margin: 0 10px 0 5px;
+  position: relative;
+  text-transform: capitalize;
+}
+
+.project-list__link:hover {
+  transform: none;
+  color: inherit;
 }
 .project-list__link:before {
   position: absolute;
@@ -26,4 +31,41 @@
 .project-list__link:hover:before {
   -webkit-transform: translateY(0);
   opacity: 1;
+}
+
+.edit-button {
+  background-color: #ffc1079d;
+  border: 0.5px solid #ffc1079d;
+  box-shadow: 5px 5px 0px 0px #ffc1079d;
+  position: relative;
+  top: 0;
+  transition: top ease 0.5s;
+}
+.edit-button:hover {
+  top: -3px;
+}
+
+.delete-button {
+  background-color: #dc3546ce;
+  border: 0.5px solid #dc3546af;
+  box-shadow: 5px 5px 0px 0px #dc3546af;
+  position: relative;
+  top: 0;
+  transition: top ease 0.5s;
+}
+.delete-button:hover {
+  top: -3px;
+}
+
+.complete-button {
+  background-color: #198754d2;
+  border: 0.5px solid #198754d2;
+  box-shadow: 5px 5px 0px 0px #198754d2;
+  position: relative;
+  top: 0;
+  transition: top ease 0.5s;
+}
+
+.complete-button:hover {
+  top: -3px;
 }

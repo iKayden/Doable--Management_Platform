@@ -57,7 +57,7 @@ export default function ProjectListItem({
           <h6>Completed</h6>
         ) : (
           <Button
-            className='project-list__complete-btn'
+            className='complete-button'
             variant="success"
             onClick={() => {
               updateProject(dispatch, {
@@ -72,6 +72,7 @@ export default function ProjectListItem({
       </th>
       <th>
         <Button
+          className='edit-button'
           variant="warning"
           onClick={() => {
             dispatch({
@@ -87,6 +88,7 @@ export default function ProjectListItem({
 
       <th>
         <Button
+          className='delete-button'
           variant="danger"
           onClick={() => {
             handleShow();

@@ -17,6 +17,7 @@ import TaskList from './TaskList';
 import io from 'socket.io-client';
 import { redirect } from 'react-router-dom';
 
+
 const socket = io.connect('http://localhost:3001');
 
 const App = () => {
@@ -51,8 +52,15 @@ const App = () => {
                   </Navbar.Brand>
                 </LinkContainer>
                 {user ? (
+
                   <Nav>
-                    <img src={userAvatar} alt="user" className="avatar" />
+                    {/* <Tooltip title={`This is me, a ${userName}`}> */}
+                    <img
+                      src={userAvatar}
+                      alt={userName}
+                      className="avatar"
+                    />
+                    {/* </Tooltip> */}
                     <NavDropdown title={userName} id="basic-nav-dropdown">
                       <NavDropdown.Item>Profile</NavDropdown.Item>
                       <LinkContainer to="/projects">

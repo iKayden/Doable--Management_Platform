@@ -1,15 +1,18 @@
 .add--newProject__button {
   background-color: rgba(13, 109, 253, 0.805) !important;
   box-shadow: 5px 5px 0px 0px rgba(67, 106, 247, 0.293);
+  position: relative;
+  top: 0;
+  transition: top ease 0.5s;
 }
 
 .add--newProject__button:hover {
   background-color: rgba(33, 37, 41, 0.816);
-  box-shadow: 5px 5px 0px 0px rgb(62, 172, 191);
+  top: -3px;
 }
 
 .projects__header {
-  margin-top: 5px;
+  margin: 15px 10px;
 }
 
 /* .projects__table {
@@ -17,7 +20,7 @@
 } */
 .projects__table {
   border-collapse: collapse;
-  width: 98% !important;
+  /* width: 98% !important; */
   border-radius: 5px 5px 0 0;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
