@@ -1,23 +1,69 @@
-
 import './AboutUsPage.css';
-import { useMemo, useRef, useState } from 'react';
-import { useEffect } from 'react';
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useEffect } from "react";
 
 
 export default function AboutUsPage() {
 
+  const boxVariant = {
+    visible: { opacity: 1, scale: 1, x: 0, transition: { duration: 0.5 } },
+    hidden: { opacity: 0, scale: 0, x: 200 },
+  };
+
+  const control = useAnimation();
+  const [ref, inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      control.start("visible");
+    } else {
+      control.start("hidden");
+    }
+  }, [control, inView]);
+
 
   return (
     <>
-      <script defer src="./AboutUsScript.js"></script>
-      <div className='inside-about-us__wrapper'>
 
-        <section className=''>
+      <div className='inside-about-us__wrapper'>
+        <motion.circle cx={500} animate={{ cx: [null, 100] }} />
+        <motion.section
+          // ref={ref}
+          // variants={boxVariant}
+          // initial="hidden"
+          // animate={control}
+          animate={{ x: [null, 100, 0] }}
+          className="box"
+        >
+          <h1>Box</h1>
+          <h1>Box</h1>
+          <h1>Box</h1>
+          <h1>Box</h1>
+          <h1>Box</h1>
+          <h1>Box</h1>
+          <h1>Box</h1>
+          <h1>Box</h1>
+          <h1>Box</h1>
+        </motion.section>
+        <motion.section
+          // ref={ref}
+          variants={boxVariant}
+          initial="hidden"
+          animate={control}
+          className="box"
+        >
           <h1>Hello everyone!</h1>
           <p>This is our website</p>
           <p>We hope you enjoyed our project and presentation!</p>
-        </section>
-        <section className="section__images">
+        </motion.section>
+        <motion.section
+          // ref={ref}
+          variants={boxVariant}
+          initial="hidden"
+          animate={control}
+          className="box section__images"
+        >
           <h2>This is the dev stack we've used to develop it</h2>
           <img
             src='https://github.com/iKayden/doable/blob/kayden/about-ut-page/client/public/express_js.png?raw=true'
@@ -36,11 +82,17 @@ export default function AboutUsPage() {
             alt='react-logo'
           ></img>
 
-        </section>
-        <section className='hidden'>
+        </motion.section>
+        <motion.section
+          ref={ref}
+          variants={boxVariant}
+          initial="hidden"
+          animate={control}
+          className="box"
+        >
           <h2>This is our amazing team</h2>
           <img className='about-us_group-photo' src='https://img.freepik.com/free-photo/successful-happy-business-team_53876-20936.jpg?w=2000' alt='our-team'></img>
-        </section>
+        </motion.section>
         <section className='about-us__our-stories hidden'>
           <h3>Our stories</h3>
           <h2>Eileen</h2>
