@@ -17,6 +17,7 @@ import TaskList from './TaskList';
 import io from 'socket.io-client';
 import { redirect } from 'react-router-dom';
 import Tooltip from '@mui/material/Tooltip';
+import AboutUsPage from './AboutUsPage';
 
 const socket = io.connect('http://localhost:3001');
 
@@ -53,8 +54,8 @@ const App = () => {
                 </LinkContainer>
                 {user ? (
                   <Nav>
-                     <i className="fa fa-search"></i>
-                     <i className="fa-regular fa-bell"></i>
+                    <i className="fa fa-search"></i>
+                    <i className="fa-regular fa-bell"></i>
                     <Tooltip title={`This is me! A ${userName}!`} arrow>
                       <img src={userAvatar} alt={userName} className="avatar" />
                     </Tooltip>
@@ -123,7 +124,11 @@ const App = () => {
         },
         {
           path: '/about',
-          element: <h1>Placeholder page for about us page</h1>,
+          element: (
+            <div className="about-us__wrapper">
+              <AboutUsPage />,
+            </div>
+          ),
         },
         {
           path: '/contact',
