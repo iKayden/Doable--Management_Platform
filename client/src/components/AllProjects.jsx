@@ -2,6 +2,8 @@ import { useApplicationState } from '../hooks/useApplicationData';
 import ProjectList from './ProjectList';
 import Login from './Login';
 import { useState } from 'react';
+import './App.css';
+
 
 export default function AllProjects() {
   const { projects } = useApplicationState();
@@ -11,5 +13,6 @@ export default function AllProjects() {
     return <Login setUser={setUser} />;
   }
 
-  return <ProjectList projects={projects} />;
+  return <ProjectList
+    projects={projects} />;
 }
