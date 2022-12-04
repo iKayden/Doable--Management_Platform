@@ -6,16 +6,22 @@
 }
 
 .dnd-column {
+  margin: 10px 10px 10px 10px;
   width: 30%;
 }
 
+.btn-primary, .btn-primary:active, .btn-primary:visited {
+  background-color: #4a878a !important;
+  border: #4a878a !important;
+}
+
 .droppable-col {
+  display: flex;
   width: 100%;
   height: 150px;
-  background-color: rgb(230, 230, 230);
-  padding: 10px 10px 10px 10px;
+  background-color: rgb(234, 232, 232);
+  padding: 15px;
   border-radius: 7px;
-  display: flex;
   flex-direction: column;
   height: fit-content;
   min-height: 200px;
@@ -32,10 +38,10 @@
 
 .draggable-item:hover {
   background-color: rgb(255, 255, 255);
-  box-shadow: 5px 5px 0px 0px rgb(62, 172, 191);
+  box-shadow: 5px 5px 0px 0px #53a0a4;
 }
 .draggable-item.dragging {
-  background-color: rgb(137, 228, 255);
+  background-color: #6dccd1;
 }
 
 .draggable-item__inside {
@@ -51,10 +57,12 @@
 .draggable-item__icons {
   /* display: none; */
   cursor: pointer;
+  margin: 5px;
+  align-self: center;
 }
 
 .fa-solid.fa-pen-to-square:hover {
-  color: burlywood;
+  color: rgb(229, 190, 138);
 }
 
 .fa-solid.fa-trash-can:hover {
@@ -62,22 +70,24 @@
 }
 
 .add-new-task__button {
-  background-color: rgb(137, 228, 255);
-  margin: 15px 10px 10px 40%;
-  box-shadow: 5px 5px 0px 0px rgba(67, 106, 247, 0.293);
+  background-color: #4a878a;
+  margin: 15px 5px 10px 20%;
+  /* box-shadow: 5px 5px 0px 0px #7ed4d8; */
 }
 
 .chat__button {
-  box-shadow: 5px 5px 0px 0px rgba(67, 106, 247, 0.293);
+  /* box-shadow: 5px 5px 0px 0px #7ed4d8; */
+  margin: 15px 10px 10px 5px;
 }
 
 .task-list__projectName {
-  text-align: center;
+  /* text-align: center; */
   margin: 5px 5px 5px 5px;
   /* border-top: 2px solid cornflowerblue;
   border-bottom: 2px solid cornflowerblue; */
-  /* padding: 15px; */
   cursor: default;
+  justify-content: space-between;
+
   /* box-shadow: 5px 5px 0px 0px rgba(67, 106, 247, 0.293); */
 }
 
@@ -88,10 +98,10 @@
 }
 
 .task-list__assigned-users__avatars {
-  width: 50px;
-  height: 50px;
+  width: 25px;
+  height: 25px;
   line-height: 75px;
-  margin: 10px 10px;
+  margin: 5px;
   text-align: center;
   cursor: pointer;
   border-radius: 50%;
@@ -114,8 +124,21 @@
 }
 
 .draggable-item__task-avatar {
+  margin: 5px;
   width: 30px;
   height: 30px;
   border-radius: 50%;
   border: 1px solid whitesmoke;
+}
+
+.draggable-item__text {
+  margin: 5px;
+  align-self: center;
+}
+
+.dashboard_info {
+  margin: 10px 50px 10px 50px;
+  background-color: rgb(234, 232, 232);
+  padding: 10px 10px 10px 10px;
+  border-radius: 7px;
 }

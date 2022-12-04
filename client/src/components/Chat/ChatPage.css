@@ -43,7 +43,8 @@
 }
 .chat__sidebar {
   height: 100%;
-  background-color: #f9f5eb;
+  /* background-color: #f9f5eb; */
+  background-color: rgb(234, 232, 232);
   flex: 0.2;
   padding: 20px;
   border-right: 1px solid #fdfdfd;
@@ -72,7 +73,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background-color: #f9f5eb;
+  /* background-color: #f9f5eb; */
+  background-color: rgb(234, 232, 232);
 }
 .leaveChat__btn {
   padding: 10px;
@@ -96,7 +98,8 @@
 }
 .chat__footer {
   padding: 10px;
-  background-color: #f9f5eb;
+  /* background-color: #f9f5eb; */
+  background-color: rgb(234, 232, 232);
   height: 10vh;
 }
 .form {
@@ -116,12 +119,13 @@
 }
 .sendBtn {
   width: 150px;
-  background-color: green;
+  background-color: #4a878a;
   padding: 10px;
   border: none;
   outline: none;
   color: #eae3d2;
   cursor: pointer;
+  margin: 10px;
 }
 .sendBtn:hover {
   background-color: rgb(129, 201, 129);
