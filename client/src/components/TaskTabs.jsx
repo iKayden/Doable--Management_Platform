@@ -5,7 +5,6 @@ import Tabs from "react-bootstrap/Tabs";
 import { useApplicationState } from "../hooks/useApplicationData";
 import { useParams } from "react-router-dom";
 import { getUsersByProjectId } from "../api/user";
-import Tooltip from '@mui/material/Tooltip';
 
 export default function TaskTabs() {
   const { id } = useParams(); //Current Project ID(from URL)
@@ -21,14 +20,12 @@ export default function TaskTabs() {
   const users = projectUsers.map((user) => {
     return (
       <>
-        <Tooltip title={`Contact me at ${user.email}!`} arrow>
           <img
             key={user.id}
             src={user.avatar}
             alt={user.name}
             className={"task-list__assigned-users__avatars"}
           />{" "}
-        </Tooltip>
           {user.name}
       </>
     );
