@@ -2,7 +2,7 @@
   height: 150px;
   width: 155px;
   border-radius: 10%;
-  margin: 10px;
+  /* margin: 10px; */
 }
 
 .about-us_group-photo {
@@ -25,4 +25,19 @@
   height: 350px;
   width: 580px;
   border-radius: 10%;
+}
+
+section {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  min-height: 100vh;
+}
+
+.hidden {
+  opacity: 0;
+  transition: all 1s;
+}
+.show {
+  opacity: 1;
 }

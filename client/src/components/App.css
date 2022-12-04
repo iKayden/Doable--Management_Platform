@@ -69,7 +69,7 @@
 }
 
 .nav-bar__doable {
-  font-family: 'Kanit';
+  font-family: "Kanit";
 }
 
 .logo {
@@ -90,4 +90,10 @@
 .fa-bell {
   padding: 15px;
   color: white;
+}
+.outside-about-us__wrapper {
+  background-color: #131316;
+  color: #ffffff;
+  padding: 0;
+  margin: 0;
 }

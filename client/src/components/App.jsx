@@ -125,7 +125,7 @@ const App = () => {
         {
           path: '/about',
           element: (
-            <div className="about-us__wrapper">
+            <div className="outside-about-us__wrapper">
               <AboutUsPage />,
             </div>
           ),
