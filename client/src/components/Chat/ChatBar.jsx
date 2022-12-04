@@ -4,7 +4,6 @@ import { useApplicationDispatch, useApplicationState } from '../../hooks/useAppl
 import './ChatBar.css';
 
 const ChatBar = ({ socket }) => {
-  const { users } = useApplicationState();
   const dispatch = useApplicationDispatch();
   const [activeUsers, setActiveUsers] = useState([]);
 

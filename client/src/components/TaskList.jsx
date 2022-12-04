@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-
-import { useParams, useNavigate } from 'react-router-dom';
-import { deleteTask, getTasksForProject, updateTask } from '../api/task';
-import TaskListItem from './TaskListItem';
+import React, { useState, useEffect } from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import TaskTabs from "./TaskTabs";
+import { useParams, useNavigate } from "react-router-dom";
+import { deleteTask, getTasksForProject, updateTask } from "../api/task";
+import TaskListItem from "./TaskListItem";
 import {
   useApplicationState,
   useApplicationDispatch,
@@ -13,20 +13,19 @@ import {
   OPEN_ADD_TASK,
   OPEN_EDIT_TASK,
   SET_TASKS,
-} from '../reducer/data_reducer';
-import TaskForm from './TaskForm';
-import EditTaskForm from './EditTaskForm';
-import _ from 'lodash';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import './TaskList.css';
-import { getUsers, getUsersByProjectId } from '../api/user';
+} from "../reducer/data_reducer";
+import TaskForm from "./TaskForm";
+import EditTaskForm from "./EditTaskForm";
+import _ from "lodash";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import "./TaskList.css";
+import { getUsers, getUsersByProjectId } from "../api/user";
 import DeleteConfirmation from "./DeleteConfirmation";
 
 export default function TaskList() {
   const [state, setState] = useState();
   const [itemId, setItemId] = useState();
-  const { tasks, taskToEdit, taskToAdd, projects } =
-    useApplicationState();
+  const { tasks, taskToEdit, taskToAdd, projects } = useApplicationState();
   const dispatch = useApplicationDispatch();
   const { id } = useParams(); //Current Project ID(from URL)
   const [showDelete, setShowDelete] = useState(false);
@@ -34,11 +33,11 @@ export default function TaskList() {
   const [status, setStatus] = useState("");
   const [projectUsers, setProjectUsers] = useState([]);
   const [modalTask, setModalTask] = useState({
-    name: '',
-    status: '',
-    assigned_user_id: '',
-    deadline: '',
-    description: '',
+    name: "",
+    status: "",
+    assigned_user_id: "",
+    deadline: "",
+    description: "",
   });
 
   const [show, setShow] = useState(false);
@@ -51,19 +50,16 @@ export default function TaskList() {
   }, [dispatch]);
 
   useEffect(() => {
-    getTasksForProject(id)
-      .then((data) => {
-        dispatch({
-          type: SET_TASKS,
-          tasks: data,
-        });
+    getTasksForProject(id).then((data) => {
+      dispatch({
+        type: SET_TASKS,
+        tasks: data,
       });
-    getUsersByProjectId(id)
-      .then((users) => {
-        setProjectUsers(users);
-      });
+    });
+    getUsersByProjectId(id).then((users) => {
+      setProjectUsers(users);
+    });
   }, [id]);
-
 
   //Gets the project object of this task.
   const getCurrentProjectId = (objectArr, projId) => {
@@ -111,26 +107,24 @@ export default function TaskList() {
     });
   }, [tasks]);
 
-  const userAvatars = projectUsers
-    .map((user) => {
-      return (
-        <img
-          key={user.id}
-          src={user.avatar}
-          alt={user.name}
-          className={'task-list__assigned-users__avatars'}
-        />
-      );
-    });
+  const userAvatars = projectUsers.map((user) => {
+    return (
+      <img
+        key={user.id}
+        src={user.avatar}
+        alt={user.name}
+        className={"task-list__assigned-users__avatars"}
+      />
+    );
+  });
 
   const doneEdit = () => {
-    getTasksForProject(id)
-      .then((data) => {
-        dispatch({
-          type: SET_TASKS,
-          tasks: data,
-        });
+    getTasksForProject(id).then((data) => {
+      dispatch({
+        type: SET_TASKS,
+        tasks: data,
       });
+    });
   };
   const handleDragEnd = ({ destination, source }) => {
     if (!destination) return;
@@ -191,31 +185,17 @@ export default function TaskList() {
           </Button>
         </Modal.Footer>
       </Modal>
-        <div className="task-list__dashboard"><h1>
-          Task Dashboard
-          </h1></div>
-      <h1 className="task-list__projectName">
-        {/* After we got current project name, we display its name. If refresh page, error of undefined could show up because context doesn't have it for now. ? tells web page it could be undefined, so it won't has error */}
-        Project: {currentProject?.name}
-        <Button
-          variant="primary"
-          className="add-new-task__button"
-          onClick={() =>
-            dispatch({
-              type: OPEN_ADD_TASK,
-            })
-          }
-        >
-          <i className="fa-solid fa-plus"></i> New Task{" "}
-        </Button>
-        <Button variant="primary" className="chat__button" onClick={chatRoute}>
-          Chat Now! <i className="fa-solid fa-message"></i>
-        </Button>
-      </h1>
-      <div className="task-list__project-users">
-        Assigned Members:
-        <div className="task-list__avatars-wrapper">{userAvatars}</div>
+      <div className="task-list__dashboard">
+        <h1>Task Dashboard</h1>
       </div>
+      <section className="dashboard_info">
+      <TaskTabs>
+
+
+
+
+      </TaskTabs>
+      </section>
       <div className="dnd-wrapper-container">
         <DragDropContext
           onDragEnd={handleDragEnd}
@@ -243,8 +223,9 @@ export default function TaskList() {
                               {(provided, snapshot) => {
                                 return (
                                   <div
-                                    className={`draggable-item ${snapshot.isDragging && "dragging"
-                                      }`}
+                                    className={`draggable-item ${
+                                      snapshot.isDragging && "dragging"
+                                    }`}
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
@@ -255,9 +236,12 @@ export default function TaskList() {
                                   >
                                     <div className="draggable-item__inside">
                                       <img
-                                        className='draggable-item__task-avatar'
-                                        src={el.avatar ? el.avatar :
-                                          "https://cdn.dribbble.com/users/5592443/screenshots/12434328/drbl_mario_q-block_4x.png"}
+                                        className="draggable-item__task-avatar"
+                                        src={
+                                          el.avatar
+                                            ? el.avatar
+                                            : "https://cdn.dribbble.com/users/5592443/screenshots/12434328/drbl_mario_q-block_4x.png"
+                                        }
                                         key={el.name}
                                         alt={el.name}
                                       />
