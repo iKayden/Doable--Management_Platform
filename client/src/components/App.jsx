@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Home from './Home';
 import Login from './Login';
@@ -6,6 +7,7 @@ import ChatPage from './Chat/ChatPage';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import { LinkContainer } from 'react-router-bootstrap';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import { ApplicationContext, defaultState } from '../hooks/useApplicationData';
@@ -21,6 +23,7 @@ const App = () => {
   const [state, dispatch] = useReducer(dataReducer, defaultState);
   const user = localStorage.getItem('user');
   const userName = localStorage.getItem('userName');
+  const userAvatar = localStorage.getItem('userAvatar');
 
   const handleLogout = () => {
     localStorage.removeItem('userName');
@@ -38,29 +41,35 @@ const App = () => {
             <Navbar variant="dark">
               <Container className="nav-bar">
                 <LinkContainer to="/">
-                  <Navbar.Brand>Doable</Navbar.Brand>
+                  <Navbar.Brand>
+                    <img
+                      className="logo"
+                      src="/doable_logo_new.png"
+                      alt="logo"
+                    />
+                    Doable
+                  </Navbar.Brand>
                 </LinkContainer>
-                <Nav>
-                  <LinkContainer to="/projects">
-                    <Nav.Link>Project History</Nav.Link>
-                  </LinkContainer>
-                  <LinkContainer to="/about">
-                    <Nav.Link>About Us</Nav.Link>
-                  </LinkContainer>
-                  <LinkContainer to="/ask">
-                    <Nav.Link>Ask Us</Nav.Link>
-                  </LinkContainer>
-                  {user ? (
-                    <>
-                      <Navbar.Text>Signed in as: {userName}</Navbar.Text>
-                      <LinkContainer to="/logout">
-                        <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                {user ? (
+                  <Nav>
+                    <img src={userAvatar} alt="user" className="avatar" />
+                    <NavDropdown title={userName} id="basic-nav-dropdown">
+                      <NavDropdown.Item>Profile</NavDropdown.Item>
+                      <LinkContainer to="/projects">
+                        <NavDropdown.Item>Project History</NavDropdown.Item>
                       </LinkContainer>
-                    </>
-                  ) : (
-                    ''
-                  )}
-                </Nav>
+                      <NavDropdown.Item>Setting</NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <LinkContainer to="/logout">
+                        <NavDropdown.Item onClick={handleLogout}>
+                          Log Out
+                        </NavDropdown.Item>
+                      </LinkContainer>
+                    </NavDropdown>
+                  </Nav>
+                ) : (
+                  ''
+                )}
               </Container>
             </Navbar>
           </header>
