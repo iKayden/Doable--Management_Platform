@@ -3,8 +3,11 @@
   font-family: "Lato";
   text-decoration: none;
   font-size: 22px;
-  margin: 0 20px 0 0;
+  margin: 0 10px 0 5px;
   position: relative;
+}
+.project-list__link-table-head {
+  text-align: left;
 }
 .project-list__link:before {
   position: absolute;

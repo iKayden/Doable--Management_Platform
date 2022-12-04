@@ -12,7 +12,23 @@
   margin-top: 5px;
 }
 
-.projects__table {
+/* .projects__table {
   border: 2px solid rgba(33, 37, 41, 0.816);
+} */
+.projects__table {
+  border-collapse: collapse;
   width: 98% !important;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.projects__table thead tr {
+  background-color: #00987ab8;
+  color: #ffffff;
+  text-align: center;
+}
+
+.projects__table tbody tr:last-of-type {
+  border-bottom: 2px solid #00987ab8;
 }
