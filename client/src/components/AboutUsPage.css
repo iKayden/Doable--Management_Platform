@@ -1,0 +1,28 @@
+.section__images > img {
+  height: 150px;
+  width: 155px;
+  border-radius: 10%;
+  margin: 10px;
+}
+
+.about-us_group-photo {
+  height: 350px;
+  width: 580px;
+  border-radius: 10%;
+}
+
+.about-us__first-picture {
+  height: 350px;
+  width: 250px;
+  border-radius: 10%;
+}
+.about-us__second-picture {
+  height: 350px;
+  width: 250px;
+  border-radius: 10%;
+}
+.about-us__third-picture {
+  height: 350px;
+  width: 250px;
+  border-radius: 10%;
+}
