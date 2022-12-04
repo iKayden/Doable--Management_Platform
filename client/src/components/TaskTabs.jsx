@@ -23,7 +23,7 @@ export default function TaskTabs() {
         <Link
           to="#"
           onClick={(e) => {
-            window.location.href ="mailto:bowser@doable.com";
+            window.location.href = "mailto:bowser@doable.com";
             e.preventDefault();
           }}
         >
@@ -33,8 +33,8 @@ export default function TaskTabs() {
             alt={user.name}
             className={"task-list__assigned-users__avatars"}
           />
-        </Link>
-        {" "}{user.name}
+        </Link>{" "}
+        {user.name}
       </>
     );
   });
@@ -58,10 +58,10 @@ export default function TaskTabs() {
         title="Project Details"
       >
         <p>
-          <h3 className="task-list__projectName">
+          <h4 className="task-list__projectName">
             {/* After we got current project name, we display its name. If refresh page, error of undefined could show up because context doesn't have it for now. ? tells web page it could be undefined, so it won't has error */}
-            <b>Name:</b> {currentProject?.name}
-          </h3>
+            You are currently working on: <b>{currentProject?.name}</b>
+          </h4>
         </p>
         <p>
           <b>Description:</b> {currentProject.description}
@@ -77,7 +77,7 @@ export default function TaskTabs() {
         </p>
       </Tab>
       <Tab tabClassName="tasklist_tabs" eventKey="members" title="Members">
-        <p className="task-list__project-users">Members in this project:</p>
+        {/* <p className="task-list__project-users">Members in this project:</p> */}
         <div className="task-list__avatars-wrapper">{users}</div>
       </Tab>
       <Tab tabClassName="tasklist_tabs" eventKey="files" title="Files"></Tab>
