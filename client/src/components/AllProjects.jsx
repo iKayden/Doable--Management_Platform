@@ -12,9 +12,5 @@ export default function AllProjects() {
     return <Login setUser={setUser} />;
   }
 
-  return (
-    <div className="App">
-      <ProjectList projects={projects} />
-    </div>
-  );
+  return <ProjectList projects={projects} />;
 }

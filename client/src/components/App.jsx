@@ -56,7 +56,11 @@ const App = () => {
                     <Tooltip title={`This is me! A ${userName}!`} arrow>
                       <img src={userAvatar} alt={userName} className="avatar" />
                     </Tooltip>
-                    <NavDropdown title={userName} id="basic-nav-dropdown">
+                    <NavDropdown
+                      align="end"
+                      title={userName}
+                      id="basic-nav-dropdown"
+                    >
                       <NavDropdown.Item>Profile</NavDropdown.Item>
                       <LinkContainer to="/projects">
                         <NavDropdown.Item>Project History</NavDropdown.Item>
@@ -82,7 +86,11 @@ const App = () => {
       children: [
         {
           path: '/',
-          element: <Home />,
+          element: (
+            <div className="App">
+              <Home />
+            </div>
+          ),
         },
         {
           path: '/login',
@@ -90,7 +98,11 @@ const App = () => {
         },
         {
           path: '/projects',
-          element: <AllProjects />,
+          element: (
+            <div className="App">
+              <AllProjects />
+            </div>
+          ),
         },
         {
           path: '/projects/:id/tasks',
