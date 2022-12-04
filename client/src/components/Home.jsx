@@ -1,9 +1,9 @@
-import "./Home.css";
 import { useState, useEffect } from "react";
 import Login from "./Login";
 import ProjectList from "./ProjectList";
 import { getProjects } from "../api/project";
 import { useApplicationDispatch, useApplicationState } from "../hooks/useApplicationData";
+import "./Home.css";
 
 const Home = () => {
   const dispatch = useApplicationDispatch();
@@ -14,7 +14,7 @@ const Home = () => {
   const filteredProjects = projects.filter(
     (project) => !project.completion_time
   );
-  
+
   // loads all projects when user is found
   const userId = localStorage.getItem("user");
   useEffect(() => {
@@ -30,7 +30,7 @@ const Home = () => {
 
   return (
     <div className="App">
-      <ul>
+      <ul className="project__history">
         <ProjectList projects={filteredProjects} />
       </ul>
     </div>

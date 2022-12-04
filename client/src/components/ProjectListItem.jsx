@@ -35,6 +35,7 @@ export default function ProjectListItem({
   return (
     <tr key={project.id}>
       <th
+        className='project-list__link-table-head'
         onClick={() => {
           dispatch({ type: SET_PROJECT, id: project.id });
         }}

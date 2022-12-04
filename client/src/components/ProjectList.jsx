@@ -39,7 +39,7 @@ export default function ProjectList(props) {
 
       <h1 className="d-inline projects__header">Projects</h1>
 
-      <table className="table table-light table-hover projects__table">
+      <table className="table table-hover projects__table">
         <thead>
           <tr>
             <th scope="col">Project</th>
