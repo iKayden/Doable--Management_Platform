@@ -47,7 +47,7 @@ const App = () => {
                       src="/doable_logo_new.png"
                       alt="logo"
                     />
-                    Doable
+                    <text className='nav-bar__doable'>DOABLE</text>
                   </Navbar.Brand>
                 </LinkContainer>
                 {user ? (
