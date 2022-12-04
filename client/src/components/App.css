@@ -11,7 +11,7 @@
   pointer-events: none;
 }
 
-header {
+.header {
   background-color: #3c6e71;
   position: fixed;
   width: 100%;
@@ -69,7 +69,7 @@ header {
 }
 
 .nav-bar__doable {
-  font-family: "Kanit";
+  font-family: 'Kanit';
 }
 
 .logo {
