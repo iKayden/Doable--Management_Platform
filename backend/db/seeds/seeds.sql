@@ -37,20 +37,20 @@ projects(name, description, start_date, expected_end_date)
 VALUES
     (
       'Save Princess Peach🍑 from Bowser',
-      'alpha project, first and best',
+      'Escape Bowsers Castle and save Princess Peach',
       '2020-10-12 01:00:00',
       '2027-12-10 15:30:00'
      ),
     (
       'MarioKart Race 🚗',
-      'Urgent project due',
-      '2022-06-12 09:00:00',
-      '2022-12-31 05:00:07'
+      'Try out new tracks',
+      '2000-06-12 09:00:00',
+      '2023-12-31 05:00:07'
      ), 
     (
       'Setup MarioParty',
-      'beta project, first and best',
-      '2021-11-22 03:00:00',
+      'Discuss new activites for new season',
+      '2015-11-22 03:00:00',
       '2025-12-01 09:14:07'
      ),
     (
@@ -62,12 +62,12 @@ VALUES
     (
       'MarioGolf Adeventure ⛳️',
       'Project in progress',
-      '2022-01-20 01:00:00',
+      '2019-01-20 01:00:00',
       '2023-01-01 12:14:07'
      ),
     (
       'Halloween party at Luigis Mansion 👻',
-      'Project in progress',
+      'Planning session',
       '2022-12-05 12:00:00',
       '2023-10-31 18:00:00'
      ),
