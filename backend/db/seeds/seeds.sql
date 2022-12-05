@@ -37,7 +37,7 @@ projects(name, description, start_date, expected_end_date)
 VALUES
     (
       'Save Princess Peach🍑 from Bowser',
-      'Escape Bowsers Castle and save Princess Peach',
+      'Details to save Princess Peach',
       '2020-10-12 01:00:00',
       '2027-12-10 15:30:00'
      ),
@@ -49,19 +49,19 @@ VALUES
      ), 
     (
       'Setup MarioParty',
-      'Discuss new activites for new season',
+      'Discuss new activites for next season',
       '2015-11-22 03:00:00',
       '2025-12-01 09:14:07'
      ),
     (
       'Weekly practice for Tennis 🎾',
-      'delta project, first and best',
+      'Work on new strategies',
       '2020-02-12 01:00:00',
       '2022-12-31 03:14:07'
      ),
     (
       'MarioGolf Adeventure ⛳️',
-      'Project in progress',
+      'Golfing skills in progress',
       '2019-01-20 01:00:00',
       '2023-01-01 12:14:07'
      ),
@@ -73,7 +73,7 @@ VALUES
      ),
     (
       'Planning for SuperSmash Bros Tournament 🧠',
-      'Urgent project due',
+      'Manage and organize next seasons tournamnet',
       '2022-06-12 09:00:00',
       '2024-04-30 05:00:00'
      );
@@ -114,15 +114,15 @@ tasks(name, description, status, deadline, assigned_user_id, project_id)
 VALUES
     (
       'Go into green warp pipe 💨',
-      'it is dirty, time to clean up',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       'IN-PROGRESS',
-      '2023-09-08 14:15:00',
+      '2025-09-08 14:15:00',
       2,
       1
     ),
     (
       'Save Princess Peach 😍',
-      'it is dirty, time to clean up',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       'IN-PROGRESS',
       '2027-02-14 18:00:00',
       1,
@@ -130,7 +130,7 @@ VALUES
     ),
     (
       'Find a Power Star ⭐️',
-      'sing Baby Shark',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       'TO-DO',
       '2023-07-10 19:45:00',
       2,
@@ -138,7 +138,7 @@ VALUES
     ),
     (
       'Find Golden Mushrooms',
-      'Like no one sees you',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       'TO-DO',
       '2026-08-08 05:00:00',
       1,
@@ -146,7 +146,7 @@ VALUES
     ),
     (
       'Eat Super Mushrooms 🍄',
-      'it is dirty, time to clean up',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       'IN-PROGRESS',
       '2025-11-20 03:00:00',
       5,
@@ -154,7 +154,7 @@ VALUES
     ),
     (
       'Dont talk to Goombas!!! 🙊',
-      'it is dirty, time to clean up',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       'IN-PROGRESS',
       '2027-01-25 07:00:00',
       3,
@@ -162,7 +162,7 @@ VALUES
     ),
     (
       'Step on Koopa Troopas',
-      'Create tables in SQL',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       'IN-PROGRESS',
       '2023-01-08 09:00:00',
       5,
@@ -170,7 +170,7 @@ VALUES
     ),
     (
       'Design new logo',
-      'Need logo for new project',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       'IN-PROGRESS',
       '2022-12-31 05:00:00',
       2,
@@ -238,7 +238,7 @@ tasks(name, description, status, deadline, completion_time, assigned_user_id, pr
 VALUES
     (
       'Lock up Princess Peach',
-      'Me hungry, me want to eat a lot',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
       'COMPLETED',
       '2022-11-08 05:00:00',
       '2022-11-08 04:00:00',
@@ -247,7 +247,7 @@ VALUES
     ),
     (
       'Collect 50 coins',
-      'Me hungry, me want to eat a lot',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
       'COMPLETED',
       '2022-11-08 05:00:00',
       '2022-11-08 04:00:00',
@@ -256,7 +256,7 @@ VALUES
     ),
     (
       'Throw fireballs at enemies',
-      'Me hungry, me want to eat a lot',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
       'COMPLETED',
       '2022-11-08 05:00:00',
       '2022-11-08 04:00:00',
@@ -265,7 +265,7 @@ VALUES
     ),
     (
       'Pick Up Food',
-      'Me hungry, me want to eat a lot',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
       'COMPLETED',
       '2022-11-08 05:00:00',
       '2022-11-08 04:00:00',
@@ -274,7 +274,7 @@ VALUES
     ),
     (
       'Pick Up Food',
-      'Me hungry, me want to eat a lot',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
       'COMPLETED',
       '2022-11-08 05:00:00',
       '2022-11-08 04:00:00',
@@ -283,7 +283,7 @@ VALUES
     ),
     (
       'Lock up Princess Peach',
-      'Me hungry, me want to eat a lot',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
       'COMPLETED',
       '2022-11-08 05:00:00',
       '2022-11-08 04:00:00',
@@ -292,7 +292,7 @@ VALUES
     ),
     (
       'Pick Up Food',
-      'Me hungry, me want to eat a lot',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
       'COMPLETED',
       '2022-11-08 05:00:00',
       '2022-11-08 04:00:00',
@@ -301,7 +301,7 @@ VALUES
     ),
     (
       'Pick Up Food',
-      'Me hungry, me want to eat a lot',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
       'COMPLETED',
       '2022-11-08 05:00:00',
       '2022-11-08 04:00:00',
@@ -310,7 +310,7 @@ VALUES
     ),
     (
       'Pick Up Food',
-      'Me hungry, me want to eat a lot',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
       'COMPLETED',
       '2022-11-08 05:00:00',
       '2022-11-08 04:00:00',
@@ -319,7 +319,7 @@ VALUES
     ),
     (
       'Pick Up Food',
-      'Me hungry, me want to eat a lot',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
       'COMPLETED',
       '2022-11-08 05:00:00',
       '2022-11-08 04:00:00',
@@ -328,7 +328,7 @@ VALUES
     ),
     (
       'Pick Up Food',
-      'Me hungry, me want to eat a lot',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
       'COMPLETED',
       '2022-11-08 05:00:00',
       '2022-11-08 04:00:00',
@@ -337,7 +337,7 @@ VALUES
     ),
     (
       'Pick Up Food',
-      'Me hungry, me want to eat a lot',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
       'COMPLETED',
       '2022-11-08 05:00:00',
       '2022-11-08 04:00:00',
@@ -346,7 +346,7 @@ VALUES
     ),
     (
       'Pick Up Food',
-      'Me hungry, me want to eat a lot',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
       'COMPLETED',
       '2022-11-08 05:00:00',
       '2022-11-08 04:00:00',
