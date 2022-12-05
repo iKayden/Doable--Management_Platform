@@ -1,6 +1,6 @@
 export function Intro() {
   return (
-    <section className='about-us__section'>
+    <section className="about-us__section">
       <h1>Hello everyone!</h1>
       <p>This was a demonstration of our website application</p>
       <p>We hope you enjoyed our project and presentation!</p>
@@ -40,7 +40,7 @@ export function TechStack() {
 
 export function OurTeam() {
   return (
-    <section className='about-us__section'>
+    <section className="about-us__section">
       <h2>This is the amazing team</h2>
       <img
         className="about-us_group-photo"
@@ -61,15 +61,14 @@ export function Eileen() {
           src="https://res.cloudinary.com/kaydenukr/image/upload/c_scale,h_880,w_500/v1670266958/pictures/eileen_vuscdv_ba2245.jpg"
           alt="eileen"
         ></img>
-        <p className='about-us__text'>
+        <p className="about-us__text">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla est
           officia, expedita vitae illum eum laboriosam! Ut obcaecati pariatur
           laborum eius natus quos, tempora nam corrupti inventore libero
-          distinctio fugiat.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla est
-          officia, expedita vitae illum eum laboriosam! Ut obcaecati pariatur
-          laborum eius natus quos, tempora nam corrupti inventore libero
-          distinctio fugiat.
+          distinctio fugiat. Lorem ipsum dolor sit amet consectetur adipisicing
+          elit. Nulla est officia, expedita vitae illum eum laboriosam! Ut
+          obcaecati pariatur laborum eius natus quos, tempora nam corrupti
+          inventore libero distinctio fugiat.
         </p>
       </div>
     </section>
@@ -86,18 +85,28 @@ export function Rosanna() {
           src="https://res.cloudinary.com/kaydenukr/image/upload/c_scale,w_500/v1670268183/pictures/rosanna_f.jpg"
           alt="rosanna"
         ></img>
-        <p className='about-us__text'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla est
-          officia, expedita vitae illum eum laboriosam! Ut obcaecati pariatur
-          laborum eius natus quos, tempora nam corrupti inventore libero
-          distinctio fugiat.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla est
-          officia, expedita vitae illum eum laboriosam! Ut obcaecati pariatur
-          laborum eius natus quos, tempora nam corrupti inventore libero
-          distinctio fugiat.
+        <p className="about-us__text">
+          Accomplishments
+          <ul>
+            <li>Pair Programming:</li>
+            <ul>
+              <li>Structure and Routing of the project</li>
+              <li>Initial seeds/database tables and relationships</li>
+              <li>React Drag and Drop (DnD) & Websockets: Chat Feature</li>
+              <li>Implemented useReducer and useContext hooks and behavior</li>
+            </ul>
+            <li>Personal:</li>
+            <ul>
+              <li>Page/Footer/Delete Confirmation Modal</li>
+            </ul>
+          </ul>
+          Roadblocks
+          <ul>
+            <li> Learning React Reducer/useContext and React DnD</li>
+          </ul>
         </p>
       </div>
-    </section >
+    </section>
   );
 }
 export function Kayden() {
@@ -159,8 +168,6 @@ export function TheEnd() {
 }
 export function OurStories() {
   return (
-    <h3 className='about-us__our-stories about-us__section'>
-      Our stories
-    </h3>
+    <h3 className="about-us__our-stories about-us__section">Our stories</h3>
   );
 }
