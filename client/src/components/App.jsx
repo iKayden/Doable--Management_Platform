@@ -94,7 +94,11 @@ const App = () => {
         },
         {
           path: '/login',
-          element: <Login setUser={setUser} />,
+          element: (
+            <div className="App">
+              <Login setUser={setUser} />
+            </div>
+          ),
         },
         {
           path: '/projects',

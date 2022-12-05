@@ -2,7 +2,7 @@ export function First() {
   return (
     <section className='about-us__section'>
       <h1>Hello everyone!</h1>
-      <p>This was demonstration of our website</p>
+      <p>This was a demonstration of our website application</p>
       <p>We hope you enjoyed our project and presentation!</p>
     </section>
   );
@@ -11,7 +11,7 @@ export function First() {
 export function Second() {
   return (
     <section className="box about-us__section">
-      <h2>This is the dev stack we've used to develop it</h2>
+      <h2>This is the tech stack we used to develop it</h2>
       <div className="section__images">
         <img
           src="https://ih1.redbubble.net/image.438908244.6144/st,small,507x507-pad,600x600,f8f8f8.u2.jpg"
@@ -41,7 +41,7 @@ export function Second() {
 export function Third() {
   return (
     <section className='about-us__section'>
-      <h2>This is our amazing team</h2>
+      <h2>This is the amazing team</h2>
       <img
         className="about-us_group-photo"
         src="https://res.cloudinary.com/kaydenukr/image/upload/c_scale,h_1800,w_2400/v1670265748/pictures/bestteam_atlwus.jpg"
@@ -128,7 +128,7 @@ export function Seventh() {
   return (
     <section className="about-us__section">
       <h1>Thank you for your time and attention</h1>
-      <h2>We will be happy to answer your questions!</h2>
+      <h2>We will be happy to answer any of your questions!</h2>
       <img
         className="about-us_group-photo"
         src="https://res.cloudinary.com/kaydenukr/image/upload/c_scale,w_982/v1670286756/pictures/team2_jkenp3.jpg"
