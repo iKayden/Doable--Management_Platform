@@ -15,7 +15,7 @@ VALUES
     ),
     (
       'Princess Peach',
-      'https://pbs.twimg.com/media/FRtUB32WUAgs6Bi.jpg',
+      'https://64.media.tumblr.com/156235cc97af1d890bbf0089afa801c9/c3b9114db41f4be1-41/s500x750/da067c56b591c08e5275f6ab4374ce651f052ebe.png',
       'peach@doable.com',
       'test'
     ),
@@ -26,9 +26,9 @@ VALUES
       'test'
     ),
     (
-      'Donkey',
-      'https://www.shutterstock.com/image-vector/graphical-portrait-monkey-santa-claus-600w-1089090518.jpg',
-      'donkey@doable.com',
+      'Toad',
+      'https://upload.wikimedia.org/wikipedia/en/d/d1/Toad_3D_Land.png?20201027021432',
+      'toad@doable.com',
       'test'
     );
 -- // YYYY-MM-DD hh:mm:ss
@@ -36,13 +36,13 @@ INSERT INTO
 projects(name, description, start_date, expected_end_date)
 VALUES
     (
-      'Save Princess Peach from Bowser',
+      'Save Princess Peach🍑 from Bowser',
       'alpha project, first and best',
       '2020-10-12 01:00:00',
-      '2022-12-10 15:30:00'
+      '2027-12-10 15:30:00'
      ),
     (
-      'MarioKart Race',
+      'MarioKart Race 🚗',
       'Urgent project due',
       '2022-06-12 09:00:00',
       '2022-12-31 05:00:07'
@@ -54,33 +54,54 @@ VALUES
       '2025-12-01 09:14:07'
      ),
     (
-      'Weekly practice for Tennis',
+      'Weekly practice for Tennis 🎾',
       'delta project, first and best',
       '2020-02-12 01:00:00',
-      '2027-12-01 03:14:07'
+      '2022-12-31 03:14:07'
      ),
     (
-      'MarioGolf Adeventure',
+      'MarioGolf Adeventure ⛳️',
       'Project in progress',
       '2022-01-20 01:00:00',
       '2023-01-01 12:14:07'
      ),
     (
-      'Halloween party at Luigis Mansion',
+      'Halloween party at Luigis Mansion 👻',
       'Project in progress',
       '2022-12-05 12:00:00',
       '2023-10-31 18:00:00'
      ),
     (
-      'Planning for SuperSmash Bros Tournament',
+      'Planning for SuperSmash Bros Tournament 🧠',
       'Urgent project due',
       '2022-06-12 09:00:00',
-      '2023-04-31 05:00:00'
+      '2024-04-30 05:00:00'
      );
 
 INSERT INTO
 projects(name, description, start_date, expected_end_date, completion_time)
 VALUES (
+      'Finished project',
+      'Has been finished',
+      '2021-11-12 01:00:00',
+      '2025-12-30 03:14:07',
+      '2025-12-28 03:14:07'
+     ),
+     (
+      'Finished project',
+      'Has been finished',
+      '2021-11-12 01:00:00',
+      '2025-12-30 03:14:07',
+      '2025-12-28 03:14:07'
+     ),
+     (
+      'Finished project',
+      'Has been finished',
+      '2021-11-12 01:00:00',
+      '2025-12-30 03:14:07',
+      '2025-12-28 03:14:07'
+     ),
+     (
       'Finished project',
       'Has been finished',
       '2021-11-12 01:00:00',
@@ -92,43 +113,51 @@ INSERT INTO
 tasks(name, description, status, deadline, assigned_user_id, project_id)
 VALUES
     (
-      'Collect 50 coins',
+      'Go into green warp pipe 💨',
       'it is dirty, time to clean up',
       'IN-PROGRESS',
-      '2025-11-08 05:00:00',
+      '2023-09-08 14:15:00',
+      2,
+      1
+    ),
+    (
+      'Save Princess Peach 😍',
+      'it is dirty, time to clean up',
+      'IN-PROGRESS',
+      '2027-02-14 18:00:00',
       1,
       1
     ),
     (
-      'Find a Power Star',
+      'Find a Power Star ⭐️',
       'sing Baby Shark',
       'TO-DO',
-      '2025-11-08 05:00:00',
-      1,
+      '2023-07-10 19:45:00',
+      2,
       1
     ),
     (
       'Find Golden Mushrooms',
       'Like no one sees you',
       'TO-DO',
-      '2025-11-08 05:00:00',
+      '2026-08-08 05:00:00',
       1,
       1
     ),
     (
-      'Eat Super Mushrooms',
+      'Eat Super Mushrooms 🍄',
       'it is dirty, time to clean up',
       'IN-PROGRESS',
-      '2025-11-08 05:00:00',
-      1,
+      '2025-11-20 03:00:00',
+      5,
       1
     ),
     (
-      'Dont talk to Goombas!!!',
+      'Dont talk to Goombas!!! 🙊',
       'it is dirty, time to clean up',
       'IN-PROGRESS',
-      '2025-11-08 05:00:00',
-      1,
+      '2027-01-25 07:00:00',
+      3,
       1
     ),
     (
@@ -136,7 +165,7 @@ VALUES
       'Create tables in SQL',
       'IN-PROGRESS',
       '2023-01-08 09:00:00',
-      1,
+      5,
       1
     ),
     (
@@ -164,6 +193,38 @@ VALUES
       4
     ),
     (
+      'Buy office supplies',
+      'Ran out of paper',
+      'IN-PROGRESS',
+      '2024-02-25 08:30:00',
+      1,
+      2
+    ),
+        (
+      'Buy office supplies',
+      'Ran out of paper',
+      'IN-PROGRESS',
+      '2024-02-25 08:30:00',
+      1,
+      2
+    ),
+    (
+      'Buy office supplies',
+      'Ran out of paper',
+      'TO-DO',
+      '2024-02-25 08:30:00',
+      1,
+      6
+    ),
+    (
+      'Buy office supplies',
+      'Ran out of paper',
+      'IN-PROGRESS',
+      '2024-02-25 08:30:00',
+      1,
+      2
+    ),
+    (
       'Review notes',
       'Meeting notes need to be revised',
       'IN-PROGRESS',
@@ -176,38 +237,119 @@ INSERT INTO
 tasks(name, description, status, deadline, completion_time, assigned_user_id, project_id)
 VALUES
     (
+      'Lock up Princess Peach',
+      'Me hungry, me want to eat a lot',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      4,
+      1
+    ),
+    (
+      'Collect 50 coins',
+      'Me hungry, me want to eat a lot',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      2,
+      1
+    ),
+    (
+      'Throw fireballs at enemies',
+      'Me hungry, me want to eat a lot',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      5,
+      1
+    ),
+    (
       'Pick Up Food',
       'Me hungry, me want to eat a lot',
       'COMPLETED',
       '2022-11-08 05:00:00',
       '2022-11-08 04:00:00',
       1,
-      2
+      5
     ),
     (
-      'Eat Up Food',
+      'Pick Up Food',
       'Me hungry, me want to eat a lot',
       'COMPLETED',
       '2022-11-08 05:00:00',
       '2022-11-08 04:00:00',
       1,
-      1
+      6
     ),
     (
-      'Throw Away Food',
+      'Lock up Princess Peach',
       'Me hungry, me want to eat a lot',
       'COMPLETED',
       '2022-11-08 05:00:00',
       '2022-11-08 04:00:00',
       1,
-      1
+      4
     ),
     (
-      'Conquer the world',
-      'Those who have the courage to conquer it are made free and those who are conquered by it are made to suffer until they have the courage to defeat it, or death takes them.',
+      'Pick Up Food',
+      'Me hungry, me want to eat a lot',
       'COMPLETED',
-      '2020-01-08 05:00:00',
-      '2021-06-08 04:00:00',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      1,
+      3
+    ),
+    (
+      'Pick Up Food',
+      'Me hungry, me want to eat a lot',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      1,
+      4
+    ),
+    (
+      'Pick Up Food',
+      'Me hungry, me want to eat a lot',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      1,
+      4
+    ),
+    (
+      'Pick Up Food',
+      'Me hungry, me want to eat a lot',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      1,
+      3
+    ),
+    (
+      'Pick Up Food',
+      'Me hungry, me want to eat a lot',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      1,
+      3
+    ),
+    (
+      'Pick Up Food',
+      'Me hungry, me want to eat a lot',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      1,
+      5
+    ),
+    (
+      'Pick Up Food',
+      'Me hungry, me want to eat a lot',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
       1,
       2
     );
@@ -260,6 +402,15 @@ VALUES
       5
     ),
     (
-      2,
-      6
+      4,
+      1
+    ),
+    (
+      3,
+      1
+    ),
+    (
+      5,
+      1
     );
+    
