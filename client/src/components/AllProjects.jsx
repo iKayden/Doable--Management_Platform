@@ -12,5 +12,5 @@ export default function AllProjects() {
     return <Login setUser={setUser} />;
   }
 
-  return <ProjectList projects={projects} />;
+  return <ProjectList projects={projects} title="Project History" />;
 }

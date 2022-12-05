@@ -10,7 +10,7 @@ import ProjectListItem from './ProjectListItem';
 import Footer from './Footer';
 
 export default function ProjectList(props) {
-  const { projects } = props;
+  const { projects, title } = props;
   const { projectToAdd } = useApplicationState();
   const dispatch = useApplicationDispatch();
 
@@ -38,7 +38,7 @@ export default function ProjectList(props) {
       <div className="project-list">
         {projectToAdd && <ProjectForm projectToAdd={projectToAdd} />}
         <div className="projects__header">
-          <h1 className="d-inline">Projects</h1>
+          <h1 className="d-inline">{title}</h1>
         </div>
 
         <table className="table table-hover projects__table">
