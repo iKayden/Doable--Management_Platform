@@ -31,7 +31,7 @@ const Home = () => {
     return <Login setUser={setUser} />;
   }
 
-  return <ProjectList projects={filteredProjects} />;
+  return <ProjectList projects={filteredProjects} title="Active Projects" />;
 };
 
 export default Home;
