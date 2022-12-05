@@ -14,12 +14,9 @@ import { ApplicationContext, defaultState } from '../hooks/useApplicationData';
 import { useReducer } from 'react';
 import dataReducer from '../reducer/data_reducer';
 import TaskList from './TaskList';
-import io from 'socket.io-client';
 import { redirect } from 'react-router-dom';
 import Tooltip from '@mui/material/Tooltip';
 import AboutUsPage from './AboutUsPage';
-
-const socket = io.connect('http://localhost:3001');
 
 const App = () => {
   const [state, dispatch] = useReducer(dataReducer, defaultState);
@@ -97,7 +94,7 @@ const App = () => {
         },
         {
           path: '/login',
-          element: <Login socket={socket} />,
+          element: <Login />,
         },
         {
           path: '/projects',
@@ -117,7 +114,7 @@ const App = () => {
         },
         {
           path: '/chat',
-          element: <ChatPage socket={socket} />,
+          element: <ChatPage />,
         },
         {
           path: '/logout',
