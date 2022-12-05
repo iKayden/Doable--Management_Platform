@@ -43,7 +43,7 @@ const App = () => {
                   <Navbar.Brand>
                     <img
                       className="logo"
-                      src="/doable_logo_new.png"
+                      src="/images/doable_logo_new.png"
                       alt="logo"
                     />
                     <span className="nav-bar__doable">DOABLE</span>

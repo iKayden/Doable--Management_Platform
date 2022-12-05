@@ -49,7 +49,7 @@ export default function Login({ setUser }) {
 
   return (
     <div className="login">
-      <img className="logo-login" src="/doable_logo_new.png" alt="logo" />
+      <img className="logo-login" src="/images/doable_logo_new.png" alt="logo" />
       <h3>Welcome Back!</h3>
       {error ? <Alert variant={'danger'}>{error}</Alert> : ''}
 
