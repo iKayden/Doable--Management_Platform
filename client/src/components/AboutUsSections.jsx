@@ -111,14 +111,7 @@ export function Sixth() {
           alt="kayden"
         ></img>
         <p className='about-us__text'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla est
-          officia, expedita vitae illum eum laboriosam! Ut obcaecati pariatur
-          laborum eius natus quos, tempora nam corrupti inventore libero
-          distinctio fugiat.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla est
-          officia, expedita vitae illum eum laboriosam! Ut obcaecati pariatur
-          laborum eius natus quos, tempora nam corrupti inventore libero
-          distinctio fugiat.
+          A
         </p>
       </div>
     </section>
