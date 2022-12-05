@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
 
 const boxVariant = {
-  visible: { opacity: 1, scale: 1, x: 0, transition: { duration: 0.5 } },
+  visible: { opacity: 1, scale: 1, x: 0, transition: { duration: 1 } },
   hidden: { opacity: 0, scale: 0, x: 200 },
 };
 
@@ -53,7 +53,7 @@ function Second() {
           alt="express-logo"
         ></img>
         <img
-          src="https://github.com/iKayden/doable/blob/kayden/about-ut-page/client/public/JavaScript-logo.png?raw=true"
+          src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png"
           alt="js-logo"
         ></img>
         <img
@@ -92,7 +92,7 @@ function Fourth() {
       <h2>Eileen</h2>
       <div className="flex-wrapper__our-stories">
         <img
-          className="about-us__first-picture"
+          className="about-us__personal-picture"
           src="https://res.cloudinary.com/kaydenukr/image/upload/c_scale,h_880,w_500/v1670266958/pictures/eileen_vuscdv_ba2245.jpg"
           alt="eileen"
         ></img>
@@ -117,8 +117,8 @@ function Fifth() {
       <h2>Rosanna</h2>
       <div className="flex-wrapper__our-stories">
         <img
-          className="about-us__second-picture"
-          src="https://res.cloudinary.com/kaydenukr/image/upload/c_scale,w_500/v1670267447/pictures/rosanna_fiuioq_e42cc3.jpg"
+          className="about-us__personal-picture"
+          src="https://res.cloudinary.com/kaydenukr/image/upload/c_scale,w_500/v1670268183/pictures/rosanna_f.jpg"
           alt="rosanna"
         ></img>
         <p className='about-us__text'>
@@ -141,8 +141,8 @@ function Sixth() {
       <h2>Kayden</h2>
       <div className="flex-wrapper__our-stories">
         <img
-          className="about-us__third-picture"
-          src="https://res.cloudinary.com/kaydenukr/image/upload/c_scale,w_500/v1670267315/pictures/kayden_jhr6uk_4f4282.jpg"
+          className="about-us__personal-picture"
+          src="https://res.cloudinary.com/kaydenukr/image/upload/c_scale,w_500/v1670268258/pictures/kayden_f.jpg"
           alt="kayden"
         ></img>
         <p className='about-us__text'>

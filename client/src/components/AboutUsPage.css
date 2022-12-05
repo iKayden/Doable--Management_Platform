@@ -10,7 +10,7 @@
 
 .about-us_group-photo {
   margin-top: 35px;
-  height: 530px;
+  height: 550px;
   width: 770px;
   border-radius: 10%;
 }
@@ -28,22 +28,14 @@
   text-align: initial;
 }
 
-.about-us__first-picture {
+.about-us__personal-picture {
   height: 350px;
   width: 250px;
   border-radius: 10%;
 }
-.about-us__second-picture {
-  height: 350px;
-  width: 250px;
-  border-radius: 10%;
-}
-.about-us__third-picture {
-  height: 350px;
-  width: 250px;
-  border-radius: 10%;
-}
+
 .about-us__closeup-picture {
+  margin-top: 35px;
   height: 350px;
   width: 580px;
   border-radius: 10%;
