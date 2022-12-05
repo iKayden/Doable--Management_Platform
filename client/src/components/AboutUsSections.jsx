@@ -144,10 +144,6 @@ export function Kayden() {
             <li>Fetching and Inserting correct Data into the Database</li>
             <li>Team Management</li>
           </ul>
-          <span>
-            <strong>Things I would do differently?</strong><br />
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, eaque quae animi consequatur ab minus unde, velit sunt ad mollitia porro voluptates nihil molestiae fuga? Laborum eum enim sunt vero!
-          </span>
         </p>
       </div>
     </section>
