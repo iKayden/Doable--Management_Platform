@@ -35,6 +35,14 @@ Fork this repository, then clone your fork of this repository.
 
 <hr>
 
+# Visual Story
+
+- You can drag and drop (edit and delete) tasks to change their status.
+  !["You can drag and drop (edit and delete) tasks to change their status"](/client/public/tasksgh.gif)
+- pic2
+- pic3
+- pic4
+
 # Used Technologies
 
 ### Stack Choices:
