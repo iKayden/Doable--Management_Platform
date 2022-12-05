@@ -1,5 +1,7 @@
 # DOABLE Management Platform
 
+!["doable logo."](/client/public/images/logogh.png)
+
 ## Project Description
 
 Our project strives to make it easy for your team
