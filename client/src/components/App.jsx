@@ -11,7 +11,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { LinkContainer } from 'react-router-bootstrap';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import { ApplicationContext, defaultState } from '../hooks/useApplicationData';
-import { useReducer } from 'react';
+import { useReducer, useState } from 'react';
 import dataReducer from '../reducer/data_reducer';
 import TaskList from './TaskList';
 import { redirect } from 'react-router-dom';
@@ -19,8 +19,8 @@ import Tooltip from '@mui/material/Tooltip';
 import AboutUsPage from './AboutUsPage';
 
 const App = () => {
+  const [user, setUser] = useState(localStorage.getItem('user'));
   const [state, dispatch] = useReducer(dataReducer, defaultState);
-  const user = localStorage.getItem('user');
   const userName = localStorage.getItem('userName');
   const userAvatar = localStorage.getItem('userAvatar');
 
@@ -28,7 +28,7 @@ const App = () => {
     localStorage.removeItem('userName');
     localStorage.removeItem('userAvatar');
     localStorage.removeItem('user');
-    window.location.reload();
+    setUser(undefined);
     return redirect('/login');
   };
 
@@ -67,7 +67,7 @@ const App = () => {
                       </LinkContainer>
                       <NavDropdown.Item>Settings</NavDropdown.Item>
                       <NavDropdown.Divider />
-                      <LinkContainer to="/logout">
+                      <LinkContainer to="/">
                         <NavDropdown.Item onClick={handleLogout}>
                           Log Out
                         </NavDropdown.Item>
@@ -88,13 +88,13 @@ const App = () => {
           path: '/',
           element: (
             <div className="App">
-              <Home />
+              <Home setUser={setUser} user={user} />
             </div>
           ),
         },
         {
           path: '/login',
-          element: <Login />,
+          element: <Login setUser={setUser} />,
         },
         {
           path: '/projects',
@@ -115,9 +115,6 @@ const App = () => {
         {
           path: '/chat',
           element: <ChatPage />,
-        },
-        {
-          path: '/logout',
         },
         {
           path: '/about',

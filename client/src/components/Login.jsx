@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import './Login.css';
 
-export default function Login(props) {
+export default function Login({ setUser }) {
   const url = '/';
 
   const [email, setEmail] = useState();
@@ -13,7 +13,7 @@ export default function Login(props) {
   const [error, setError] = useState();
   const navigate = useNavigate();
 
-  const handleSubmit = function (event) {
+  const handleSubmit = function(event) {
     event.preventDefault();
     fetch('/login', {
       method: 'POST',
@@ -33,7 +33,7 @@ export default function Login(props) {
         localStorage.setItem('user', data.id);
         localStorage.setItem('userName', data.name);
         localStorage.setItem('userAvatar', data.avatar);
-        props.setUser(data.name);
+        setUser(data.name);
         navigate('/');
         setError('');
       })
