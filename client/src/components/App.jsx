@@ -125,8 +125,10 @@ const App = () => {
         {
           path: '/about',
           element: (
-            <div className="outside-about-us__wrapper">
-              <AboutUsPage />,
+            <div className="App">
+              <div className="outside-about-us__wrapper">
+                <AboutUsPage />
+              </div>
             </div>
           ),
         },
