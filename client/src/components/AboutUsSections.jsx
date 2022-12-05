@@ -130,8 +130,8 @@ export function Seventh() {
       <h1>Thank you for your time and attention</h1>
       <h2>We will be happy to answer your questions!</h2>
       <img
-        className="about-us__closeup-picture"
-        src="https://images.hindustantimes.com/img/2021/11/21/1600x900/Cats_if_i_fits_i_sits_video_Instagram_1637494724139_1637494737839.PNG"
+        className="about-us_group-photo"
+        src="https://res.cloudinary.com/kaydenukr/image/upload/c_scale,w_982/v1670286756/pictures/team2_jkenp3.jpg"
         alt="team"
       ></img>
     </section>
