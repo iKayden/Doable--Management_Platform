@@ -4,31 +4,31 @@ VALUES
     (
       'Mario',
       'https://tiermaker.com/images/templates/1061544140967.png',
-      'mario@nintendo.com',
+      'mario@doable.com',
       'test'
     ),
     (
       'Luigi',
       'https://i1.sndcdn.com/avatars-000196757680-714qmm-t240x240.jpg',
-      'luigi@nintendo.com',
+      'luigi@doable.com',
       'test'
     ),
     (
-      'Princess',
+      'Princess Peach',
       'https://pbs.twimg.com/media/FRtUB32WUAgs6Bi.jpg',
-      'peach@nintendo.com',
+      'peach@doable.com',
       'test'
     ),
     (
       'Bowser',
       'https://i.pinimg.com/564x/d3/bb/1e/d3bb1ec38b4aaf71ab2f8afde6f04fa4.jpg',
-      'bowser@nintendo.com',
+      'bowser@doable.com',
       'test'
     ),
     (
       'Donkey',
       'https://www.shutterstock.com/image-vector/graphical-portrait-monkey-santa-claus-600w-1089090518.jpg',
-      'donkey@nintendo.com',
+      'donkey@doable.com',
       'test'
     );
 -- // YYYY-MM-DD hh:mm:ss
@@ -36,34 +36,46 @@ INSERT INTO
 projects(name, description, start_date, expected_end_date)
 VALUES
     (
-      'alpha',
+      'Save Princess Peach from Bowser',
       'alpha project, first and best',
-      '2021-10-12 01:00:00',
-      '2025-12-01 03:14:07'
+      '2020-10-12 01:00:00',
+      '2022-12-10 15:30:00'
      ),
     (
-      'beta',
+      'MarioKart Race',
+      'Urgent project due',
+      '2022-06-12 09:00:00',
+      '2022-12-31 05:00:07'
+     ), 
+    (
+      'Setup MarioParty',
       'beta project, first and best',
       '2021-11-22 03:00:00',
       '2025-12-01 09:14:07'
      ),
     (
-      'delta',
+      'Weekly practice for Tennis',
       'delta project, first and best',
       '2020-02-12 01:00:00',
       '2027-12-01 03:14:07'
      ),
     (
-      'Project 99',
+      'MarioGolf Adeventure',
       'Project in progress',
       '2022-01-20 01:00:00',
       '2023-01-01 12:14:07'
      ),
     (
-      'Project 54',
+      'Halloween party at Luigis Mansion',
+      'Project in progress',
+      '2022-12-05 12:00:00',
+      '2023-10-31 18:00:00'
+     ),
+    (
+      'Planning for SuperSmash Bros Tournament',
       'Urgent project due',
       '2022-06-12 09:00:00',
-      '2022-12-31 05:00:07'
+      '2023-04-31 05:00:00'
      );
 
 INSERT INTO
@@ -80,7 +92,7 @@ INSERT INTO
 tasks(name, description, status, deadline, assigned_user_id, project_id)
 VALUES
     (
-      'Clean up',
+      'Collect 50 coins',
       'it is dirty, time to clean up',
       'IN-PROGRESS',
       '2025-11-08 05:00:00',
@@ -88,7 +100,7 @@ VALUES
       1
     ),
     (
-      'Sing A Song',
+      'Find a Power Star',
       'sing Baby Shark',
       'TO-DO',
       '2025-11-08 05:00:00',
@@ -96,7 +108,7 @@ VALUES
       1
     ),
     (
-      'Dance around',
+      'Find Golden Mushrooms',
       'Like no one sees you',
       'TO-DO',
       '2025-11-08 05:00:00',
@@ -104,7 +116,7 @@ VALUES
       1
     ),
     (
-      'Wash your face',
+      'Eat Super Mushrooms',
       'it is dirty, time to clean up',
       'IN-PROGRESS',
       '2025-11-08 05:00:00',
@@ -112,7 +124,7 @@ VALUES
       1
     ),
     (
-      'Eat your food',
+      'Dont talk to Goombas!!!',
       'it is dirty, time to clean up',
       'IN-PROGRESS',
       '2025-11-08 05:00:00',
@@ -120,12 +132,12 @@ VALUES
       1
     ),
     (
-      'Create database',
+      'Step on Koopa Troopas',
       'Create tables in SQL',
       'IN-PROGRESS',
       '2023-01-08 09:00:00',
-      2,
-      2
+      1,
+      1
     ),
     (
       'Design new logo',
@@ -205,33 +217,49 @@ project_users(subscribed_user_id, project_id)
 VALUES
     (
       1,
-      2
-    ),
-    (
-      2,
-      2
-    ),
-    (
-      3,
-      1
-    ),
-    (
-      4,
       1
     ),
     (
       1,
-      1
+      2
     ),
     (
-      4,
-      2
+      1,
+      3
+    ),
+    (
+      1,
+      4
+    ),
+    (
+      1,
+      5
     ),
     (
       1,
       6
     ),
     (
+      2,
+      1
+    ),
+    (
       4,
+      2
+    ),
+    (
+      2,
+      3
+    ),
+        (
+      2,
+      4
+    ),
+    (
+      2,
       5
+    ),
+    (
+      2,
+      6
     );
