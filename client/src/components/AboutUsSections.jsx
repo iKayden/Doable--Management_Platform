@@ -57,18 +57,23 @@ export function Eileen() {
       <h2>Eileen</h2>
       <div className="flex-wrapper__our-stories">
         <img
-          className="about-us__personal-picture"
+          className="about-us__personal-picture-eileen"
           src="https://res.cloudinary.com/kaydenukr/image/upload/c_scale,h_880,w_500/v1670266958/pictures/eileen_vuscdv_ba2245.jpg"
           alt="eileen"
         ></img>
         <p className="about-us__text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla est
-          officia, expedita vitae illum eum laboriosam! Ut obcaecati pariatur
-          laborum eius natus quos, tempora nam corrupti inventore libero
-          distinctio fugiat. Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Nulla est officia, expedita vitae illum eum laboriosam! Ut
-          obcaecati pariatur laborum eius natus quos, tempora nam corrupti
-          inventore libero distinctio fugiat.
+          <h4>Accomplishments</h4>
+          <ul>
+            <li>Progress bar (PSQL query joining 3 tables together)</li>
+            <li>Project completion button</li>
+            <li>Modals (select multiple users, add deadline)</li>
+            <li>Nav bar</li>
+            <li>Scroll animation for About Us</li>
+          </ul>
+          <h4>Struggles</h4>
+          <ul>
+            <li>PSQL queries, timestamp conversion, React Reducer</li>
+          </ul>
         </p>
       </div>
     </section>
@@ -119,7 +124,7 @@ export function Kayden() {
           src="https://res.cloudinary.com/kaydenukr/image/upload/c_scale,w_500/v1670268258/pictures/kayden_f.jpg"
           alt="kayden"
         ></img>
-        <p className='about-us__text'>
+        <p className="about-us__text">
           <strong>Accomplishments:</strong> <br />
           <ul>
             <li>Pair Programming:</li>
