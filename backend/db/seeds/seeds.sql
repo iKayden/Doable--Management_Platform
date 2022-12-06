@@ -37,7 +37,7 @@ projects(name, description, start_date, expected_end_date)
 VALUES
     (
       'Save Princess Peach from Bowser',
-      'Rescuing Princess Peach from her forced wedding with Bowser.',
+      'Rescue Princess Peach from her forced wedding with Bowser.',
       '2020-10-12 01:00:00',
       '2027-12-10 15:30:00'
      ),
