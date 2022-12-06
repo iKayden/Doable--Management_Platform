@@ -4,31 +4,31 @@ VALUES
     (
       'Mario',
       'https://tiermaker.com/images/templates/1061544140967.png',
-      'mario@nintendo.com',
+      'mario@doable.com',
       'test'
     ),
     (
       'Luigi',
       'https://i1.sndcdn.com/avatars-000196757680-714qmm-t240x240.jpg',
-      'luigi@nintendo.com',
+      'luigi@doable.com',
       'test'
     ),
     (
-      'Princess',
-      'https://pbs.twimg.com/media/FRtUB32WUAgs6Bi.jpg',
-      'peach@nintendo.com',
+      'Princess Peach',
+      'https://64.media.tumblr.com/156235cc97af1d890bbf0089afa801c9/c3b9114db41f4be1-41/s500x750/da067c56b591c08e5275f6ab4374ce651f052ebe.png',
+      'peach@doable.com',
       'test'
     ),
     (
       'Bowser',
       'https://i.pinimg.com/564x/d3/bb/1e/d3bb1ec38b4aaf71ab2f8afde6f04fa4.jpg',
-      'bowser@nintendo.com',
+      'bowser@doable.com',
       'test'
     ),
     (
-      'Donkey',
-      'https://www.shutterstock.com/image-vector/graphical-portrait-monkey-santa-claus-600w-1089090518.jpg',
-      'donkey@nintendo.com',
+      'Toad',
+      'https://upload.wikimedia.org/wikipedia/en/d/d1/Toad_3D_Land.png?20201027021432',
+      'toad@doable.com',
       'test'
     );
 -- // YYYY-MM-DD hh:mm:ss
@@ -36,100 +36,121 @@ INSERT INTO
 projects(name, description, start_date, expected_end_date)
 VALUES
     (
-      'alpha',
-      'alpha project, first and best',
-      '2021-10-12 01:00:00',
-      '2025-12-01 03:14:07'
+      'Save Princess Peach from Bowser',
+      'Details to save Princess Peach',
+      '2020-10-12 01:00:00',
+      '2027-12-10 15:30:00'
      ),
     (
-      'beta',
-      'beta project, first and best',
-      '2021-11-22 03:00:00',
+      'MarioKart Race',
+      'Try out new tracks',
+      '2000-06-12 09:00:00',
+      '2023-12-31 05:00:07'
+     ), 
+    (
+      'Setup MarioParty',
+      'Discuss new activites for next season',
+      '2015-11-22 03:00:00',
       '2025-12-01 09:14:07'
      ),
     (
-      'delta',
-      'delta project, first and best',
+      'Weekly practice for Tennis',
+      'Work on new strategies',
       '2020-02-12 01:00:00',
-      '2027-12-01 03:14:07'
+      '2022-12-31 03:14:07'
      ),
     (
-      'Project 99',
-      'Project in progress',
-      '2022-01-20 01:00:00',
+      'MarioGolf Adeventure',
+      'Golfing skills in progress',
+      '2019-01-20 01:00:00',
       '2023-01-01 12:14:07'
      ),
     (
-      'Project 54',
-      'Urgent project due',
-      '2022-06-12 09:00:00',
-      '2022-12-31 05:00:07'
+      'Halloween party at Luigis Mansion',
+      'Planning session',
+      '2022-12-05 12:00:00',
+      '2023-10-31 18:00:00'
      );
 
 INSERT INTO
 projects(name, description, start_date, expected_end_date, completion_time)
 VALUES (
-      'Finished project',
+      'Important project',
       'Has been finished',
-      '2021-11-12 01:00:00',
-      '2025-12-30 03:14:07',
+      '2018-11-12 01:00:00',
+      '2021-12-30 03:14:07',
       '2025-12-28 03:14:07'
+     ),
+     (
+      'Attend SuperSmash Bros tournament',
+      'Strategies for tournament',
+      '2021-11-12 12:00:00',
+      '2022-07-30 12:00:07',
+      '2022-07-28 03:14:07'
      );
 
 INSERT INTO
 tasks(name, description, status, deadline, assigned_user_id, project_id)
 VALUES
     (
-      'Clean up',
-      'it is dirty, time to clean up',
+      'Go into green warp pipe',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       'IN-PROGRESS',
-      '2025-11-08 05:00:00',
+      '2025-09-08 14:15:00',
+      2,
+      1
+    ),
+    (
+      'Save Princess Peach 💘',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+      'IN-PROGRESS',
+      '2027-02-14 18:00:00',
       1,
       1
     ),
     (
-      'Sing A Song',
-      'sing Baby Shark',
+      'Find a Power Star ⭐️',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       'TO-DO',
-      '2025-11-08 05:00:00',
-      1,
+      '2023-07-10 19:45:00',
+      2,
       1
     ),
     (
-      'Dance around',
-      'Like no one sees you',
+      'Find Golden Mushrooms',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       'TO-DO',
-      '2025-11-08 05:00:00',
+      '2026-08-08 05:00:00',
       1,
       1
     ),
     (
-      'Wash your face',
-      'it is dirty, time to clean up',
+      'Eat Super Mushrooms',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       'IN-PROGRESS',
-      '2025-11-08 05:00:00',
-      1,
+      '2025-11-20 03:00:00',
+      5,
       1
     ),
     (
-      'Eat your food',
-      'it is dirty, time to clean up',
+      'Dont talk to Goombas!!!',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       'IN-PROGRESS',
-      '2025-11-08 05:00:00',
-      1,
+      '2027-01-25 07:00:00',
+      3,
       1
     ),
     (
-      'Create database',
-      'Create tables in SQL',
+      'Step on Koopa Troopas',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       'IN-PROGRESS',
       '2023-01-08 09:00:00',
-      2,
-      2
+      5,
+      1
     ),
     (
       'Design new logo',
-      'Need logo for new project',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       'IN-PROGRESS',
       '2022-12-31 05:00:00',
       2,
@@ -152,6 +173,38 @@ VALUES
       4
     ),
     (
+      'Buy office supplies',
+      'Ran out of paper',
+      'IN-PROGRESS',
+      '2024-02-25 08:30:00',
+      1,
+      2
+    ),
+        (
+      'Buy office supplies',
+      'Ran out of paper',
+      'IN-PROGRESS',
+      '2024-02-25 08:30:00',
+      1,
+      2
+    ),
+    (
+      'Buy office supplies',
+      'Ran out of paper',
+      'TO-DO',
+      '2024-02-25 08:30:00',
+      1,
+      6
+    ),
+    (
+      'Buy office supplies',
+      'Ran out of paper',
+      'IN-PROGRESS',
+      '2024-02-25 08:30:00',
+      1,
+      2
+    ),
+    (
       'Review notes',
       'Meeting notes need to be revised',
       'IN-PROGRESS',
@@ -164,8 +217,116 @@ INSERT INTO
 tasks(name, description, status, deadline, completion_time, assigned_user_id, project_id)
 VALUES
     (
+      'Lock up Princess Peach',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      4,
+      1
+    ),
+    (
+      'Collect 50 coins',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      2,
+      1
+    ),
+    (
+      'Throw fireballs at enemies',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      5,
+      1
+    ),
+    (
       'Pick Up Food',
-      'Me hungry, me want to eat a lot',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      1,
+      5
+    ),
+    (
+      'Pick Up Food',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      1,
+      6
+    ),
+    (
+      'Lock up Princess Peach',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      1,
+      4
+    ),
+    (
+      'Pick Up Food',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      1,
+      3
+    ),
+    (
+      'Pick Up Food',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      1,
+      4
+    ),
+    (
+      'Pick Up Food',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      1,
+      4
+    ),
+    (
+      'Pick Up Food',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      1,
+      3
+    ),
+    (
+      'Pick Up Food',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      1,
+      3
+    ),
+    (
+      'Pick Up Food',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      1,
+      5
+    ),
+    (
+      'Pick Up Food',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
       'COMPLETED',
       '2022-11-08 05:00:00',
       '2022-11-08 04:00:00',
@@ -173,31 +334,22 @@ VALUES
       2
     ),
     (
-      'Eat Up Food',
-      'Me hungry, me want to eat a lot',
+      'Lock up Princess Peach',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
       'COMPLETED',
       '2022-11-08 05:00:00',
       '2022-11-08 04:00:00',
       1,
-      1
+      7
     ),
     (
-      'Throw Away Food',
-      'Me hungry, me want to eat a lot',
+      'Lock up Princess Peach',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
       'COMPLETED',
       '2022-11-08 05:00:00',
       '2022-11-08 04:00:00',
       1,
-      1
-    ),
-    (
-      'Conquer the world',
-      'Those who have the courage to conquer it are made free and those who are conquered by it are made to suffer until they have the courage to defeat it, or death takes them.',
-      'COMPLETED',
-      '2020-01-08 05:00:00',
-      '2021-06-08 04:00:00',
-      1,
-      2
+      8
     );
 
 INSERT INTO
@@ -205,11 +357,55 @@ project_users(subscribed_user_id, project_id)
 VALUES
     (
       1,
+      1
+    ),
+    (
+      1,
       2
     ),
     (
+      1,
+      3
+    ),
+    (
+      1,
+      4
+    ),
+    (
+      1,
+      5
+    ),
+    (
+      1,
+      6
+    ),
+    (
+      1,
+      7
+    ),
+    (
+      1,
+      8
+    ),
+    (
       2,
-      2
+      1
+    ),
+    (
+      2,
+      3
+    ),
+        (
+      2,
+      4
+    ),
+    (
+      2,
+      5
+    ),
+    (
+      2,
+      8
     ),
     (
       3,
@@ -220,18 +416,8 @@ VALUES
       1
     ),
     (
-      1,
+      5,
       1
-    ),
-    (
-      4,
-      2
-    ),
-    (
-      1,
-      6
-    ),
-    (
-      4,
-      5
     );
+
+    
