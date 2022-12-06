@@ -102,7 +102,7 @@ export function Rosanna() {
             </ul>
             <li>Personal:</li>
             <ul>
-              <li>Page/Footer/Delete Confirmation Modal</li>
+              <li>Login Page/Footer/Delete Confirmation Modal</li>
             </ul>
           </ul>
           Roadblocks
