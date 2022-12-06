@@ -81,7 +81,7 @@ export function Fifth() {
       <h2>Rosanna</h2>
       <div className="flex-wrapper__our-stories">
         <img
-          className="about-us__personal-picture"
+          className="about-us__picture-rosanna"
           src="https://res.cloudinary.com/kaydenukr/image/upload/c_scale,w_500/v1670268183/pictures/rosanna_f.jpg"
           alt="rosanna"
         ></img>
