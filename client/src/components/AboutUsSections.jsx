@@ -41,7 +41,7 @@ export function Second() {
 export function Third() {
   return (
     <section className='about-us__section'>
-      <h2>This is our amazing team</h2>
+      <h2>This is the amazing team</h2>
       <img
         className="about-us_group-photo"
         src="https://res.cloudinary.com/kaydenukr/image/upload/c_scale,h_1800,w_2400/v1670265748/pictures/bestteam_atlwus.jpg"
