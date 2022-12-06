@@ -142,6 +142,7 @@
 }
 
 #task-list__dates {
+  width: -webkit-fill-available;
   display: flex;
   justify-content: space-evenly;
 }

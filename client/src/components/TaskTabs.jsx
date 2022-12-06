@@ -68,15 +68,20 @@ export default function TaskTabs() {
         <p>
           <b>Description:</b> {currentProject.description}
         </p>
-        <p id="task-list__dates">
-          <b>
-            Start Date: {new Date(currentProject.start_date).toDateString()}{" "}
-          </b>
-          <b>
-            Deadline:{" "}
-            {new Date(currentProject.expected_end_date).toDateString()}{" "}
-          </b>
-        </p>
+        <div id="task-list__dates">
+          <p>
+            <b>
+              Start Date: {new Date(currentProject.start_date).toDateString()}{" "}
+            </b>
+          </p>
+          <p>
+
+            <b>
+              Deadline:{" "}
+              {new Date(currentProject.expected_end_date).toDateString()}{" "}
+            </b>
+          </p>
+        </div>
       </Tab>
       <Tab tabClassName="tasklist_tabs" eventKey="members" title="Members">
         <div className="task-list__avatars-wrapper">{users}</div>
