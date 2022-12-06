@@ -28,12 +28,6 @@
   text-align: initial;
 }
 
-.about-us__personal-picture {
-  height: 350px;
-  width: 250px;
-  border-radius: 10%;
-}
-
 .about-us__picture-rosanna {
   height: 350px;
   border-radius: 10%;
@@ -57,6 +51,7 @@
 .about-us__personal-picture-kayden {
   height: 360px;
   width: 215px;
+  border-radius: 10%;
 }
 
 .about-us__personal-picture-eileen {
