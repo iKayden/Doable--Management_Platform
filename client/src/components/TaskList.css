@@ -13,7 +13,9 @@
   text-align: center;
 }
 
-.btn-primary, .btn-primary:active, .btn-primary:visited {
+.btn-primary,
+.btn-primary:active,
+.btn-primary:visited {
   background-color: #4a878a !important;
   border: #4a878a !important;
 }
@@ -107,17 +109,24 @@
 }
 
 .task-list__assigned-users__avatars {
-  width: 25px;
+  width: auto;
   height: 25px;
   line-height: 75px;
   margin: 5px;
   text-align: center;
   cursor: pointer;
   border-radius: 50%;
+  margin-left: 50px;
 }
 
 .task-list__assigned-users__avatars:hover {
   border: 5px solid #42b393;
+}
+
+.tab-content > .active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .task-list__avatars-wrapper {
@@ -144,11 +153,11 @@
 }
 
 .tasklist_tabs {
-  color: #4a878a
+  color: #4a878a;
 }
 
 .tasklist_tabs:hover {
-  color: #42b393
+  color: #42b393;
 }
 
 .draggable-item__task-avatar {
