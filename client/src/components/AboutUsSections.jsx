@@ -1,6 +1,6 @@
 export function First() {
   return (
-    <section className='about-us__section'>
+    <section className="about-us__section">
       <h1>Hello everyone!</h1>
       <p>This was a demonstration of our website application</p>
       <p>We hope you enjoyed our project and presentation!</p>
@@ -40,7 +40,7 @@ export function Second() {
 
 export function Third() {
   return (
-    <section className='about-us__section'>
+    <section className="about-us__section">
       <h2>This is the amazing team</h2>
       <img
         className="about-us_group-photo"
@@ -57,19 +57,23 @@ export function Fourth() {
       <h2>Eileen</h2>
       <div className="flex-wrapper__our-stories">
         <img
-          className="about-us__personal-picture"
+          className="about-us__personal-picture-eileen"
           src="https://res.cloudinary.com/kaydenukr/image/upload/c_scale,h_880,w_500/v1670266958/pictures/eileen_vuscdv_ba2245.jpg"
           alt="eileen"
         ></img>
-        <p className='about-us__text'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla est
-          officia, expedita vitae illum eum laboriosam! Ut obcaecati pariatur
-          laborum eius natus quos, tempora nam corrupti inventore libero
-          distinctio fugiat.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla est
-          officia, expedita vitae illum eum laboriosam! Ut obcaecati pariatur
-          laborum eius natus quos, tempora nam corrupti inventore libero
-          distinctio fugiat.
+        <p className="about-us__text">
+          <h4>Accomplishments</h4>
+          <ul>
+            <li>Progress bar (PSQL query joining 3 tables together)</li>
+            <li>Project completion button</li>
+            <li>Modals (select multiple users, add deadline)</li>
+            <li>Nav bar</li>
+            <li>Scroll animation for About Us</li>
+          </ul>
+          <h4>Struggles</h4>
+          <ul>
+            <li>PSQL queries, timestamp conversion, React Reducer</li>
+          </ul>
         </p>
       </div>
     </section>
@@ -86,18 +90,17 @@ export function Fifth() {
           src="https://res.cloudinary.com/kaydenukr/image/upload/c_scale,w_500/v1670268183/pictures/rosanna_f.jpg"
           alt="rosanna"
         ></img>
-        <p className='about-us__text'>
+        <p className="about-us__text">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla est
           officia, expedita vitae illum eum laboriosam! Ut obcaecati pariatur
           laborum eius natus quos, tempora nam corrupti inventore libero
-          distinctio fugiat.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla est
-          officia, expedita vitae illum eum laboriosam! Ut obcaecati pariatur
-          laborum eius natus quos, tempora nam corrupti inventore libero
-          distinctio fugiat.
+          distinctio fugiat. Lorem ipsum dolor sit amet consectetur adipisicing
+          elit. Nulla est officia, expedita vitae illum eum laboriosam! Ut
+          obcaecati pariatur laborum eius natus quos, tempora nam corrupti
+          inventore libero distinctio fugiat.
         </p>
       </div>
-    </section >
+    </section>
   );
 }
 export function Sixth() {
@@ -110,9 +113,7 @@ export function Sixth() {
           src="https://res.cloudinary.com/kaydenukr/image/upload/c_scale,w_500/v1670268258/pictures/kayden_f.jpg"
           alt="kayden"
         ></img>
-        <p className='about-us__text'>
-          A
-        </p>
+        <p className="about-us__text">A</p>
       </div>
     </section>
   );
@@ -132,8 +133,6 @@ export function Seventh() {
 }
 export function OurStories() {
   return (
-    <h3 className='about-us__our-stories about-us__section'>
-      Our stories
-    </h3>
+    <h3 className="about-us__our-stories about-us__section">Our stories</h3>
   );
 }
