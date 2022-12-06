@@ -102,7 +102,7 @@ VALUES
     ),
     (
       'Save Princess Peach 💘',
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+      'Rescuing Princess Peach from her forced wedding with Bowser.',
       'IN-PROGRESS',
       '2027-02-14 18:00:00',
       1,
