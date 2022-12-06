@@ -92,7 +92,7 @@ export function Fifth() {
             <ul>
               <li>Structure and Routing of the project</li>
               <li>Initial seeds/database tables and relationships</li>
-              <li>React Drag and Drop & Websockets: Chat Feature</li>
+              <li>React Drag and Drop (DnD) & Websockets: Chat Feature</li>
               <li>Implemented useReducer and useContext hooks and behavior</li>
             </ul>
             <li>Personal:</li>
@@ -100,9 +100,9 @@ export function Fifth() {
               <li>Page/Footer/Delete Confirmation Modal</li>
             </ul>
           </ul>
-            Roadblocks:
+            Roadblocks
             <ul>
-              <li> React Reducer/useContext</li>
+              <li> Learning React Reducer/useContext and React DnD</li>
             </ul>
         </p>
       </div>
