@@ -102,7 +102,7 @@ VALUES
     ),
     (
       'Find Princess Peach 💘',
-      'King Bowser kidnapped Peach, we need to find her!',
+      'King Bowser kidnapped Peach. We need to find her!',
       'IN-PROGRESS',
       '2027-02-14 18:00:00',
       1,
