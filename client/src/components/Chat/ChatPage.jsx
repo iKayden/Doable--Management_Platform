@@ -1,29 +1,48 @@
-import { useEffect, useRef, useState } from "react";
-import Login from "../Login";
-import ChatBar from "./ChatBar";
-import ChatBody from "./ChatBody";
-import ChatFooter from "./ChatFooter";
+import { useEffect, useRef, useState } from 'react';
+import io from 'socket.io-client';
+
+import Login from '../Login';
+import ChatBar from './ChatBar';
+import ChatBody from './ChatBody';
+import ChatFooter from './ChatFooter';
 import './ChatPage.css';
 
-
-export default function ChatPage({ socket }) {
+export default function ChatPage() {
+  const [socket, setSocket] = useState();
   const [messages, setMessages] = useState([]);
-  const [user, setUser] = useState(localStorage.getItem("userName"));
-  const [avatar, setAvatar] = useState(localStorage.getItem("userAvatar"));
+  const [user, setUser] = useState(localStorage.getItem('userName'));
+  const [avatar, setAvatar] = useState(localStorage.getItem('userAvatar'));
   const [typingStatus, setTypingStatus] = useState('');
   const lastMessageRef = useRef(null);
 
   useEffect(() => {
-    socket.on("messageResponse", (data) => {
-      setMessages((prev) => {
-        return [...prev, data];
-      });
-    });
+    const socket = io.connect('http://localhost:3001');
+    setSocket(socket);
+    return () => {
+      socket.disconnect();
+      setSocket();
+    };
   }, []);
 
   useEffect(() => {
-    socket.emit('newUser', { userName: user, socketID: socket.id, avatar: avatar });
-  }, [user]);
+    if (socket) {
+      socket.on('messageResponse', (data) => {
+        setMessages((prev) => {
+          return [...prev, data];
+        });
+      });
+    }
+  }, [socket]);
+
+  useEffect(() => {
+    if (socket) {
+      socket.emit('newUser', {
+        userName: user,
+        socketID: socket.id,
+        avatar: avatar,
+      });
+    }
+  }, [user, socket, avatar]);
 
   useEffect(() => {
     // 👇️ scroll to bottom every time messages change
@@ -31,13 +50,15 @@ export default function ChatPage({ socket }) {
   }, [messages]);
 
   useEffect(() => {
-    // Changes typing status to empty string after two seconds
-    socket.on('typingResponse', (data) => {
-      setTypingStatus(data);
-      setTimeout(() => {
-        setTypingStatus('');
-      }, 2000);
-    });
+    if (socket) {
+      // Changes typing status to empty string after two seconds
+      socket.on('typingResponse', (data) => {
+        setTypingStatus(data);
+        setTimeout(() => {
+          setTypingStatus('');
+        }, 2000);
+      });
+    }
   }, [socket]);
 
   const loginHandler = (userName) => {
@@ -57,9 +78,7 @@ export default function ChatPage({ socket }) {
           lastMessageRef={lastMessageRef}
           typingStatus={typingStatus}
         />
-        <ChatFooter
-          socket={socket}
-        />
+        <ChatFooter socket={socket} />
       </div>
     </div>
   );

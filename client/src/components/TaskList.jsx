@@ -144,7 +144,7 @@ export default function TaskList() {
   };
 
   const navigate = useNavigate();
-  const chatRoute = () => {
+  const redirectToChat = () => {
     navigate(`/chat`);
   };
 
@@ -168,26 +168,26 @@ export default function TaskList() {
           {/* New Task Button */}
           <span id="tasklist__buttons">
             <Button
-            variant="primary"
-            className="add-new-task__button"
-            onClick={() =>
-              dispatch({
-                type: OPEN_ADD_TASK,
-              })
-            }
-          >
-            <i className="fa-solid fa-plus"></i> New Task{" "}
-          </Button>
-          {/* Chat Now Button */}
-          <Button
-            variant="primary"
-            className="chat__button"
-            onClick={chatRoute}
-          >
-            Chat Now! <i className="fa-solid fa-message"></i>
-          </Button>
+              variant="primary"
+              className="add-new-task__button"
+              onClick={() =>
+                dispatch({
+                  type: OPEN_ADD_TASK,
+                })
+              }
+            >
+              <i className="fa-solid fa-plus"></i> New Task{" "}
+            </Button>
+            {/* Chat Now Button */}
+            <Button
+              variant="primary"
+              className="chat__button"
+              onClick={redirectToChat}
+            >
+              Chat Now! <i className="fa-solid fa-message"></i>
+            </Button>
           </span>
-          </h1></div>
+        </h1></div>
       <section className="dashboard_info">
         <TaskTabs />
       </section>
@@ -218,9 +218,8 @@ export default function TaskList() {
                               {(provided, snapshot) => {
                                 return (
                                   <div
-                                    className={`draggable-item ${
-                                      snapshot.isDragging && "dragging"
-                                    }`}
+                                    className={`draggable-item ${snapshot.isDragging && "dragging"
+                                      }`}
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}

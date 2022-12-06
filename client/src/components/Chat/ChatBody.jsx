@@ -4,13 +4,8 @@ import './ChatBody.css';
 
 const ChatBody = ({ messages, lastMessageRef, typingStatus }) => {
   const navigate = useNavigate();
-
   const handleLeaveChat = () => {
-    localStorage.removeItem('userName');
-    localStorage.removeItem('userAvatar');
-    localStorage.removeItem('user');
-    navigate('/');
-    window.location.reload();
+    navigate(-1);
   };
 
   return (

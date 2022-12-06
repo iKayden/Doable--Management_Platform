@@ -7,11 +7,12 @@ import {
   useApplicationState,
 } from '../hooks/useApplicationData';
 import './Home.css';
+import { useNavigate } from 'react-router-dom';
 
-const Home = () => {
+const Home = ({ setUser, user }) => {
   const dispatch = useApplicationDispatch();
   const { projects } = useApplicationState();
-  const [user, setUser] = useState(localStorage.getItem('user'));
+  const navigate = useNavigate();
 
   // Displays projects that are active
   const filteredProjects = projects.filter(
@@ -28,10 +29,10 @@ const Home = () => {
 
   // Checks if user is logged in
   if (!user) {
-    return <Login setUser={setUser} />;
+    return navigate('/login');
   }
 
-  return <ProjectList projects={filteredProjects} />;
+  return <ProjectList projects={filteredProjects} title="Active Projects" />;
 };
 
 export default Home;

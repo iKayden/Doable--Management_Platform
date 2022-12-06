@@ -1,0 +1,62 @@
+.section__images > img {
+  height: 150px;
+  width: 165px;
+  border-radius: 10%;
+  margin: 10px;
+}
+.section__images {
+  margin-top: 35px;
+}
+
+.about-us_group-photo {
+  margin-top: 35px;
+  height: 550px;
+  width: 770px;
+  border-radius: 10%;
+}
+
+.flex-wrapper__our-stories {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px 10px 0 15px;
+}
+
+.about-us__text {
+  padding: 0 30px 0 30px;
+  font-size: 22px;
+  text-align: initial;
+}
+
+.about-us__personal-picture {
+  height: 350px;
+  width: 250px;
+  border-radius: 10%;
+}
+
+.about-us__closeup-picture {
+  margin-top: 35px;
+  height: 350px;
+  width: 580px;
+  border-radius: 10%;
+}
+
+.about-us__section {
+  margin-bottom: 10px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  min-height: 100vh;
+}
+
+/* .hidden {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateX(-100%);
+  transition: all 1s;
+}
+.show {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);
+} */
