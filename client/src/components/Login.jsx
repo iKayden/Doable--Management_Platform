@@ -57,6 +57,7 @@ export default function Login({ setUser }) {
         <Form.Group controlId="dob">
           <Form.Label>Email</Form.Label>
           <Form.Control
+            autoComplete='off'
             type="text"
             name="email"
             placeholder="Enter email address"
