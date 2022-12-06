@@ -79,7 +79,6 @@ export default function TaskTabs() {
         </p>
       </Tab>
       <Tab tabClassName="tasklist_tabs" eventKey="members" title="Members">
-        {/* <p className="task-list__project-users">Members in this project:</p> */}
         <div className="task-list__avatars-wrapper">{users}</div>
       </Tab>
       <Tab tabClassName="tasklist_tabs" eventKey="files" title="Files"></Tab>
