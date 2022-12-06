@@ -36,13 +36,13 @@ INSERT INTO
 projects(name, description, start_date, expected_end_date)
 VALUES
     (
-      'Save Princess Peach🍑 from Bowser',
+      'Save Princess Peach from Bowser',
       'Details to save Princess Peach',
       '2020-10-12 01:00:00',
       '2027-12-10 15:30:00'
      ),
     (
-      'MarioKart Race 🚗',
+      'MarioKart Race',
       'Try out new tracks',
       '2000-06-12 09:00:00',
       '2023-12-31 05:00:07'
@@ -54,66 +54,46 @@ VALUES
       '2025-12-01 09:14:07'
      ),
     (
-      'Weekly practice for Tennis 🎾',
+      'Weekly practice for Tennis',
       'Work on new strategies',
       '2020-02-12 01:00:00',
       '2022-12-31 03:14:07'
      ),
     (
-      'MarioGolf Adeventure ⛳️',
+      'MarioGolf Adeventure',
       'Golfing skills in progress',
       '2019-01-20 01:00:00',
       '2023-01-01 12:14:07'
      ),
     (
-      'Halloween party at Luigis Mansion 👻',
+      'Halloween party at Luigis Mansion',
       'Planning session',
       '2022-12-05 12:00:00',
       '2023-10-31 18:00:00'
-     ),
-    (
-      'Planning for SuperSmash Bros Tournament 🧠',
-      'Manage and organize next seasons tournamnet',
-      '2022-06-12 09:00:00',
-      '2024-04-30 05:00:00'
      );
 
 INSERT INTO
 projects(name, description, start_date, expected_end_date, completion_time)
 VALUES (
-      'Finished project',
+      'Important project',
       'Has been finished',
-      '2021-11-12 01:00:00',
-      '2025-12-30 03:14:07',
+      '2018-11-12 01:00:00',
+      '2021-12-30 03:14:07',
       '2025-12-28 03:14:07'
      ),
      (
-      'Finished project',
-      'Has been finished',
-      '2021-11-12 01:00:00',
-      '2025-12-30 03:14:07',
-      '2025-12-28 03:14:07'
-     ),
-     (
-      'Finished project',
-      'Has been finished',
-      '2021-11-12 01:00:00',
-      '2025-12-30 03:14:07',
-      '2025-12-28 03:14:07'
-     ),
-     (
-      'Finished project',
-      'Has been finished',
-      '2021-11-12 01:00:00',
-      '2025-12-30 03:14:07',
-      '2025-12-28 03:14:07'
+      'Attend SuperSmash Bros tournament',
+      'Strategies for tournament',
+      '2021-11-12 12:00:00',
+      '2022-07-30 12:00:07',
+      '2022-07-28 03:14:07'
      );
 
 INSERT INTO
 tasks(name, description, status, deadline, assigned_user_id, project_id)
 VALUES
     (
-      'Go into green warp pipe 💨',
+      'Go into green warp pipe',
       'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       'IN-PROGRESS',
       '2025-09-08 14:15:00',
@@ -121,7 +101,7 @@ VALUES
       1
     ),
     (
-      'Save Princess Peach 😍',
+      'Save Princess Peach 💘',
       'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       'IN-PROGRESS',
       '2027-02-14 18:00:00',
@@ -145,7 +125,7 @@ VALUES
       1
     ),
     (
-      'Eat Super Mushrooms 🍄',
+      'Eat Super Mushrooms',
       'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       'IN-PROGRESS',
       '2025-11-20 03:00:00',
@@ -153,7 +133,7 @@ VALUES
       1
     ),
     (
-      'Dont talk to Goombas!!! 🙊',
+      'Dont talk to Goombas!!!',
       'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       'IN-PROGRESS',
       '2027-01-25 07:00:00',
@@ -352,6 +332,24 @@ VALUES
       '2022-11-08 04:00:00',
       1,
       2
+    ),
+    (
+      'Lock up Princess Peach',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      1,
+      7
+    ),
+    (
+      'Lock up Princess Peach',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+      'COMPLETED',
+      '2022-11-08 05:00:00',
+      '2022-11-08 04:00:00',
+      1,
+      8
     );
 
 INSERT INTO
@@ -382,12 +380,16 @@ VALUES
       6
     ),
     (
-      2,
-      1
+      1,
+      7
     ),
     (
-      4,
-      2
+      1,
+      8
+    ),
+    (
+      2,
+      1
     ),
     (
       2,
@@ -402,15 +404,20 @@ VALUES
       5
     ),
     (
-      4,
-      1
+      2,
+      8
     ),
     (
       3,
       1
     ),
     (
+      4,
+      1
+    ),
+    (
       5,
       1
     );
+
     
