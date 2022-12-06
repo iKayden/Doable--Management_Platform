@@ -1,4 +1,4 @@
-export function First() {
+export function Intro() {
   return (
     <section className="about-us__section">
       <h1>Hello everyone!</h1>
@@ -8,7 +8,7 @@ export function First() {
   );
 }
 
-export function Second() {
+export function TechStack() {
   return (
     <section className="box about-us__section">
       <h2>This is the tech stack we used to develop it</h2>
@@ -38,7 +38,7 @@ export function Second() {
   );
 }
 
-export function Third() {
+export function OurTeam() {
   return (
     <section className="about-us__section">
       <h2>This is the amazing team</h2>
@@ -51,7 +51,7 @@ export function Third() {
   );
 }
 
-export function Fourth() {
+export function Eileen() {
   return (
     <section className="about-us__our-stories about-us__section">
       <h2>Eileen</h2>
@@ -75,7 +75,7 @@ export function Fourth() {
   );
 }
 
-export function Fifth() {
+export function Rosanna() {
   return (
     <section className="about-us__our-stories about-us__section">
       <h2>Rosanna</h2>
@@ -86,8 +86,8 @@ export function Fifth() {
           alt="rosanna"
         ></img>
         <p className="about-us__text">
-        Accomplishments
-        <ul>
+          Accomplishments
+          <ul>
             <li>Pair Programming:</li>
             <ul>
               <li>Structure and Routing of the project</li>
@@ -100,31 +100,60 @@ export function Fifth() {
               <li>Page/Footer/Delete Confirmation Modal</li>
             </ul>
           </ul>
-            Roadblocks
-            <ul>
-              <li> Learning React Reducer/useContext and React DnD</li>
-            </ul>
+          Roadblocks
+          <ul>
+            <li> Learning React Reducer/useContext and React DnD</li>
+          </ul>
         </p>
       </div>
     </section>
   );
 }
-export function Sixth() {
+export function Kayden() {
   return (
     <section className="about-us__our-stories about-us__section">
       <h2>Kayden</h2>
       <div className="flex-wrapper__our-stories">
         <img
-          className="about-us__personal-picture"
+          className="about-us__personal-picture-kayden"
           src="https://res.cloudinary.com/kaydenukr/image/upload/c_scale,w_500/v1670268258/pictures/kayden_f.jpg"
           alt="kayden"
         ></img>
-        <p className="about-us__text">A</p>
+        <p className='about-us__text'>
+          <strong>Accomplishments:</strong> <br />
+          <ul>
+            <li>Pair Programming:</li>
+            <ul>
+              <li>Structure and Routing of the project</li>
+              <li>Seeds And Database Tables</li>
+              <li>React Drag and Drop</li>
+              <li>Websockets: Chat Feature</li>
+              <li>Implemented useReducer and useContext hooks and behavior</li>
+            </ul>
+            <li>Personal:</li>
+            <ul>
+              <li>Add avatars to the users (task list, chat, navbar)</li>
+              <li>Designed Name, Icon, Color Pallet</li>
+              <li>Seeds And Database Tables</li>
+              <li>Initial SQL queries to achieve all basic operations</li>
+            </ul>
+          </ul>
+          <strong>Road Blocks:</strong> <br />
+          <ul>
+            <li>Specifics of React States and Hooks</li>
+            <li>Fetching and Inserting correct Data into the Database</li>
+            <li>Team Management</li>
+          </ul>
+          <span>
+            <strong>Things I would do differently?</strong><br />
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, eaque quae animi consequatur ab minus unde, velit sunt ad mollitia porro voluptates nihil molestiae fuga? Laborum eum enim sunt vero!
+          </span>
+        </p>
       </div>
     </section>
   );
 }
-export function Seventh() {
+export function TheEnd() {
   return (
     <section className="about-us__section">
       <h1>Thank you for your time and attention</h1>

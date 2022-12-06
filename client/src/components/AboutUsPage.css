@@ -18,7 +18,7 @@
 .flex-wrapper__our-stories {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   margin: 10px 10px 0 15px;
 }
 
@@ -47,6 +47,12 @@
   place-items: center;
   align-content: center;
   min-height: 100vh;
+}
+
+.about-us__personal-picture-kayden {
+  height: 360px;
+  width: 228px;
+  border-radius: 10%;
 }
 
 /* .hidden {
